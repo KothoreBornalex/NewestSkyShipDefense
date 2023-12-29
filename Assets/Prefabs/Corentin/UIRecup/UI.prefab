@@ -12279,7 +12279,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4288477728337785062
 MonoBehaviour:
@@ -16573,7 +16573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 467550752644033695}
-  - component: {fileID: 3910779845100844801}
+  - component: {fileID: 1302333152008491970}
   m_Layer: 5
   m_Name: NewWaveIndicator
   m_TagString: Untagged
@@ -16605,7 +16605,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3910779845100844801
+--- !u!114 &1302333152008491970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16614,14 +16614,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8175904191034519419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e58bd733e644b498d3a28a5add63cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd81959dafeb75499b563fd5fa596b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeUIManager: {fileID: 2129601659817862778}
   _indicatorSkullImage: {fileID: 7060457024077348984}
   _appearSpeed: 1
   _disappearTarget: {fileID: 2083799110385176443}
-  _disappearSpeed: 3
+  _disappearSpeed: 1
   _onDisappear:
     m_PersistentCalls:
       m_Calls:
@@ -17231,7 +17231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.506259, g: 0.2713777, b: 0.5943396, a: 1}
+  m_Color: {r: 0.31011927, g: 0.73635894, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17332,7 +17332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8891077677154411302}
-  - component: {fileID: 1661708773310542281}
+  - component: {fileID: 1717836783592781849}
   m_Layer: 5
   m_Name: UpgradePagesManager
   m_TagString: Untagged
@@ -17359,7 +17359,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1661708773310542281
+--- !u!114 &1717836783592781849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17368,13 +17368,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8410173583878213502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8570950a65b89564e8e510c3ac4e1cc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d59907f826e26e42ba1cb812b61499b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _upgrades: {fileID: 6996017749575058777}
   _indexPages: 0
   _totalPages: 3
-  _speedPages: 2
+  _speedPages: 0
   _nextPageButton: {fileID: 0}
   _previousPageButton: {fileID: 0}
   testRight: 0
