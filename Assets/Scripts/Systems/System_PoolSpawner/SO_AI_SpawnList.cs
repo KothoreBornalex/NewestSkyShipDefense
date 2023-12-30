@@ -20,7 +20,7 @@ public class SO_AI_SpawnList : ScriptableObject
 
     [Header("Spawns Data")]
     [SerializeField, Range(0, 100)] private int _maxSpawnCountPerFaction;
-    [SerializeField, Range(0, 10)] private int _baseSpawnCount = 4;
+    [SerializeField, Range(0, 40)] private int _baseSpawnCount = 4;
     [SerializeField, Range(0, 1000)] private int _crashTestSpawnCount = 100;
 
     [Header("Factions List")]
