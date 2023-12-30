@@ -16,9 +16,9 @@ public class playerAttack : MonoBehaviour
 
     private int _spellIndex = 1;
 
-    private int _spell1Level = 0;
-    private int _spell2Level = 0;
-    private int _spell3Level = 0;
+    [SerializeField] private int _spell1Level = 0;
+    [SerializeField] private int _spell2Level = 0;
+    [SerializeField] private int _spell3Level = 0;
 
     [SerializeField] private PlayerAttacksData _playerAttacksData;
 
