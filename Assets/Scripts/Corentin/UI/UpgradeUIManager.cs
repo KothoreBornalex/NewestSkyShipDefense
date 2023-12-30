@@ -67,9 +67,6 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private Image _spell3BackgroundImage;
     [SerializeField] private RectTransform _spellIndicatorRectTrans;
     [SerializeField] private float _spellIndicatorSpeed;
-    [SerializeField] private RectTransform _posLeftSpellRectTrans;
-    [SerializeField] private RectTransform _posMidSpellRectTrans;
-    [SerializeField] private RectTransform _posRightSpellRectTrans;
     private Vector3 _targetSpellIndPos;
     private Coroutine _spellIndicatorSlideCoroutine;
 
@@ -98,19 +95,19 @@ public class UpgradeUIManager : MonoBehaviour
                 _spell1BackgroundImage.color = _selectedColor;
                 _spell2BackgroundImage.color = _unselectedColor;
                 _spell3BackgroundImage.color = _unselectedColor;
-                _targetSpellIndPos = _posLeftSpellRectTrans.localPosition;
+                _targetSpellIndPos = _spell1BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 2: // spell 2
                 _spell1BackgroundImage.color = _unselectedColor;
                 _spell2BackgroundImage.color = _selectedColor;
                 _spell3BackgroundImage.color = _unselectedColor;
-                _targetSpellIndPos = _posMidSpellRectTrans.localPosition;
+                _targetSpellIndPos = _spell2BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 3: // spell 3
                 _spell1BackgroundImage.color = _unselectedColor;
                 _spell2BackgroundImage.color = _unselectedColor;
                 _spell3BackgroundImage.color = _selectedColor;
-                _targetSpellIndPos = _posRightSpellRectTrans.localPosition;
+                _targetSpellIndPos = _spell3BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
         }
         if (_spellIndicatorSlideCoroutine == null)
