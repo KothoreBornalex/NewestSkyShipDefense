@@ -67,9 +67,6 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private Image _spell3BackgroundImage;
     [SerializeField] private RectTransform _spellIndicatorRectTrans;
     [SerializeField] private float _spellIndicatorSpeed;
-    [SerializeField] private RectTransform _posLeftSpellRectTrans;
-    [SerializeField] private RectTransform _posMidSpellRectTrans;
-    [SerializeField] private RectTransform _posRightSpellRectTrans;
     private Vector3 _targetSpellIndPos;
     private Coroutine _spellIndicatorSlideCoroutine;
 
@@ -98,19 +95,19 @@ public class UpgradeUIManager : MonoBehaviour
                 _spell1BackgroundImage.color = _selectedColor;
                 _spell2BackgroundImage.color = _unselectedColor;
                 _spell3BackgroundImage.color = _unselectedColor;
-                _targetSpellIndPos = _posLeftSpellRectTrans.localPosition;
+                _targetSpellIndPos = _spell1BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 2: // spell 2
                 _spell1BackgroundImage.color = _unselectedColor;
                 _spell2BackgroundImage.color = _selectedColor;
                 _spell3BackgroundImage.color = _unselectedColor;
-                _targetSpellIndPos = _posMidSpellRectTrans.localPosition;
+                _targetSpellIndPos = _spell2BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 3: // spell 3
                 _spell1BackgroundImage.color = _unselectedColor;
                 _spell2BackgroundImage.color = _unselectedColor;
                 _spell3BackgroundImage.color = _selectedColor;
-                _targetSpellIndPos = _posRightSpellRectTrans.localPosition;
+                _targetSpellIndPos = _spell3BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
         }
         if (_spellIndicatorSlideCoroutine == null)
@@ -210,30 +207,58 @@ public class UpgradeUIManager : MonoBehaviour
         if (_upgradeButtons[_playerAttack.Spell1Level].GetComponent<Image>().color != _upgradedColor)
         {
             _upgradeButtons[_playerAttack.Spell1Level].GetComponent<Image>().color = _upgradedColor;
-            _upgradeSliderSp1.value = (float)_playerAttack.Spell1Level / 3f;
+            float gap1 = 0;
+            if (_playerAttack.Spell1Level >= 4)
+            {
+                gap1++;
+                if (_playerAttack.Spell1Level >= 8)
+                {
+                    gap1++;
+                }
+            }
+            _upgradeSliderSp1.value = ((float)_playerAttack.Spell1Level + gap1) / 13f;
             if (_playerAttack.Spell1Level > 0)
             {
                 _upgradeButtons[_playerAttack.Spell1Level - 1].GetComponent<Image>().color = _toUpgradeColor;
             }
         }
 
-        if (_upgradeButtons[_playerAttack.Spell2Level + 4].GetComponent<Image>().color != _upgradedColor)
+        if (_upgradeButtons[_playerAttack.Spell2Level + 12].GetComponent<Image>().color != _upgradedColor)
         {
-            _upgradeButtons[_playerAttack.Spell2Level + 4].GetComponent<Image>().color = _upgradedColor;
-            _upgradeSliderSp2.value = (float)_playerAttack.Spell2Level / 3f;
+            _upgradeButtons[_playerAttack.Spell2Level + 12].GetComponent<Image>().color = _upgradedColor;
+
+            float gap2 = 0;
+            if(_playerAttack.Spell2Level >= 4)
+            {
+                gap2++;
+                if (_playerAttack.Spell2Level >= 8)
+                {
+                    gap2++;
+                }
+            }
+            _upgradeSliderSp2.value = ((float)_playerAttack.Spell2Level + gap2) / 13f;
             if (_playerAttack.Spell2Level > 0)
             {
-                _upgradeButtons[_playerAttack.Spell2Level + 3].GetComponent<Image>().color = _toUpgradeColor;
+                _upgradeButtons[_playerAttack.Spell2Level + 11].GetComponent<Image>().color = _toUpgradeColor;
             }
         }
 
-        if (_upgradeButtons[_playerAttack.Spell3Level + 8].GetComponent<Image>().color != _upgradedColor)
+        if (_upgradeButtons[_playerAttack.Spell3Level + 24].GetComponent<Image>().color != _upgradedColor)
         {
-            _upgradeButtons[_playerAttack.Spell3Level + 8].GetComponent<Image>().color = _upgradedColor;
-            _upgradeSliderSp3.value = (float)_playerAttack.Spell3Level / 3f;
+            _upgradeButtons[_playerAttack.Spell3Level + 24].GetComponent<Image>().color = _upgradedColor;
+            float gap3 = 0;
+            if (_playerAttack.Spell3Level >= 4)
+            {
+                gap3++;
+                if (_playerAttack.Spell3Level >= 8)
+                {
+                    gap3++;
+                }
+            }
+            _upgradeSliderSp3.value = ((float)_playerAttack.Spell3Level + gap3) / 13f;
             if (_playerAttack.Spell3Level > 0)
             {
-                _upgradeButtons[_playerAttack.Spell3Level + 7].GetComponent<Image>().color = _toUpgradeColor;
+                _upgradeButtons[_playerAttack.Spell3Level + 23].GetComponent<Image>().color = _toUpgradeColor;
             }
         }
     }

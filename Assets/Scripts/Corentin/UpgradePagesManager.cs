@@ -8,21 +8,24 @@ public class UpgradePagesManager : MonoBehaviour
 {
     // Fields
 
-    [SerializeField] private RectTransform _upgrades;
-    private float _upgradeLimit;
+    [Header("UpgradesHandler")]
+    [SerializeField] private RectTransform _upgradesHandler;
 
+    [Header("PagesIndicators")]
+    [SerializeField] private RectTransform[] _pagesIndicators;
+    private Vector3 _targetIndicatorPos;
+
+    [Header("PagesSlideManager")]
     [SerializeField] private int _indexPages;
     [SerializeField] private int _totalPages;
 
     [SerializeField] private float _speedPages;
+    private Coroutine _slidePageCoroutine;
 
-    [SerializeField] private Button _nextPageButton;
-    [SerializeField] private Button _previousPageButton;
-
+    [Header("TestButtons")]
     [SerializeField] private bool testRight;
     [SerializeField] private bool testLeft;
 
-    private Coroutine _slidePageCoroutine;
 
 
     // Properties
@@ -48,17 +51,16 @@ public class UpgradePagesManager : MonoBehaviour
     }
     private void SlidePages()
     {
-        if (_slidePageCoroutine != null)
+        _targetIndicatorPos = _pagesIndicators[_indexPages].localPosition;
+        if (_slidePageCoroutine == null)
         {
-            _slidePageCoroutine = null;
+            _slidePageCoroutine = StartCoroutine(SlidePagesCoroutine());
         }
-        _slidePageCoroutine = StartCoroutine(SlidePagesCoroutine());
     }
 
     private void Awake()
     {
         _indexPages = 0;
-        _upgradeLimit = _upgrades.position.x;
     }
     // Start is called before the first frame update
     void Start()
@@ -83,32 +85,28 @@ public class UpgradePagesManager : MonoBehaviour
 
     IEnumerator SlidePagesCoroutine()
     {
-        float xLimit = 0;
+        Debug.Log("start coroutine bouge upgrade !");
 
-        switch (_indexPages)
+        float tempX = _upgradesHandler.position.x;
+
+        while (Mathf.Abs(_targetIndicatorPos.x - _upgradesHandler.localPosition.x) > 0.2f)
         {
-            case 0:
-                xLimit = _upgradeLimit;
-                break;
-            case 1:
-                xLimit = 0;
-                break;
-            case 2:
-                xLimit = -_upgradeLimit;
-                break;
-        }
+            
+            Vector3 tempVector = _upgradesHandler.localPosition;
+            Debug.Log("target : " + _targetIndicatorPos);
+            Debug.Log("before : " + tempX);
+            tempX = Mathf.Lerp(tempX, _targetIndicatorPos.x, Time.deltaTime * _speedPages);
+            Debug.Log("after : " + tempX);
 
-        Vector3 tempPos = _upgrades.localPosition;
-        //tempPos.x += xLimit;
+            tempVector.x = tempX;
 
-        while ((_upgrades.localPosition - GetComponent<RectTransform>().localPosition).magnitude > 0.07f)
-        {
-            tempPos.x = Mathf.Lerp(tempPos.x, xLimit, Time.deltaTime * _speedPages);
-
-            _upgrades.localPosition = tempPos;
-
+            _upgradesHandler.localPosition = tempVector;
+            
             yield return null;
         }
+
+        Debug.Log("end coroutine");
+        _slidePageCoroutine = null;
 
         yield return null;
     }
