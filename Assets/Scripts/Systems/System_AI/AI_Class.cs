@@ -39,6 +39,8 @@ public class AI_Class : MonoBehaviour, IStatistics
     [SerializeField] private SoldiersEnum _unitType;
     [SerializeField, Expandable] private AI_Data _ai_Data;
     [SerializeField] private bool _setChase;
+    [SerializeField] private ParticleSystem _deathEffect;
+
     private int _objectifID;
     private Rigidbody _rigidbody;
     private CapsuleCollider _capsuleCollider;
@@ -119,6 +121,7 @@ public class AI_Class : MonoBehaviour, IStatistics
 
             if (currentTimeSinceDeath >= 3.0f)
             {
+                currentTimeSinceDeath = 0;
                 AISpawner_Manager.instance.UnSpawn(_pooledObject);
             }
 
@@ -146,6 +149,8 @@ public class AI_Class : MonoBehaviour, IStatistics
         _capsuleCollider.enabled = true;
 
         _material.color = Color.white;
+
+        _deathEffect.gameObject.SetActive(false);
     }
 
     public void FreezPhysics()
@@ -160,7 +165,10 @@ public class AI_Class : MonoBehaviour, IStatistics
 
     public void Death()
     {
-        Instantiate<GameObject>(_ai_Data.DeathObject, transform.position, Quaternion.identity);
+        //Instantiate<GameObject>(_ai_Data.DeathObject, transform.position, Quaternion.identity);
+        _deathEffect.gameObject.SetActive(true);
+        _deathEffect.Play();
+
         _isAlive = false;
         _animator.SetBool(hash_isDead, true);
         _navMeshAgent.isStopped = true;
@@ -354,10 +362,28 @@ public class AI_Class : MonoBehaviour, IStatistics
 
     public void InitializeStats()
     {
-        foreach (Statistics statistics in _ai_Data.AiStatistics)
+        if(_aiStatistics.Count != 0)
         {
-            _aiStatistics.Add(new Statistics(statistics._statName, statistics._statCurrentValue, statistics._statMaxValue));
+            foreach(Statistics myStat in _aiStatistics)
+            {
+                foreach (Statistics statistics in _ai_Data.AiStatistics)
+                {
+                    if (myStat._statName == statistics._statName)
+                    {
+                        myStat._statCurrentValue = statistics._statCurrentValue;
+                    }
+                }
+            }
+
         }
+        else
+        {
+            foreach (Statistics statistics in _ai_Data.AiStatistics)
+            {
+                _aiStatistics.Add(new Statistics(statistics._statName, statistics._statCurrentValue, statistics._statMaxValue));
+            }
+        }
+        
     }
 
 

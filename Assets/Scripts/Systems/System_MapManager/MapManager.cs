@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectifClass;
+
 
 public class MapManager : MonoBehaviour
 {
+  
+
+    [System.Serializable]
+    public struct LightStruct
+    {
+        public bool onFlame;
+        public ObjectifEnum lightPlace;
+        public Light light;
+    }
+
     public static MapManager instance;
 
 
@@ -15,16 +27,26 @@ public class MapManager : MonoBehaviour
     [SerializeField] private float _fastTimeSpeed;
     public bool IsTimeSpeeding { get => _isTimeSpeeding; set => _isTimeSpeeding = value; }
 
-
     [Header("Lighting Fields")]
     [SerializeField] private bool _isSunRotating;
     [SerializeField] private float _rotatingSpeed;
     [SerializeField] private Transform _directionalLightTransform;
     private Light _directionalLight;
 
-    [SerializeField] private List<Light> _lights;
+    [SerializeField] private LightStruct[] _lights;
+    [SerializeField] private Color fireLightColor;
+    [SerializeField, Range(10.0f, 30.0f)] private float fireLighFlickerIntensity = 20.0f;
+
+    float maxLightIntensity = 25.0f;
+    float minLightIntensity = 0.0f;
+    public LightStruct[] Lights { get => _lights; set => _lights = value; }
+
+
     private float _currentLightIntensity;
     private float _angleValue;
+
+
+
 
 
 
@@ -38,6 +60,22 @@ public class MapManager : MonoBehaviour
     [SerializeField, Range(0, 750)] private float _fastBackGroundMovingSpeed;
 
     [SerializeField] private Transform[] _backgroundElements;
+
+
+
+
+    [Header("Boats Traffic Fields")]
+    [SerializeField] private bool _isBoatTrafficMoving;
+    [SerializeField] private Transform _boatTrafficElementsParent;
+    [SerializeField] private Vector3 _boatTrafficBoundingBox;
+    [SerializeField] private Color _boatTrafficBoundingBoxColor;
+    private float _currentBoatTrafficMovingSpeed;
+    [SerializeField, Range(0, 750)] private float _slowBoatTrafficMovingSpeed;
+    [SerializeField, Range(0, 750)] private float _fastBoatTrafficMovingSpeed;
+
+    [SerializeField] private Transform[] _boatTrafficBackgroundElements;
+
+
 
 
     [Header("Ship Fields")]
@@ -104,11 +142,13 @@ public class MapManager : MonoBehaviour
 
             _currentTimeSpeed = Mathf.MoveTowards(_currentTimeSpeed, _fastTimeSpeed, Time.deltaTime * 0.7F);
             _currentBackGroundMovingSpeed = Mathf.MoveTowards(_currentBackGroundMovingSpeed, _fastBackGroundMovingSpeed, Time.deltaTime * 3.0f);
+            _currentBoatTrafficMovingSpeed = Mathf.MoveTowards(_currentBoatTrafficMovingSpeed, _fastBoatTrafficMovingSpeed, Time.deltaTime * 3.0f);
         }
         else
         {
             _currentTimeSpeed = Mathf.MoveTowards(_currentTimeSpeed, _slowTimeSpeed, Time.deltaTime * 5.0F);
             _currentBackGroundMovingSpeed = Mathf.MoveTowards(_currentBackGroundMovingSpeed, _slowBackGroundMovingSpeed, Time.deltaTime * 3.0f);
+            _currentBoatTrafficMovingSpeed = Mathf.MoveTowards(_currentBoatTrafficMovingSpeed, _slowBoatTrafficMovingSpeed, Time.deltaTime * 3.0f);
         }
 
         _currentDeltaTime = Time.deltaTime * _currentTimeSpeed;
@@ -116,10 +156,13 @@ public class MapManager : MonoBehaviour
 
         if (_isBackGroundMoving)
         {
-            UpdateMovingFunction();
+            UpdateMovingBackgroundFunction();
         }
 
-        
+        if (_isBoatTrafficMoving)
+        {
+            UpdateMovingTrafficFunction();
+        }
     }
 
     void HandlingLights()
@@ -132,11 +175,11 @@ public class MapManager : MonoBehaviour
         _angleValue = Quaternion.Angle(Quaternion.LookRotation(Vector3.up), _directionalLightTransform.rotation);
         if (_angleValue >= 110)
         {
-            _currentLightIntensity = Mathf.Lerp(_currentLightIntensity, 0, Time.deltaTime);
+            _currentLightIntensity = Mathf.Lerp(_currentLightIntensity, minLightIntensity, Time.deltaTime);
         }
         else
         {
-            _currentLightIntensity = Mathf.Lerp(_currentLightIntensity, 25.0f, Time.deltaTime);
+            _currentLightIntensity = Mathf.Lerp(_currentLightIntensity, maxLightIntensity, Time.deltaTime);
         }
 
 
@@ -150,23 +193,40 @@ public class MapManager : MonoBehaviour
             _directionalLight.intensity = Mathf.Lerp(_directionalLight.intensity, 0, Time.deltaTime);
         }
 
-        foreach (Light light in _lights)
+        foreach (LightStruct lightStruct in _lights)
         {
-            light.intensity = _currentLightIntensity;
+            if(!lightStruct.onFlame) lightStruct.light.intensity = _currentLightIntensity;
+            else
+            {
+                // Simulating Fire lighting
+                float randomness = 3.0f;
+                float flickerPerSecond = 3.0f;
+                float time = Time.deltaTime * (1 - Random.Range(-randomness, randomness)) * Mathf.PI;
+                lightStruct.light.intensity = Mathf.Lerp(lightStruct.light.intensity, (maxLightIntensity * 0.75f) + Mathf.Sin(time * flickerPerSecond) * fireLighFlickerIntensity, Time.deltaTime * 2.0f);
+
+                lightStruct.light.color = Vector4.Lerp(lightStruct.light.color, fireLightColor, Time.deltaTime);
+            }
         }
     }
 
-    void UpdateMovingFunction()
+    void UpdateMovingBackgroundFunction()
     {
         foreach (Transform t in _backgroundElements)
         {
-            MovingFunction(t);
+            MovingBackgroundFunction(t);
         }
     }
 
-    private void MovingFunction(Transform t)
+    void UpdateMovingTrafficFunction()
     {
+        foreach (Transform t in _boatTrafficBackgroundElements)
+        {
+            MovingTrafficFunction(t);
+        }
+    }
 
+    private void MovingBackgroundFunction(Transform t)
+    {
         t.Translate(-Vector3.forward * _currentDeltaTime * _currentBackGroundMovingSpeed, Space.World);
 
 
@@ -175,6 +235,23 @@ public class MapManager : MonoBehaviour
             t.localPosition = new Vector3(t.localPosition.x, t.localPosition.y, (_backgroundBoundingBox.z / 2));
         }
     }
+
+
+    private void MovingTrafficFunction(Transform t)
+    {
+        //t.Translate(-Vector3.forward * _currentDeltaTime * _currentBoatTrafficMovingSpeed, Space.World);
+        t.Translate(t.forward * _currentDeltaTime * _currentBoatTrafficMovingSpeed, Space.World);
+
+
+        if (t.localPosition.z < -(_boatTrafficBoundingBox.z / 2))
+        {
+            t.localPosition = new Vector3(t.localPosition.x, t.localPosition.y, (_boatTrafficBoundingBox.z / 2));
+        }else if(t.localPosition.z > (_boatTrafficBoundingBox.z / 2))
+        {
+            t.localPosition = new Vector3(t.localPosition.x, t.localPosition.y, -(_boatTrafficBoundingBox.z / 2));
+        }
+    }
+
 
 
     void UpdatingShipFunction()
@@ -288,6 +365,8 @@ public class MapManager : MonoBehaviour
     }
 
 
+
+
     public void EndPatrol(Transform ship, Transform target)
     {
 
@@ -335,7 +414,8 @@ public class MapManager : MonoBehaviour
         Gizmos.color = _boundingBoxColor;
         Gizmos.DrawCube(_backgroundElementsParent.position, _backgroundBoundingBox);
 
-
+        Gizmos.color = _boatTrafficBoundingBoxColor;
+        Gizmos.DrawCube(_boatTrafficElementsParent.position, _boatTrafficBoundingBox);
 
 
         Gizmos.color = Color.green;

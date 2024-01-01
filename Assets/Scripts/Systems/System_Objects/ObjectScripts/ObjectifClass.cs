@@ -4,10 +4,20 @@ using UnityEngine;
 
 
 using static IObjects;
+using static MapManager;
+
 public class ObjectifClass : MonoBehaviour, IObjects
 {
+    public enum ObjectifEnum
+    {
+        Gouvernaille,
+        Mat,
+        Barrils
+    }
+
     [Header("Base Object Variables")]
     [SerializeField] private ObjectStates ObjectState;
+    [SerializeField] private ObjectifEnum currentObjectif;
 
     [SerializeField] private GameObject _effectsParentObject;
     [SerializeField] private List<EffectEmission> Destroyed_effectEmissions = new List<EffectEmission>();
@@ -28,6 +38,21 @@ public class ObjectifClass : MonoBehaviour, IObjects
 
         _effectsParentObject.SetActive(true);
 
+        /*foreach(LightStruct lightStruct in MapManager.instance.Lights)
+        {
+            if(lightStruct.lightPlace == currentObjectif)
+            {
+                lightStruct.SetOnFlame(true);
+            }
+        }*/
+
+        for(int i = 0; i < MapManager.instance.Lights.Length; i++)
+        {
+            if (MapManager.instance.Lights[i].lightPlace == currentObjectif)
+            {
+                MapManager.instance.Lights[i].onFlame = true;
+            }
+        }
     }
 
 
