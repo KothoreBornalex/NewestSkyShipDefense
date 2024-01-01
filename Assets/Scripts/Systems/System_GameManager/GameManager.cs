@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 
 
 
+
     private void Update()
     {
         UpdateGameStates();
@@ -222,7 +223,9 @@ public class GameManager : MonoBehaviour
     #region PostWave State
     private void StartPostWave()
     {
-        MapManager.instance.IsTimeSpeeding = true;
+
+        MapManager.instance.StartCanonsVoleys();
+        StartCoroutine(MapManager.instance.StartTimeSpeeding());
 
 
         _postWaveHasStarted = true;
