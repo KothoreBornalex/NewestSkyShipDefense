@@ -8,8 +8,10 @@ public class playerAttack : MonoBehaviour
 {
     // Fields
 
+
     [SerializeField] private LayerMask _ennemyLayerMask;
 
+    [Header("Spells")]
     [SerializeField] private GameObject _spell1Prefab;
     [SerializeField] private GameObject _spell2Prefab;
     [SerializeField] private GameObject _spell3Prefab;
@@ -22,7 +24,10 @@ public class playerAttack : MonoBehaviour
 
     [SerializeField] private PlayerAttacksData _playerAttacksData;
 
+    [Header("Elements")]
+    [SerializeField] private int _elementIndex;
 
+    
     private float minPressedTime = 0.2f;
     private float currentPressedTime;
 
@@ -56,6 +61,14 @@ public class playerAttack : MonoBehaviour
         if (index == _spell3Level + 1)
         {
             _spell3Level = index;
+        }
+    }
+
+    public void ChangeElementIndex(int index)
+    {
+        if(index >= 0 && index < 3)
+        {
+            _elementIndex = index;
         }
     }
 
@@ -97,6 +110,11 @@ public class playerAttack : MonoBehaviour
     private void UseSpell2(Vector3 attackOrigin, int damageValue, float radius)     // Fort dégats précis
     {
         GameObject att = Instantiate(_spell2Prefab, attackOrigin, Quaternion.identity);
+
+        Spell2Behavior sp2B = att.GetComponent<Spell2Behavior>();
+        sp2B.SetSpellLevel(_spell2Level);
+        sp2B.SetSpellElement(_elementIndex);
+
         Collider[] hitCollider = Physics.OverlapSphere(att.transform.position, radius, _ennemyLayerMask);
         DamageSpell(hitCollider, damageValue);
     }
