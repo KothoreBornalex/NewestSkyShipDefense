@@ -136,7 +136,10 @@ public class playerAttack : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
 
         if (Input.touchCount > 0)
         {
@@ -145,6 +148,7 @@ public class playerAttack : MonoBehaviour
             if (touch.phase == TouchPhase.Stationary)
             {
                 currentPressedTime += Time.deltaTime;
+                Debug.Log("pressed : " + currentPressedTime);
             }
 
         }

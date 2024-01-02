@@ -8,6 +8,18 @@ public class Spell2Behavior : AttackBehavior
 
     [SerializeField] private float _duration;
 
+    [SerializeField] private GameObject[] _spellParticles;
+
+    // Properties
+
+
+    // Methods
+
+    public void SetSpellLevel(int level)
+    {
+        _spellParticles[level - 1].SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
