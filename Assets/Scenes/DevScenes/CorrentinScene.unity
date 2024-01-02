@@ -559,6 +559,9 @@ MonoBehaviour:
   _spell1Prefab: {fileID: 5694217361744322211, guid: 092621c92f9cf6b46ad66a1e63898bc5, type: 3}
   _spell2Prefab: {fileID: 8844511444789105446, guid: b9ddeb06527ba5e48addcf5fed0a8bd7, type: 3}
   _spell3Prefab: {fileID: 6675174325761429664, guid: 31c2d8bc68c7ff943bb8f4b4198e7ed8, type: 3}
+  _spell1Level: 0
+  _spell2Level: 0
+  _spell3Level: 0
   _playerAttacksData: {fileID: 11400000, guid: 5d36cdc651221154aa85040529535deb, type: 2}
 --- !u!1 &1199943162
 GameObject:
@@ -915,6 +918,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 663541630}
+    - target: {fileID: 4255010818565114679, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4255010818565114679, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
