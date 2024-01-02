@@ -104,6 +104,11 @@ public class playerAttack : MonoBehaviour
     private void UseSpell1(Vector3 attackOrigin, int damageValue, float radius)     // Faible dégats de zone
     {
         GameObject att = Instantiate(_spell1Prefab, attackOrigin, Quaternion.identity);
+
+        Spell1Behavior sp1B = att.GetComponent<Spell1Behavior>();
+        sp1B.SetSpellLevel(_spell1Level);
+        sp1B.SetSpellElement(_elementIndex);
+
         Collider[] hitCollider = Physics.OverlapSphere(att.transform.position, radius, _ennemyLayerMask);
         DamageSpell(hitCollider, damageValue);
     }
