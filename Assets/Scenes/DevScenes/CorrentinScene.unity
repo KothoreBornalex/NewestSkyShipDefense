@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &103617331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7991351198659505303, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+  m_PrefabInstance: {fileID: 7761023133011099276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &215687337
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +575,10 @@ MonoBehaviour:
   _spell3Level: 0
   _playerAttacksData: {fileID: 11400000, guid: 5d36cdc651221154aa85040529535deb, type: 2}
   _elementIndex: 0
+  _maxMana: 100
+  _currentMana: 0
+  _manaIncreaseSpeed: 15
+  _manaCostCastSpell: 10
 --- !u!224 &1004327904 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2083799110385176443, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
@@ -888,6 +903,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 663541630}
+    - target: {fileID: 782016026237815905, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: m_Name
+      value: ManaJauge
+      objectReference: {fileID: 0}
     - target: {fileID: 934044533654888339, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -917,9 +936,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 663541630}
     - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: _manaSlider
+      value: 
+      objectReference: {fileID: 103617331}
+    - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: _playerAttack
       value: 
       objectReference: {fileID: 663541630}
+    - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: _manaSlideSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2255349349217506477, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

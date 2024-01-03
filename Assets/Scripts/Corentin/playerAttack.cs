@@ -28,8 +28,11 @@ public class playerAttack : MonoBehaviour
     [SerializeField] private int _elementIndex;
 
     [Header("Mana")]
-    [SerializeField] private int _maxMana;
-    [SerializeField] private int _currentMana;
+    [SerializeField] private float _maxMana;
+    [SerializeField] private float _currentMana;
+    [SerializeField] private float _manaIncreaseSpeed;
+    [SerializeField] private float _manaCostCastSpell;
+    private Coroutine _manaIncreaseCoroutine;
 
     
     private float minPressedTime = 0.2f;
@@ -39,6 +42,9 @@ public class playerAttack : MonoBehaviour
     public int Spell1Level { get => _spell1Level; set => _spell1Level = value; }
     public int Spell2Level { get => _spell2Level; set => _spell2Level = value; }
     public int Spell3Level { get => _spell3Level; set => _spell3Level = value; }
+
+    public float CurrentMana { get => _currentMana; set => _currentMana = value; }
+    public float MaxMana { get => _maxMana; set => _maxMana = value; }
 
 
     // Methods
@@ -78,35 +84,46 @@ public class playerAttack : MonoBehaviour
 
     private void Attack()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray.origin, ray.direction, out hit, 300.0f))
+        if(_currentMana >= _manaCostCastSpell)
         {
-            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow);
-
-            Vector3 go = hit.point;
-
-            switch (_spellIndex)
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray.origin, ray.direction, out hit, 300.0f))
             {
-                case 1:
-                    UseSpell1(go, _playerAttacksData.Spell1DamageStats[_spell1Level], _playerAttacksData.Spell1RadiusStats[_spell1Level]);
-                    break;
-                case 2:
-                    UseSpell2(go, _playerAttacksData.Spell2DamageStats[_spell2Level], _playerAttacksData.Spell2RadiusStats[_spell2Level]);
-                    break;
-                case 3:
-                    UseSpell3(go, _playerAttacksData.Spell3SlowStats[_spell3Level], _playerAttacksData.Spell3RadiusStats[_spell3Level]);
-                    break;
-                default:
-                    Debug.LogWarning("Erreur ! Aucune attaque reconnue !");
-                    break;
-            }
+                Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow);
 
+                Vector3 go = hit.point;
+
+                switch (_spellIndex)
+                {
+                    case 1:
+                        UseSpell1(go, _playerAttacksData.Spell1DamageStats[_spell1Level], _playerAttacksData.Spell1RadiusStats[_spell1Level]);
+                    
+                        break;
+                    case 2:
+                        UseSpell2(go, _playerAttacksData.Spell2DamageStats[_spell2Level], _playerAttacksData.Spell2RadiusStats[_spell2Level]);
+                        break;
+                    case 3:
+                        UseSpell3(go, _playerAttacksData.Spell3SlowStats[_spell3Level], _playerAttacksData.Spell3RadiusStats[_spell3Level]);
+                        break;
+                    default:
+                        Debug.LogWarning("Erreur ! Aucune attaque reconnue !");
+                        break;
+                }
+
+            }
         }
     }
 
+    private void DecreaseMana(float decreaseValue)
+    {
+        _currentMana -= decreaseValue;
+        _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
+    }
     private void UseSpell1(Vector3 attackOrigin, int damageValue, float radius)     // Faible dégats de zone
     {
+        DecreaseMana(_manaCostCastSpell);
+
         GameObject att = Instantiate(_spell1Prefab, attackOrigin, Quaternion.identity);
 
         Spell1Behavior sp1B = att.GetComponent<Spell1Behavior>();
@@ -118,6 +135,8 @@ public class playerAttack : MonoBehaviour
     }
     private void UseSpell2(Vector3 attackOrigin, int damageValue, float radius)     // Fort dégats précis
     {
+        DecreaseMana(_manaCostCastSpell);
+
         GameObject att = Instantiate(_spell2Prefab, attackOrigin, Quaternion.identity);
 
         Spell2Behavior sp2B = att.GetComponent<Spell2Behavior>();
@@ -129,6 +148,8 @@ public class playerAttack : MonoBehaviour
     }
     private void UseSpell3(Vector3 attackOrigin, int slowValue, float radius)       // Freeze
     {
+        DecreaseMana(_manaCostCastSpell);
+
         GameObject att = Instantiate(_spell3Prefab, attackOrigin, Quaternion.identity);
         Collider[] hitCollider = Physics.OverlapSphere(att.transform.position, radius, _ennemyLayerMask);
         SlowSpell(hitCollider, slowValue);
@@ -158,7 +179,8 @@ public class playerAttack : MonoBehaviour
 
     void Start()
     {
-
+        _currentMana = _maxMana;
+        _manaIncreaseCoroutine = StartCoroutine(ManaIncreaseCoroutine());
     }
 
     void Update()
@@ -196,5 +218,22 @@ public class playerAttack : MonoBehaviour
         {
             Attack();
         }*/
+    }
+
+    IEnumerator ManaIncreaseCoroutine()
+    {
+        while (true)
+        {
+            if (_currentMana < _maxMana)
+            {
+                _currentMana += Time.deltaTime * _manaIncreaseSpeed;
+                _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
+            }
+
+
+            yield return null;
+        }
+
+        yield return null;
     }
 }

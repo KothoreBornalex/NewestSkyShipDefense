@@ -39,8 +39,8 @@ public class UpgradeUIManager : MonoBehaviour
 
     [Header("Mana")]
     [SerializeField] private Slider _manaSlider;
-    [SerializeField] private float _manaMaxValue;
-    [SerializeField] private float _manaCurrentValue;
+    private float _manaMaxValue;
+    private float _manaCurrentValue;
     private float _manaCheckValue;
     private Coroutine _manaSlideCoroutine;
     [SerializeField] private float _manaSlideSpeed;
@@ -264,10 +264,13 @@ public class UpgradeUIManager : MonoBehaviour
 
     private void CheckManaValue()    // Check stamina value in gameManager(i suppose it will be in GM or in player)
     {
-        // If staminaCurrentValue != gmaManager.GetStaminaValue()
-        // Change staminaValue
+        if(_manaCurrentValue != _playerAttack.CurrentMana)
+        {
+            _manaCurrentValue = _playerAttack.CurrentMana;
+            UpdateManaSlider();
+        }
     }
-    private void UpdateStaminaSlider()  // Update state of stamina slider with coroutine
+    private void UpdateManaSlider()  // Update state of stamina slider with coroutine
     {
         if (_manaSlideCoroutine != null)
         {
@@ -320,7 +323,7 @@ public class UpgradeUIManager : MonoBehaviour
 
             _manaCheckValue = _manaCurrentValue;
 
-            UpdateStaminaSlider();
+            UpdateManaSlider();
         }
         if (_xpCheckValue != _xpCurrentValue)
         {
@@ -346,9 +349,10 @@ public class UpgradeUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _manaCurrentValue = _manaMaxValue;
+        _manaMaxValue = _playerAttack.MaxMana;
+        _manaCurrentValue = _playerAttack.CurrentMana;
         _manaCheckValue = _manaCurrentValue;
-        UpdateStaminaSlider();
+        UpdateManaSlider();
         UpdateWaveText();
         UpdateXpText();
         ChangeSpellColorState(1);
@@ -359,6 +363,7 @@ public class UpgradeUIManager : MonoBehaviour
     void Update()
     {
         CheckStateLevels();
+        CheckManaValue();
     }
 
     IEnumerator OpenUpgradePanel()
@@ -446,7 +451,7 @@ public class UpgradeUIManager : MonoBehaviour
 
     IEnumerator ManaSlideCoroutine() // Coroutine to smooth stamina change visual in slider
     {
-        float targetValue = _manaCurrentValue / _manaMaxValue;
+        float targetValue = (float)_manaCurrentValue / (float)_manaMaxValue;
         while (_manaSlider.value != targetValue)
         {
             _manaSlider.value = Mathf.Lerp(_manaSlider.value, targetValue, Time.deltaTime * _manaSlideSpeed);
