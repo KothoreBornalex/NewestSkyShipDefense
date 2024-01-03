@@ -35,6 +35,12 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
     [SerializeField] private float _trailSpeed;
     private Coroutine _trailRotateCoroutine;
 
+    [Header("Transition slider")]
+    [SerializeField] private NewWaveSlider _newWaveSlider;
+    [SerializeField] private Slider _slider;
+    [SerializeField] private float _fillSliderSpeed;
+    private Coroutine _fillSliderCoroutine;
+
     [Header("Tests")]
     [SerializeField] private bool _testButton;
 
@@ -48,6 +54,9 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
         if (_appearCoroutine == null)
         {
             _indicatorSkullImage.gameObject.SetActive(true);
+
+            _slider.gameObject.SetActive(true);
+            _slider.value = 0f;
 
             _appearCoroutine = StartCoroutine(ApearCoroutine());
         }
@@ -67,13 +76,19 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
         _indicatorSkullImage.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         _indicatorSkullImage.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 2f);
         _indicatorSkullImage.gameObject.SetActive(false);
+
+        StopCoroutine(_fillSliderCoroutine);
+        _slider.value = 0f;
+        _slider.gameObject.SetActive(false);
+        _newWaveSlider.SetNewWaveSliderAlpha(0f);
     }
 
     private void Awake()
     {
         _originalRectTransform = _indicatorSkullImage.GetComponent<RectTransform>();
-        _originalPosition = _originalRectTransform.position;
+        _originalPosition = _originalRectTransform.localPosition;
         _originalScale = _originalRectTransform.localScale;
+        _newWaveSlider.SetNewWaveSliderAlpha(0f);
     }
     // Start is called before the first frame update
     void Start()
@@ -94,7 +109,7 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
     IEnumerator ApearCoroutine()
     {
         _indicatorSkullImage.GetComponent<RectTransform>().localScale = _originalScale;
-        _indicatorSkullImage.GetComponent<RectTransform>().position = _originalPosition;
+        _indicatorSkullImage.GetComponent<RectTransform>().localPosition = _originalPosition;
 
         Color colorTemp = _indicatorSkullImage.color;
 
@@ -105,13 +120,16 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
             Debug.Log(colorTemp.a);
 
             _indicatorSkullImage.color = colorTemp;
+            _newWaveSlider.SetNewWaveSliderAlpha(colorTemp.a);
 
             yield return null;
         }
 
         _trailRotateCoroutine = null;
         _trailRotateCoroutine = StartCoroutine(RotateTrailCoroutine());
-        
+        _fillSliderCoroutine = null;
+        _fillSliderCoroutine = StartCoroutine(FillSliderCoroutine());
+
         yield return new WaitForSeconds(2f);
 
         _appearCoroutine = null;
@@ -171,6 +189,24 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
             rotation.z = Mathf.Lerp(rotation.z, 362f, Time.deltaTime * _trailSpeed);
 
             _trailHandler.rotation = Quaternion.Euler(rotation);
+
+            yield return null;
+        }
+
+        yield return null;
+    }
+
+    IEnumerator FillSliderCoroutine()
+    {
+        float fillPercent = 0;
+
+        while (fillPercent < 1f)
+        {
+            fillPercent = Mathf.Lerp(fillPercent, 1f, Time.deltaTime);
+
+            _slider.value = fillPercent;
+
+            Debug.Log("in slider ! ");
 
             yield return null;
         }
