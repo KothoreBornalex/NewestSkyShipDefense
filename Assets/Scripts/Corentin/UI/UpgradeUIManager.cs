@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,13 +37,13 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] Slider _upgradeSliderSp2;
     [SerializeField] Slider _upgradeSliderSp3;
 
-    [Header("Stamina")]
-    [SerializeField] private Slider _staminaSlider;
-    [SerializeField] private float _staminaMaxValue;
-    [SerializeField] private float _staminaCurrentValue;
-    private float _staminaCheckValue;
-    private Coroutine _staminaSlideCoroutine;
-    [SerializeField] private float _staminaSlideSpeed;
+    [Header("Mana")]
+    [SerializeField] private Slider _manaSlider;
+    [SerializeField] private float _manaMaxValue;
+    [SerializeField] private float _manaCurrentValue;
+    private float _manaCheckValue;
+    private Coroutine _manaSlideCoroutine;
+    [SerializeField] private float _manaSlideSpeed;
 
     [Header("Wave")]
     [SerializeField] private int _waveCurrentValue;
@@ -263,18 +262,18 @@ public class UpgradeUIManager : MonoBehaviour
         }
     }
 
-    private void CheckStaminaValue()    // Check stamina value in gameManager(i suppose it will be in GM or in player)
+    private void CheckManaValue()    // Check stamina value in gameManager(i suppose it will be in GM or in player)
     {
         // If staminaCurrentValue != gmaManager.GetStaminaValue()
         // Change staminaValue
     }
     private void UpdateStaminaSlider()  // Update state of stamina slider with coroutine
     {
-        if (_staminaSlideCoroutine != null)
+        if (_manaSlideCoroutine != null)
         {
-            StopCoroutine(_staminaSlideCoroutine);
+            StopCoroutine(_manaSlideCoroutine);
         }
-        _staminaSlideCoroutine = StartCoroutine(StaminaSlideCoroutine());
+        _manaSlideCoroutine = StartCoroutine(ManaSlideCoroutine());
     }
 
     private void CheckXpValue()    // Check Xp value in gameManager(i suppose it will be in GM or in player)
@@ -315,11 +314,11 @@ public class UpgradeUIManager : MonoBehaviour
 
     private void OnValidate()
     {
-        if (_staminaCheckValue != _staminaCurrentValue)
+        if (_manaCheckValue != _manaCurrentValue)
         {
-            _staminaCurrentValue = Mathf.Clamp(_staminaCurrentValue, 0, _staminaMaxValue);
+            _manaCurrentValue = Mathf.Clamp(_manaCurrentValue, 0, _manaMaxValue);
 
-            _staminaCheckValue = _staminaCurrentValue;
+            _manaCheckValue = _manaCurrentValue;
 
             UpdateStaminaSlider();
         }
@@ -347,8 +346,8 @@ public class UpgradeUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _staminaCurrentValue = _staminaMaxValue;
-        _staminaCheckValue = _staminaCurrentValue;
+        _manaCurrentValue = _manaMaxValue;
+        _manaCheckValue = _manaCurrentValue;
         UpdateStaminaSlider();
         UpdateWaveText();
         UpdateXpText();
@@ -445,12 +444,12 @@ public class UpgradeUIManager : MonoBehaviour
     }
 
 
-    IEnumerator StaminaSlideCoroutine() // Coroutine to smooth stamina change visual in slider
+    IEnumerator ManaSlideCoroutine() // Coroutine to smooth stamina change visual in slider
     {
-        float targetValue = _staminaCurrentValue / _staminaMaxValue;
-        while (_staminaSlider.value != targetValue)
+        float targetValue = _manaCurrentValue / _manaMaxValue;
+        while (_manaSlider.value != targetValue)
         {
-            _staminaSlider.value = Mathf.Lerp(_staminaSlider.value, targetValue, Time.deltaTime * _staminaSlideSpeed);
+            _manaSlider.value = Mathf.Lerp(_manaSlider.value, targetValue, Time.deltaTime * _manaSlideSpeed);
 
             yield return null;
         }

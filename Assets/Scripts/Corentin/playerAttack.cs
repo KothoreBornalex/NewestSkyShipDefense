@@ -27,6 +27,10 @@ public class playerAttack : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private int _elementIndex;
 
+    [Header("Mana")]
+    [SerializeField] private int _maxMana;
+    [SerializeField] private int _currentMana;
+
     
     private float minPressedTime = 0.2f;
     private float currentPressedTime;
