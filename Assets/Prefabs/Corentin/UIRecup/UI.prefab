@@ -1280,7 +1280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -453, y: 838}
+  m_AnchoredPosition: {x: -392.9, y: 838}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &502937821973286985
@@ -2470,7 +2470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6324214040957308598}
   m_Layer: 5
-  m_Name: StaminaJauge
+  m_Name: ManaJauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7963,6 +7963,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: playerAttack, Assembly-CSharp
+        m_MethodName: ChangeElementIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3723518126457519187
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,6 +8273,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: playerAttack, Assembly-CSharp
+        m_MethodName: ChangeElementIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10914,6 +10938,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: playerAttack, Assembly-CSharp
+        m_MethodName: ChangeElementIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5248689524878474928
 GameObject:
   m_ObjectHideFlags: 0
@@ -13141,10 +13177,8 @@ MonoBehaviour:
   _upgradeSliderSp1: {fileID: 2633326160919258326}
   _upgradeSliderSp2: {fileID: 168155748194378382}
   _upgradeSliderSp3: {fileID: 7359319907016289838}
-  _staminaSlider: {fileID: 7991351198659505303}
-  _staminaMaxValue: 100
-  _staminaCurrentValue: 0
-  _staminaSlideSpeed: 2
+  _manaSlider: {fileID: 7991351198659505303}
+  _manaSlideSpeed: 3
   _waveCurrentValue: 0
   _waveText: {fileID: 3288362838768680311}
   _fireParticles: {fileID: 877783270159014499}
@@ -17468,7 +17502,7 @@ MonoBehaviour:
   _indicatorSkullImage: {fileID: 7060457024077348984}
   _appearSpeed: 1
   _disappearTarget: {fileID: 2083799110385176443}
-  _disappearSpeed: 1
+  _disappearSpeed: 2
   _onDisappear:
     m_PersistentCalls:
       m_Calls:
@@ -20497,11 +20531,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -453.00018
+      value: -392.9
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 839.9999
+      value: 838
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

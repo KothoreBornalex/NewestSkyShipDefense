@@ -85723,6 +85723,10 @@ MonoBehaviour:
   _spell3Level: 0
   _playerAttacksData: {fileID: 11400000, guid: 5d36cdc651221154aa85040529535deb, type: 2}
   _elementIndex: 0
+  _maxMana: 100
+  _currentMana: 0
+  _manaIncreaseSpeed: 15
+  _manaCostCastSpell: 10
 --- !u!4 &1967536884
 Transform:
   m_ObjectHideFlags: 0
