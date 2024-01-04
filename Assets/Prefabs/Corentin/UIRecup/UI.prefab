@@ -3729,7 +3729,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 705139157230098952}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129601659817862778}
+        m_TargetAssemblyTypeName: UpgradeUIManager, Assembly-CSharp
+        m_MethodName: SkipPostWaveGameState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1470715984012248156
 GameObject:
   m_ObjectHideFlags: 0
@@ -13199,6 +13211,7 @@ MonoBehaviour:
   _posTopRectTrans: {fileID: 9175902059487924373}
   _posMidRectTrans: {fileID: 1916524536714069120}
   _posBotRectTrans: {fileID: 2730203275037440358}
+  _skipSideButton: {fileID: 1648282301219136190}
 --- !u!1 &6150414720601418943
 GameObject:
   m_ObjectHideFlags: 0

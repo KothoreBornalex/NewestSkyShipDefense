@@ -81,11 +81,39 @@ public class UpgradeUIManager : MonoBehaviour
     private Vector3 _targetIndPos;
     private Coroutine _indicatorSlideCoroutine;
 
+    [Header("Skip button")]
+    [SerializeField] private GameObject _skipSideButton;
+
     // Properties
 
 
 
     // Methods
+    public void SkipPostWaveGameState()
+    {
+        if (GameManager.instance != null)
+        {
+            if(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            {
+                GameManager.instance.CurrentGameState = GameManager.GameState.PreWave;
+            }
+        }
+    }
+    private void ChangeSkipButtonState()
+    {
+        if(GameManager.instance != null)
+        {
+            if (GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            {
+                _skipSideButton.SetActive(true);
+            }
+            else
+            {
+                _skipSideButton.SetActive(false);
+            }
+        }
+    }
+
     public void ChangeSpellColorState(int index)
     {
         switch (index)
@@ -281,8 +309,11 @@ public class UpgradeUIManager : MonoBehaviour
 
     private void CheckXpValue()    // Check Xp value in gameManager(i suppose it will be in GM or in player)
     {
-        // If _xpCurrentValue != GameManager.instance.getWaveValue()
-        // Change xpValue
+        //if (_xpCurrentValue != GameManager.instance.GetXp)
+        //{
+        //    _xpCurrentValue = GameManager.instance.GetXp;
+        //    UpdateXpText();
+        //}
     }
     private void UpdateXpText()
     {
@@ -290,8 +321,14 @@ public class UpgradeUIManager : MonoBehaviour
     }
     private void CheckWaveValue()   // Check Wave value in gameManager(i suppose it will be in GM or in player)
     {
-        // If _waveCurrentValue != GameManager.instance.getWaveValue()
-        // Change waveValue
+        if (GameManager.instance != null)
+        {
+            if (_waveCurrentValue != GameManager.instance.CurrentRound)
+            {
+                _waveCurrentValue = GameManager.instance.CurrentRound;
+                UpdateWaveText();
+            }
+        }
     }
     private void UpdateWaveText()
     {
@@ -364,6 +401,8 @@ public class UpgradeUIManager : MonoBehaviour
     {
         CheckStateLevels();
         CheckManaValue();
+        CheckWaveValue();
+        ChangeSkipButtonState();
     }
 
     IEnumerator OpenUpgradePanel()
