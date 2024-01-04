@@ -87,7 +87,7 @@ public class UpgradePagesManager : MonoBehaviour
     {
         Debug.Log("start coroutine bouge upgrade !");
 
-        float tempX = _upgradesHandler.position.x;
+        float tempX = _upgradesHandler.localPosition.x;
 
         while (Mathf.Abs(_targetIndicatorPos.x - _upgradesHandler.localPosition.x) > 0.2f)
         {
