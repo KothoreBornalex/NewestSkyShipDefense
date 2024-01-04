@@ -415,15 +415,15 @@ public class UpgradeUIManager : MonoBehaviour
     }
     IEnumerator RotateOpenIcon()
     {
-        Vector3 rotationTemp = _openCloseIcon.rotation.eulerAngles;
+        Vector3 rotationTemp = _openCloseIcon.localRotation.eulerAngles;
 
         Vector3 rotationOpened = new Vector3(0, 0, 0);  // fleche pointant vers bas
 
-        while (_openCloseIcon.rotation.eulerAngles.z != rotationOpened.z && _isOpen)
+        while (_openCloseIcon.localRotation.eulerAngles.z != rotationOpened.z && _isOpen)
         {
-            rotationTemp.z = Mathf.Lerp(_openCloseIcon.rotation.eulerAngles.z, rotationOpened.z, Time.deltaTime * _rotationSpeed);
+            rotationTemp.z = Mathf.Lerp(_openCloseIcon.localRotation.eulerAngles.z, rotationOpened.z, Time.deltaTime * _rotationSpeed);
 
-            _openCloseIcon.rotation = Quaternion.Euler(rotationTemp);
+            _openCloseIcon.localRotation = Quaternion.Euler(rotationTemp);
 
             yield return null;
         }
@@ -432,15 +432,15 @@ public class UpgradeUIManager : MonoBehaviour
     }
     IEnumerator RotateCloseIcon()
     {
-        Vector3 rotationTemp = _openCloseIcon.rotation.eulerAngles;
+        Vector3 rotationTemp = _openCloseIcon.localRotation.eulerAngles;
 
         Vector3 rotationClosed = new Vector3(0, 0, 180);  // fleche pointant vers haut
 
-        while (_openCloseIcon.rotation.eulerAngles.z != rotationClosed.z && !_isOpen)
+        while (_openCloseIcon.localRotation.eulerAngles.z != rotationClosed.z && !_isOpen)
         {
-            rotationTemp.z = Mathf.Lerp(_openCloseIcon.rotation.eulerAngles.z, rotationClosed.z, Time.deltaTime * _rotationSpeed);
+            rotationTemp.z = Mathf.Lerp(_openCloseIcon.localRotation.eulerAngles.z, rotationClosed.z, Time.deltaTime * _rotationSpeed);
 
-            _openCloseIcon.rotation = Quaternion.Euler(rotationTemp);
+            _openCloseIcon.localRotation = Quaternion.Euler(rotationTemp);
 
             yield return null;
         }
