@@ -22,6 +22,8 @@ public class playerAttack : MonoBehaviour
     [SerializeField] private int _spell2Level = 0;
     [SerializeField] private int _spell3Level = 0;
 
+    private PlayerXpManager _playerXpManager;
+
     [SerializeField] private PlayerAttacksData _playerAttacksData;
 
     [Header("Elements")]
@@ -56,21 +58,75 @@ public class playerAttack : MonoBehaviour
     {
         if (index == _spell1Level + 1)
         {
-            _spell1Level = index;
+            bool canUpgrade = false;
+
+            if (index <= 3)
+            {
+                canUpgrade = _playerXpManager.SpendXp(1);
+            }
+            else if (index <= 7)
+            {
+                canUpgrade = _playerXpManager.SpendXp(2);
+            }
+            else if (index <= 11)
+            {
+                canUpgrade = _playerXpManager.SpendXp(3);
+            }
+
+            if(canUpgrade)
+            {
+                _spell1Level = index;
+            }
         }
     }
     public void ChangeSpell2Level(int index)
     {
         if (index == _spell2Level + 1)
         {
-            _spell2Level = index;
+            bool canUpgrade = false;
+
+            if (index <= 3)
+            {
+                canUpgrade = _playerXpManager.SpendXp(1);
+            }
+            else if (index <= 7)
+            {
+                canUpgrade = _playerXpManager.SpendXp(2);
+            }
+            else if (index <= 11)
+            {
+                canUpgrade = _playerXpManager.SpendXp(3);
+            }
+
+            if (canUpgrade)
+            {
+                _spell2Level = index;
+            }
         }
     }
     public void ChangeSpell3Level(int index)
     {
         if (index == _spell3Level + 1)
         {
-            _spell3Level = index;
+            bool canUpgrade = false;
+
+            if (index <= 3)
+            {
+                canUpgrade = _playerXpManager.SpendXp(1);
+            }
+            else if (index <= 7)
+            {
+                canUpgrade = _playerXpManager.SpendXp(2);
+            }
+            else if (index <= 11)
+            {
+                canUpgrade = _playerXpManager.SpendXp(3);
+            }
+
+            if (canUpgrade)
+            {
+                _spell3Level = index;
+            }
         }
     }
 
@@ -177,9 +233,13 @@ public class playerAttack : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _playerXpManager = GetComponent<PlayerXpManager>();
+        _currentMana = _maxMana;
+    }
     void Start()
     {
-        _currentMana = _maxMana;
         _manaIncreaseCoroutine = StartCoroutine(ManaIncreaseCoroutine());
     }
 

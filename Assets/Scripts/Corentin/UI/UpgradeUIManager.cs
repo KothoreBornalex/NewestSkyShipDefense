@@ -57,6 +57,7 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private int _xpCurrentValue;
     private int _xpCheckValue;
     [SerializeField] private TextMeshProUGUI _xpText;
+    [SerializeField] private PlayerXpManager _playerXpManager;
 
     [Header("Spells")]
     [SerializeField] private Color _selectedColor;
@@ -309,11 +310,11 @@ public class UpgradeUIManager : MonoBehaviour
 
     private void CheckXpValue()    // Check Xp value in gameManager(i suppose it will be in GM or in player)
     {
-        //if (_xpCurrentValue != GameManager.instance.GetXp)
-        //{
-        //    _xpCurrentValue = GameManager.instance.GetXp;
-        //    UpdateXpText();
-        //}
+        if (_xpCurrentValue != _playerXpManager.CurrentXp)
+        {
+            _xpCurrentValue = _playerXpManager.CurrentXp;
+            UpdateXpText();
+        }
     }
     private void UpdateXpText()
     {
@@ -402,6 +403,7 @@ public class UpgradeUIManager : MonoBehaviour
         CheckStateLevels();
         CheckManaValue();
         CheckWaveValue();
+        CheckXpValue();
         ChangeSkipButtonState();
     }
 
