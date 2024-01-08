@@ -6142,6 +6142,10 @@ PrefabInstance:
       propertyPath: _playerAttack
       value: 
       objectReference: {fileID: 1967536883}
+    - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: _playerXpManager
+      value: 
+      objectReference: {fileID: 1967536885}
     - target: {fileID: 2255349349217506477, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -81633,6 +81637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1967536884}
   - component: {fileID: 1967536883}
+  - component: {fileID: 1967536885}
   m_Layer: 0
   m_Name: Manager - Player
   m_TagString: Untagged
@@ -81682,6 +81687,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 389526284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967536885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967536882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a7123f184cb2a44803b554498ed5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentXp: 10
 --- !u!1 &1969013751
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,6 +57,7 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private int _xpCurrentValue;
     private int _xpCheckValue;
     [SerializeField] private TextMeshProUGUI _xpText;
+    [SerializeField] private PlayerXpManager _playerXpManager;
 
     [Header("Spells")]
     [SerializeField] private Color _selectedColor;
@@ -81,11 +82,39 @@ public class UpgradeUIManager : MonoBehaviour
     private Vector3 _targetIndPos;
     private Coroutine _indicatorSlideCoroutine;
 
+    [Header("Skip button")]
+    [SerializeField] private GameObject _skipSideButton;
+
     // Properties
 
 
 
     // Methods
+    public void SkipPostWaveGameState()
+    {
+        if (GameManager.instance != null)
+        {
+            if(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            {
+                GameManager.instance.CurrentGameState = GameManager.GameState.PreWave;
+            }
+        }
+    }
+    private void ChangeSkipButtonState()
+    {
+        if(GameManager.instance != null)
+        {
+            if (GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            {
+                _skipSideButton.SetActive(true);
+            }
+            else
+            {
+                _skipSideButton.SetActive(false);
+            }
+        }
+    }
+
     public void ChangeSpellColorState(int index)
     {
         switch (index)
@@ -281,8 +310,11 @@ public class UpgradeUIManager : MonoBehaviour
 
     private void CheckXpValue()    // Check Xp value in gameManager(i suppose it will be in GM or in player)
     {
-        // If _xpCurrentValue != GameManager.instance.getWaveValue()
-        // Change xpValue
+        if (_xpCurrentValue != _playerXpManager.CurrentXp)
+        {
+            _xpCurrentValue = _playerXpManager.CurrentXp;
+            UpdateXpText();
+        }
     }
     private void UpdateXpText()
     {
@@ -290,8 +322,14 @@ public class UpgradeUIManager : MonoBehaviour
     }
     private void CheckWaveValue()   // Check Wave value in gameManager(i suppose it will be in GM or in player)
     {
-        // If _waveCurrentValue != GameManager.instance.getWaveValue()
-        // Change waveValue
+        if (GameManager.instance != null)
+        {
+            if (_waveCurrentValue != GameManager.instance.CurrentRound)
+            {
+                _waveCurrentValue = GameManager.instance.CurrentRound;
+                UpdateWaveText();
+            }
+        }
     }
     private void UpdateWaveText()
     {
@@ -364,6 +402,9 @@ public class UpgradeUIManager : MonoBehaviour
     {
         CheckStateLevels();
         CheckManaValue();
+        CheckWaveValue();
+        CheckXpValue();
+        ChangeSkipButtonState();
     }
 
     IEnumerator OpenUpgradePanel()
@@ -415,15 +456,15 @@ public class UpgradeUIManager : MonoBehaviour
     }
     IEnumerator RotateOpenIcon()
     {
-        Vector3 rotationTemp = _openCloseIcon.rotation.eulerAngles;
+        Vector3 rotationTemp = _openCloseIcon.localRotation.eulerAngles;
 
         Vector3 rotationOpened = new Vector3(0, 0, 0);  // fleche pointant vers bas
 
-        while (_openCloseIcon.rotation.eulerAngles.z != rotationOpened.z && _isOpen)
+        while (_openCloseIcon.localRotation.eulerAngles.z != rotationOpened.z && _isOpen)
         {
-            rotationTemp.z = Mathf.Lerp(_openCloseIcon.rotation.eulerAngles.z, rotationOpened.z, Time.deltaTime * _rotationSpeed);
+            rotationTemp.z = Mathf.Lerp(_openCloseIcon.localRotation.eulerAngles.z, rotationOpened.z, Time.deltaTime * _rotationSpeed);
 
-            _openCloseIcon.rotation = Quaternion.Euler(rotationTemp);
+            _openCloseIcon.localRotation = Quaternion.Euler(rotationTemp);
 
             yield return null;
         }
@@ -432,15 +473,15 @@ public class UpgradeUIManager : MonoBehaviour
     }
     IEnumerator RotateCloseIcon()
     {
-        Vector3 rotationTemp = _openCloseIcon.rotation.eulerAngles;
+        Vector3 rotationTemp = _openCloseIcon.localRotation.eulerAngles;
 
         Vector3 rotationClosed = new Vector3(0, 0, 180);  // fleche pointant vers haut
 
-        while (_openCloseIcon.rotation.eulerAngles.z != rotationClosed.z && !_isOpen)
+        while (_openCloseIcon.localRotation.eulerAngles.z != rotationClosed.z && !_isOpen)
         {
-            rotationTemp.z = Mathf.Lerp(_openCloseIcon.rotation.eulerAngles.z, rotationClosed.z, Time.deltaTime * _rotationSpeed);
+            rotationTemp.z = Mathf.Lerp(_openCloseIcon.localRotation.eulerAngles.z, rotationClosed.z, Time.deltaTime * _rotationSpeed);
 
-            _openCloseIcon.rotation = Quaternion.Euler(rotationTemp);
+            _openCloseIcon.localRotation = Quaternion.Euler(rotationTemp);
 
             yield return null;
         }
