@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
   m_Name: DemonHunter_Bank
   m_EditorClassIdentifier: 
+  _selectedAnimation: 0
