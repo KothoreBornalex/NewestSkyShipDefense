@@ -62,15 +62,15 @@ public class playerAttack : MonoBehaviour
 
             if (index <= 3)
             {
-                canUpgrade = _playerXpManager.SpendXp(1);
+                canUpgrade = _playerXpManager.SpendXp(10);
             }
             else if (index <= 7)
             {
-                canUpgrade = _playerXpManager.SpendXp(2);
+                canUpgrade = _playerXpManager.SpendXp(15);
             }
             else if (index <= 11)
             {
-                canUpgrade = _playerXpManager.SpendXp(3);
+                canUpgrade = _playerXpManager.SpendXp(20);
             }
 
             if(canUpgrade)
@@ -87,15 +87,15 @@ public class playerAttack : MonoBehaviour
 
             if (index <= 3)
             {
-                canUpgrade = _playerXpManager.SpendXp(1);
+                canUpgrade = _playerXpManager.SpendXp(10);
             }
             else if (index <= 7)
             {
-                canUpgrade = _playerXpManager.SpendXp(2);
+                canUpgrade = _playerXpManager.SpendXp(15);
             }
             else if (index <= 11)
             {
-                canUpgrade = _playerXpManager.SpendXp(3);
+                canUpgrade = _playerXpManager.SpendXp(20);
             }
 
             if (canUpgrade)
@@ -112,15 +112,15 @@ public class playerAttack : MonoBehaviour
 
             if (index <= 3)
             {
-                canUpgrade = _playerXpManager.SpendXp(1);
+                canUpgrade = _playerXpManager.SpendXp(10);
             }
             else if (index <= 7)
             {
-                canUpgrade = _playerXpManager.SpendXp(2);
+                canUpgrade = _playerXpManager.SpendXp(15);
             }
             else if (index <= 11)
             {
-                canUpgrade = _playerXpManager.SpendXp(3);
+                canUpgrade = _playerXpManager.SpendXp(20);
             }
 
             if (canUpgrade)
