@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data_AI_SpawnList
   m_EditorClassIdentifier: 
   _maxSpawnCountPerFaction: 40
-  _baseSpawnCount: 4
+  _baseSpawnCount: 30
   _crashTestSpawnCount: 100
   _factionsList:
   - Faction: Orc
