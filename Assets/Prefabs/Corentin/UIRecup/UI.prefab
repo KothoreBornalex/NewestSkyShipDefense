@@ -13405,9 +13405,9 @@ MonoBehaviour:
   _upgradesOpenPosition: {fileID: 620246237403941128}
   _upgradesClosePosition: {fileID: 538312282803914117}
   _upgradesPack: {fileID: 6996017749575058777}
-  _slideSpeed: 2
+  _slideSpeed: 5
   _openCloseIcon: {fileID: 5387712944799738026}
-  _rotationSpeed: 3
+  _rotationSpeed: 9
   _upgradeButtons:
   - {fileID: 8778365669820429784}
   - {fileID: 934044533654888339}
@@ -18886,7 +18886,7 @@ MonoBehaviour:
   - {fileID: 2141494279705976568}
   _indexPages: 0
   _totalPages: 3
-  _speedPages: 3
+  _speedPages: 7
   testRight: 0
   testLeft: 0
 --- !u!1 &8427259044778110433

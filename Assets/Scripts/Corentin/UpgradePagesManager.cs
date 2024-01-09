@@ -85,18 +85,13 @@ public class UpgradePagesManager : MonoBehaviour
 
     IEnumerator SlidePagesCoroutine()
     {
-        Debug.Log("start coroutine bouge upgrade !");
-
         float tempX = _upgradesHandler.localPosition.x;
 
         while (Mathf.Abs(_targetIndicatorPos.x - _upgradesHandler.localPosition.x) > 0.2f)
         {
             
             Vector3 tempVector = _upgradesHandler.localPosition;
-            Debug.Log("target : " + _targetIndicatorPos);
-            Debug.Log("before : " + tempX);
             tempX = Mathf.Lerp(tempX, _targetIndicatorPos.x, Time.deltaTime * _speedPages);
-            Debug.Log("after : " + tempX);
 
             tempVector.x = tempX;
 
@@ -105,7 +100,6 @@ public class UpgradePagesManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("end coroutine");
         _slidePageCoroutine = null;
 
         yield return null;
