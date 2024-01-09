@@ -14,10 +14,12 @@ public class UnBakedTextureAnimations
     private readonly int _vertexCount;
     private readonly int _mapWidth;
     private readonly List<AnimationClip> _animClips;
-    private PlayableGraph _playableGraph;
     private readonly string _name;
-   
+    private readonly string _savePath;
+
+
     private readonly Animator _animator;
+    private PlayableGraph _playableGraph;
     private readonly SkinnedMeshRenderer _skinnedMesh;
 
 
@@ -29,6 +31,8 @@ public class UnBakedTextureAnimations
     public int MapWidth => _mapWidth;
     public int VertexCount => _vertexCount;
     public PlayableGraph PlayableGraph => _playableGraph;
+
+    public string SavePath => _savePath;
 
     #endregion
 
@@ -43,7 +47,7 @@ public class UnBakedTextureAnimations
         }*/
 
 
-    public UnBakedTextureAnimations(BakingType bakingType, AnimationClip animClip, SkinnedMeshRenderer skinnedMesh, Animator animator, string name)
+    public UnBakedTextureAnimations(BakingType bakingType, AnimationClip animClip, SkinnedMeshRenderer skinnedMesh, Animator animator, string name, string savePath)
     {
         _bakingType = bakingType;
         _vertexCount = skinnedMesh.sharedMesh.vertexCount;
@@ -58,6 +62,7 @@ public class UnBakedTextureAnimations
         _animator = animator;
         _skinnedMesh = skinnedMesh;
         _name = name;
+        _savePath = savePath;
     }
 
 

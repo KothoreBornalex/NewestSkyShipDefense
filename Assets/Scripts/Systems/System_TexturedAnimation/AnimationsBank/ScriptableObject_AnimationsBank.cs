@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static IStatistics;
 
@@ -12,11 +13,9 @@ public class ScriptableObject_AnimationsBank : ScriptableObject
     {
         [SerializeField] private Texture2D _texture;
         [SerializeField] private float _animLength;
-        [SerializeField] private GraphicsBuffer _firstFrame;
 
         public Texture2D Texture { get => _texture; set => _texture = value; }
         public float AnimLength { get => _animLength; set => _animLength = value; }
-        public GraphicsBuffer FirstFrame { get => _firstFrame; set => _firstFrame = value; }
 
 
 
@@ -25,38 +24,54 @@ public class ScriptableObject_AnimationsBank : ScriptableObject
 
         }
 
-        public TexturedAnimation(Texture2D texture, float animLength, GraphicsBuffer firstFrame)
+        public TexturedAnimation(Texture2D texture, float animLength)
         {
             _texture = texture;
             _animLength = animLength;
-            _firstFrame = firstFrame;
         }
     }
 
 
+    [System.Serializable]
     public enum AnimationsTypes
     {
         Idle,
         Attack,
+        GetHit,
         Die,
         Walk
     }
 
+    [System.Serializable]
+    public class KeyValuePair
+    {
+        public AnimationsTypes key;
+        public TexturedAnimation value;
+    }
 
-    [SerializeField] private Dictionary<AnimationsTypes, TexturedAnimation> _animations = new Dictionary<AnimationsTypes, TexturedAnimation>();
+
+    //[SerializeField] private Dictionary<AnimationsTypes, TexturedAnimation> _animations = new Dictionary<AnimationsTypes, TexturedAnimation>();
+
+    [SerializeField] private List<KeyValuePair> animationsList = new List<KeyValuePair>();
+
 
 
     [Header("Animations Management")]
     [SerializeField] private AnimationsTypes _selectedAnimation;
-    [Button("Delete Animations")] void StartDeleteElement() => DeleteElement();
+    [SerializeField] private TexturedAnimation _newAnimation;
+
+    [Button("Add New Animation")] void StartAddElement() => AddElement(_selectedAnimation, _newAnimation);
+    [Button("Delete This Animation")] void StartDeleteElement() => DeleteElement(_selectedAnimation);
     [Button("Delete All Animations")] void StartDeleteAll() => DeleteAll();
 
 
-    private void DeleteElement()
+    private void DeleteElement(AnimationsTypes animationType)
     {
-        if(_animations.ContainsKey(_selectedAnimation))
+        KeyValuePair itemToRemove = animationsList.Find(item => item.key == animationType);
+        if (itemToRemove != null)
         {
-            _animations.Remove(_selectedAnimation);
+            animationsList.Remove(itemToRemove);
+            Debug.Log("Animation Removed Successfully !");
         }
         else
         {
@@ -66,36 +81,34 @@ public class ScriptableObject_AnimationsBank : ScriptableObject
 
     private void DeleteAll()
     {
-        _animations.Clear();
+        animationsList.Clear();
+        Debug.Log("All Animations Removed Successfully !");
     }
 
     public void AddElement(AnimationsTypes animationType, TexturedAnimation texturedAnimation)
     {
-        if (_animations.ContainsKey(animationType))
+        KeyValuePair existingItem = animationsList.Find(item => item.key == animationType);
+        if (existingItem != null)
         {
             Debug.LogError("Already Contains This Animation !");
         }
         else
         {
-            _animations.Add(animationType, texturedAnimation);
+            animationsList.Add(new KeyValuePair { key = animationType, value = texturedAnimation });
+            Debug.Log("Animation Added Successfully !");
         }
     }
 
-
-
-
     public Texture2D GetAnimation(AnimationsTypes animation)
     {
-        return _animations[animation].Texture;
+        KeyValuePair item = animationsList.Find(item => item.key == animation);
+        return item != null ? item.value.Texture : null;
     }
 
     public float GetAnimationLength(AnimationsTypes animation)
     {
-        return _animations[animation].AnimLength;
+        KeyValuePair item = animationsList.Find(item => item.key == animation);
+        return item != null ? item.value.AnimLength : 0f;
     }
 
-    public GraphicsBuffer GetFirstFrame(AnimationsTypes animation)
-    {
-        return _animations[animation].FirstFrame;
-    }
 }

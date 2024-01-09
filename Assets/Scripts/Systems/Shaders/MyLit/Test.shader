@@ -2,9 +2,19 @@ Shader "Unlit/Test"
 {
     Properties
 	{
+        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
 		_MainTex ("Texture", 2D) = "white" {}
-		_AnimMap ("AnimMap", 2D) ="white" {}
-		_AnimLen("Anim Length", Float) = 0
+        [Space(50)]
+
+        _Blend("Blend", Range(0, 1)) = 0
+        [Space(20)]
+		_CurrentAnimMap ("Current AnimMap", 2D) = "white" {}
+		_CurrentAnimLen("Current Anim Length", Float) = 0
+        [Space(30)]
+        _NextAnimMap ("Next AnimMap", 2D) = "white" {}
+        _NextAnimLen("Next Anim Length", Float) = 0
+
+
 	}
 	
     SubShader
@@ -37,41 +47,74 @@ Shader "Unlit/Test"
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
+            fixed4 _TintColor;
+
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
-            sampler2D _AnimMap;
-            float4 _AnimMap_TexelSize;//x == 1/width
+            sampler2D _CurrentAnimMap;
+            float4 _CurrentAnimMap_TexelSize;//x == 1/width
+            float _CurrentAnimLen;
 
-            float _AnimLen;
+            sampler2D _NextAnimMap;
+            float4 _NextAnimMap_TexelSize;
+            float _NextAnimLen;
+
+
+            float _Blend;
 
             
             v2f vert (appdata v, uint vid : SV_VertexID)
             {
-                UNITY_SETUP_INSTANCE_ID(v);
+               UNITY_SETUP_INSTANCE_ID(v);
+               
+               // Current Anim Map
+               float currentF = _Time.y / _CurrentAnimLen;
+               fmod(currentF, 1.0);
+               float currentAnimMap_x = (vid + 0.5) * _CurrentAnimMap_TexelSize.x;
+               float currentAnimMap_y = currentF;
+               
+               // Next Anim Map
+               float nextF = _Time.y / _NextAnimLen;
+               fmod(nextF, 1.0);
+               float nextAnimMap_x = (vid + 0.5) * _NextAnimMap_TexelSize.x;
+               float nextAnimMap_y = nextF;
 
-                float f = _Time.y / _AnimLen;
+               //float4 pos = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y, 0, 0));
 
-                fmod(f, 1.0);
 
-                float animMap_x = (vid + 0.5) * _AnimMap_TexelSize.x;
-                float animMap_y = f;
+               //float4 targetPos = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y, 0, 0));
+               //float4 currentPos = v.pos * 0.015;
+               //float4 direction =  normalize(targetPos - currentPos);
+               //float distance = length(targetPos - currentPos);
+               //
+               //float4 pos = currentPos + direction * (distance / _AnimLen);
 
-                float4 pos = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y, 0, 0));
 
-                v2f o;
-                o.vertex = UnityObjectToClipPos(pos);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+               //float4 currentPos = v.pos * 0.015;
+               //float4 targetPos = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y, 0, 0));
+               //float4 pos = lerp(currentPos, targetPos, _Blend);
+              
 
-				//v2f o;
-				//o.vertex = UnityObjectToClipPos(v.pos);
-				//o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                return o;
+
+               float4 currentPos = tex2Dlod(_CurrentAnimMap, float4(currentAnimMap_x, currentAnimMap_y, 0, 0));
+               float4 targetPos = tex2Dlod(_NextAnimMap, float4(nextAnimMap_x, nextAnimMap_y, 0, 0));
+               float4 pos = lerp(currentPos, targetPos, _Blend);
+
+
+               v2f o;
+               o.vertex = UnityObjectToClipPos(pos);
+               o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+               
+
+               return o;
+
+
             }
             
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv) * _TintColor;
                 return col;
             }
             ENDCG

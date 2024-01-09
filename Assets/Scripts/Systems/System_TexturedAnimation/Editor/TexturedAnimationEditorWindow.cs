@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using static BakingAnimationsMachine;
+using System;
 
 public class TexturedAnimationEditorWindow : EditorWindow
 {
@@ -17,15 +18,16 @@ public class TexturedAnimationEditorWindow : EditorWindow
 
     private static BakingAnimationsMachine _bakingAnimationsMachine;
 
+    private string _basePath = "";
+    private string _folderName = "";
+    private string _savePath = "";
+
     private BakingType _bakingType;
     private GameObject AnimatedObject;
     private AnimationClip SingleAnimation;
+    private string _animationName;
 
-
-    private string _name;
-
-    private const string BASE_PATH = "Assets/";
-    private string savePath = "";
+    
 
 
 
@@ -42,6 +44,7 @@ public class TexturedAnimationEditorWindow : EditorWindow
 
     private void OnGUI()
     {
+        HandleRegenerateWindowButton();
         HandleSavePathButton();
 
         HandleBakingTypeChoice();
@@ -71,12 +74,10 @@ public class TexturedAnimationEditorWindow : EditorWindow
         GUI.enabled = SingleAnimation != null && AnimatedObject != null;
         if (GUILayout.Button("Generate Textured Animation"))
         {
-            //EditorCoroutineUtility.StartCoroutine(GenerateTexturedAnimation(TargetedAnimation, AnimatedObject, DryRun), this);
             switch (_bakingType)
             {
                 case BakingType.SingleAnimation:
-                    _bakingAnimationsMachine.LaunchBaking(_bakingType, SingleAnimation, AnimatedObject, _name);
-                    //EditorCoroutineUtility.StartCoroutine(GenerateTexturedAnimation(SingleAnimation, AnimatedObject), this);
+                    _bakingAnimationsMachine.LaunchBaking(_bakingType, SingleAnimation, AnimatedObject, _animationName, _savePath);
                     break;
 
                 case BakingType.BlendingAnimation:
@@ -87,7 +88,7 @@ public class TexturedAnimationEditorWindow : EditorWindow
             }
 
 
-            Debug.Log("Debug Test: " + BASE_PATH + _name);
+            Debug.Log("Debug Test: " + _basePath + _animationName);
         }
 
         GUI.enabled = true;
@@ -98,9 +99,19 @@ public class TexturedAnimationEditorWindow : EditorWindow
 
     }
 
+    private void HandleRegenerateWindowButton()
+    {
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Regenerate Window"))
+        {
+            _bakingAnimationsMachine = new BakingAnimationsMachine();
+        }
+        EditorGUILayout.Space(20);
+    }
+
     private string OpenExplorer(string basePath)
     {
-        return EditorUtility.OpenFilePanel("Select the Animation to Convert", basePath, "");
+        return _basePath = EditorUtility.OpenFolderPanel("Select Folder", basePath, "");
     }
 
 
@@ -111,12 +122,24 @@ public class TexturedAnimationEditorWindow : EditorWindow
 
     private void HandleSavePathButton()
     {
-        EditorGUILayout.Space(20);
+        EditorGUILayout.Space(10);
         if (GUILayout.Button("Select Save Path"))
         {
             Debug.Log("Is Working");
-            savePath = OpenExplorer(BASE_PATH);
+            _savePath = OpenExplorer(_basePath);
         }
+
+        _folderName = EditorGUILayout.TextField("Save Folder Name:", _folderName);
+
+        if(string.IsNullOrEmpty(_folderName))
+        {
+            _savePath = EditorGUILayout.TextField("Save Path:", _savePath);
+        }
+        else
+        {
+            _savePath = EditorGUILayout.TextField("Save Path:", _basePath + "/"+_folderName);
+        }
+
         EditorGUILayout.Space(20);
     }
 
@@ -128,18 +151,20 @@ public class TexturedAnimationEditorWindow : EditorWindow
 
     private void HandleSingleAnimation()
     {
-        GameObject newAnimatedObject = EditorGUILayout.ObjectField("New Mesh", AnimatedObject, typeof(GameObject), true) as GameObject;
-        AnimationClip newAnimationClip = EditorGUILayout.ObjectField("New Animation", SingleAnimation, typeof(AnimationClip), true) as AnimationClip;
+        GameObject newAnimatedObject = EditorGUILayout.ObjectField("Mesh Rig", AnimatedObject, typeof(GameObject), true) as GameObject;
+        AnimationClip newAnimationClip = EditorGUILayout.ObjectField("Animation To Convert", SingleAnimation, typeof(AnimationClip), true) as AnimationClip;
 
 
         if (newAnimationClip != SingleAnimation && newAnimationClip != null)
         {
-            _name = newAnimatedObject.name + "_" + newAnimationClip.name + "_TexturedAnimations";
+            //_animationName = newAnimatedObject.name + "_" + newAnimationClip.name + "_TexturedAnimations";
+            _animationName = newAnimatedObject.name + "_TexAnim";
+
         }
 
         AnimatedObject = newAnimatedObject;
         SingleAnimation = newAnimationClip;
-        _name = EditorGUILayout.TextField("Name", _name);
+        _animationName = EditorGUILayout.TextField("Animation Name:", _animationName);
     }
 
     private IEnumerator GenerateTexturedAnimation(AnimationClip animationClip, GameObject animatedObject)
@@ -204,7 +229,7 @@ public class TexturedAnimationEditorWindow : EditorWindow
         
         // Assuming you have a path where you want to save the texture
         string savePath = "Assets/Resources/Textures/"; // Change this path to your desired location
-        string fileName = _name + ".png"; // Change the file name if needed
+        string fileName = _animationName + ".png"; // Change the file name if needed
 
         // Make sure the directory exists, create it if it doesn't
         System.IO.Directory.CreateDirectory(savePath);

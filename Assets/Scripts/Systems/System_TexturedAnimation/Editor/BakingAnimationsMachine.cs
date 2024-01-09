@@ -22,15 +22,22 @@ public class BakingAnimationsMachine : EditorWindow
 
  
 
-    public void LaunchBaking(BakingType bakingType, AnimationClip animationClip, GameObject animatedObject, string name)
+    public void LaunchBaking(BakingType bakingType, AnimationClip animationClip, GameObject animatedObject, string name, string savePath)
     {
         Debug.Log("Name: " + name);
 
 
         _animatedObjectInstance = Instantiate<GameObject>(animatedObject);
+        SkinnedMeshRenderer skinnedMeshRenderer = _animatedObjectInstance.GetComponentInChildren<SkinnedMeshRenderer>();
         Animator animator = null;
-        SkinnedMeshRenderer skinnedMeshRenderer = null;
 
+
+
+        if (animationClip != null) Debug.Log("Animation Clip Found !");
+        else
+        {
+            throw new System.Exception("Animation Clip is Null");
+        }
 
         if (_animatedObjectInstance.TryGetComponent<Animator>(out animator)) Debug.Log("Animator Found !");
         else
@@ -39,15 +46,14 @@ public class BakingAnimationsMachine : EditorWindow
         }
 
 
-        skinnedMeshRenderer = _animatedObjectInstance.GetComponentInChildren<SkinnedMeshRenderer>();
-
         if (skinnedMeshRenderer != null) Debug.Log("Skinned Mesh Renderer Found !");
         else
         {
             throw new System.Exception("No Skinned Mesh was found");
         }
 
-        UnBakedTextureAnimations unBakedTexture = new UnBakedTextureAnimations(bakingType, animationClip, skinnedMeshRenderer, animator, name);
+        animator.applyRootMotion = false;
+        UnBakedTextureAnimations unBakedTexture = new UnBakedTextureAnimations(bakingType, animationClip, skinnedMeshRenderer, animator, name, savePath);
         EditorCoroutineUtility.StartCoroutine(Generate_SingleTexturedAnimation(unBakedTexture), this);
     }
 
@@ -60,14 +66,16 @@ public class BakingAnimationsMachine : EditorWindow
             throw new System.Exception("The model have too much vertex to be used. (More than 2000) ");
         }
 
+        // Assuming you have a path where you want to save the texture
+        string fileName = unBakedTexture.Name;
+
+        // Make sure the directory exists, create it if it doesn't
+        System.IO.Directory.CreateDirectory(unBakedTexture.SavePath);
 
 
         _currentMesh = new Mesh();
         bool hasFinishedAnimationConvertion = false;
 
-
-        //int frameCount = (int)(unBakedTexture.AnimClips[0].length * unBakedTexture.AnimClips[0].frameRate);
-        //Texture2D _texturedAnimation = new Texture2D(unBakedTexture.VertexCount, 64, TextureFormat.RGBAHalf, true);
 
         int frameCount = Mathf.ClosestPowerOfTwo((int)(unBakedTexture.AnimClips[0].length * unBakedTexture.AnimClips[0].frameRate));
         Texture2D _texturedAnimation = new Texture2D(unBakedTexture.MapWidth, frameCount, TextureFormat.RGBAHalf, true);
@@ -77,8 +85,6 @@ public class BakingAnimationsMachine : EditorWindow
 
         int currentAnimationFrame = 0;
         float currentAnimationTime = 0;
-        //float incrementValue = 1f / unBakedTexture.AnimClips[0].frameRate;
-        //float incrementValue = unBakedTexture.AnimClips[0].length / unBakedTexture.AnimClips[0].frameRate;
         float incrementValue = unBakedTexture.AnimClips[0].length / frameCount;
 
 
@@ -88,7 +94,6 @@ public class BakingAnimationsMachine : EditorWindow
         // Launch the animation
         unBakedTexture.PlayAnimation();
 
-
         // Launch the baking function
         EditorCoroutineUtility.StartCoroutine(BakingTexture(unBakedTexture), this);
 
@@ -96,49 +101,31 @@ public class BakingAnimationsMachine : EditorWindow
 
 
         _texturedAnimation.Apply();
-
-
-
-
         Debug.Log("File Name: " + unBakedTexture.Name);
 
-        // Assuming you have a path where you want to save the texture
-        string savePath = "Assets/Resources/Textures/"; // Change this path to your desired location
-        string fileName = unBakedTexture.Name;
-
-
-
-
-        // Make sure the directory exists, create it if it doesn't
-        System.IO.Directory.CreateDirectory(savePath);
+        
 
         // Save the Texture2D as a PNG file
         byte[] bytes = _texturedAnimation.EncodeToPNG();
 
-        //System.IO.File.WriteAllBytes(System.IO.Path.Combine(savePath, fileName), bytes);
-
-        AssetDatabase.CreateAsset(_texturedAnimation, Path.Combine(savePath, fileName + ".asset"));
-
-
+        AssetDatabase.CreateAsset(_texturedAnimation, Path.Combine(unBakedTexture.SavePath, fileName + ".asset"));
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
         EditorUtility.ClearProgressBar();
         unBakedTexture.Destroy();
-        Destroy(_animatedObjectInstance);
-
-
+        //DestroyImmediate(_animatedObjectInstance);
 
 
         IEnumerator BakingTexture(UnBakedTextureAnimations unBakedTexture)
         {
-            unBakedTexture.BakeMesh(ref _currentMesh);
+            unBakedTexture.SkinnedMesh.BakeMesh(_currentMesh);
+
 
             for (int i = 0; i < unBakedTexture.VertexCount; i++)
             {
-                Vector3 currentVertex = _currentMesh.vertices[i];
-                _texturedAnimation.SetPixel(i, currentAnimationFrame, new Color(currentVertex.x, currentVertex.y, currentVertex.z));
+                _texturedAnimation.SetPixel(i, currentAnimationFrame, new Color(_currentMesh.vertices[i].x, _currentMesh.vertices[i].y, _currentMesh.vertices[i].z));
             }
 
 
@@ -147,20 +134,6 @@ public class BakingAnimationsMachine : EditorWindow
 
             currentAnimationTime += incrementValue;
             currentAnimationFrame++;
-
-
-            /*if (currentAnimationFrame > frameCount)
-            {
-                hasFinishedAnimationConvertion = true;
-            }
-            else
-            {
-                unBakedTexture.SampleAnimation(incrementValue);
-
-                yield return new WaitForSeconds(incrementValue);
-
-                EditorCoroutineUtility.StartCoroutine(BakingTexture(unBakedTexture), this);
-            }*/
 
 
             if (currentAnimationTime > unBakedTexture.AnimClips[0].length)

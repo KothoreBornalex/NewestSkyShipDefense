@@ -27,12 +27,30 @@ Material:
         m_Texture: {fileID: 2800000, guid: 674dd2bc4625630438963e5cd440ec03, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CurrentAnimMap:
+        m_Texture: {fileID: 2800000, guid: ce243addee017044bb257729e995a341, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FirstFrameMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: ea46043adbc8ed8478e15d9fc64248a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NextAnimMap:
+        m_Texture: {fileID: 2800000, guid: ce243addee017044bb257729e995a341, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AnimLen: 1.3
-    m_Colors: []
+    - _Blend: 0
+    - _CurrentAnimLen: 1.3
+    - _DeltaTime: 0
+    - _IsTransitionning: 0
+    - _NextAnimLen: 1.3
+    m_Colors:
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -47,6 +47,7 @@ public class AI_Class : MonoBehaviour, IStatistics
     private SkinnedMeshRenderer _skinnedMeshRenderer;
     private Material _material;
     private Animator _animator;
+    private CustomAnimator _customAnimator;
     private PooledObject _pooledObject;
 
     [SerializeField] private WeaponsScriptableObject _weaponsList;

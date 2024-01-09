@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
   m_Name: DemonHunter_Bank
   m_EditorClassIdentifier: 
-  _selectedAnimation: 0
+  animationsList:
+  - key: 2
+    value:
+      _texture: {fileID: 2800000, guid: 869880318ad5d6b4ba514d70dcc42d71, type: 2}
+      _animLength: 1.3
+  - key: 0
+    value:
+      _texture: {fileID: 2800000, guid: ce243addee017044bb257729e995a341, type: 2}
+      _animLength: 1.3
+  - key: 1
+    value:
+      _texture: {fileID: 2800000, guid: b43f5e9dd434e7a418b314008a709d30, type: 2}
+      _animLength: 1.3
+  - key: 3
+    value:
+      _texture: {fileID: 2800000, guid: 44cd213286d1a9f4582c3845cf513718, type: 2}
+      _animLength: 1.3
+  - key: 4
+    value:
+      _texture: {fileID: 2800000, guid: 674dd2bc4625630438963e5cd440ec03, type: 2}
+      _animLength: 1.3
+  _selectedAnimation: 4
+  _newAnimation:
+    _texture: {fileID: 2800000, guid: 674dd2bc4625630438963e5cd440ec03, type: 2}
+    _animLength: 1.3
