@@ -2,7 +2,7 @@ Shader "Unlit/Test"
 {
     Properties
 	{
-        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+        [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
 		_MainTex ("Texture", 2D) = "white" {}
         [Space(50)]
 
@@ -47,7 +47,7 @@ Shader "Unlit/Test"
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
-            fixed4 _TintColor;
+            fixed4 _BaseColor;
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
@@ -114,7 +114,7 @@ Shader "Unlit/Test"
             
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv) * _TintColor;
+                fixed4 col = tex2D(_MainTex, i.uv) * _BaseColor;
                 return col;
             }
             ENDCG

@@ -13,6 +13,9 @@ public class CustomAnimator : MonoBehaviour
     [SerializeField] private AnimationsTypes _baseAnimation;
     [SerializeField] private MeshRenderer _meshRenderer;
     private Material _animatedMaterialInstance;
+    public AnimationsTypes CurrentAnimation { get => _currentAnimation;}
+
+
 
     [Header("Transition Settings")]
     [SerializeField,Range(0, 2.5f)] private float _maxTransitionTime;
@@ -26,6 +29,8 @@ public class CustomAnimator : MonoBehaviour
 
     [Header("Debug Parameter")]
     [SerializeField] private AnimationsTypes _targetedAnimations;
+
+
     [Button("Play Target Animation")] void StartPlayAnimation() => Play(_targetedAnimations);
     [Button("Trigger Target Animation")] void StartTriggerAnimation() => Trigger(_targetedAnimations);
 

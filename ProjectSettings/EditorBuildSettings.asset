@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final GameScene.unity
     guid: ed956639133d93b47bd8f1e96217f951
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuScenes/LoadingScreen.unity
     guid: fb99f32cc3fec4b4c9dcc02cdbbcfc81
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuScenes/MainMenuScene.unity
     guid: 743e91b574f35174faf636c01196aac8
   - enabled: 0

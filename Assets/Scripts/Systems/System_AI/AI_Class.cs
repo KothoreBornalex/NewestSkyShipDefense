@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static IStatistics;
 using UnityEngine.Events;
+using static ScriptableObject_AnimationsBank;
 
 public class AI_Class : MonoBehaviour, IStatistics
 {
@@ -44,9 +45,8 @@ public class AI_Class : MonoBehaviour, IStatistics
     private int _objectifID;
     private Rigidbody _rigidbody;
     private CapsuleCollider _capsuleCollider;
-    private SkinnedMeshRenderer _skinnedMeshRenderer;
+    private MeshRenderer _meshRenderer;
     private Material _material;
-    private Animator _animator;
     private CustomAnimator _customAnimator;
     private PooledObject _pooledObject;
 
@@ -86,9 +86,9 @@ public class AI_Class : MonoBehaviour, IStatistics
         _currentWeaponIndex = GetWeaponIndex(_unitType);
         _rigidbody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
-        _skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        _material = _skinnedMeshRenderer.material;
-        _animator = GetComponentInChildren<Animator>();
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        _material = _meshRenderer.material;
+        _customAnimator = GetComponent<CustomAnimator>();
         _pooledObject = GetComponent<PooledObject>();
     }
 
@@ -104,14 +104,14 @@ public class AI_Class : MonoBehaviour, IStatistics
         {
             HandleChase();
 
-            if (_skinnedMeshRenderer.sharedMaterial.color != Color.white)
+            if (_meshRenderer.sharedMaterial.color != Color.white)
             {
                 _material.color = Vector4.Lerp(_material.color, Color.white, Time.deltaTime * 3.0f);
             }
         }
         else
         {
-            if (_skinnedMeshRenderer.sharedMaterial.color != Color.black)
+            if (_meshRenderer.sharedMaterial.color != Color.black)
             {
                 _material.color = Vector4.Lerp(_material.color, Color.black, Time.deltaTime * 3.0f);
             }
@@ -143,9 +143,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         _navMeshAgent.enabled = false;
         _navMeshAgent.enabled = true;
 
-
-        _animator.SetBool(hash_isDead, false);
-        _animator.SetBool(hash_isWalking, false);
+        _customAnimator.Play(AnimationsTypes.Idle);
 
         _capsuleCollider.enabled = true;
 
@@ -171,7 +169,8 @@ public class AI_Class : MonoBehaviour, IStatistics
         _deathEffect.Play();
 
         _isAlive = false;
-        _animator.SetBool(hash_isDead, true);
+
+        _customAnimator.Play(AnimationsTypes.Die);
         _navMeshAgent.isStopped = true;
         _navMeshAgent.ResetPath();
         _navMeshAgent.enabled = false;
@@ -203,9 +202,9 @@ public class AI_Class : MonoBehaviour, IStatistics
         
         if(Vector3.Distance(transform.position, GameManager.instance.Objectifs[_objectifID].transform.position) <= _ai_Data.AttackRange)
         {
-            if (_animator.GetBool(hash_isWalking))
+            if (_customAnimator.CurrentAnimation == AnimationsTypes.Walk)
             {
-                _animator.SetBool(hash_isWalking, false);
+                _customAnimator.Play(AnimationsTypes.Idle);
             }
 
             _navMeshAgent.isStopped = true;
@@ -217,7 +216,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         else if(!_navMeshAgent.hasPath)
         {
             _navMeshAgent.SetDestination(GameManager.instance.Objectifs[_objectifID].transform.position);
-            _animator.SetBool(hash_isWalking, true);
+            _customAnimator.Play(AnimationsTypes.Walk);
         }
     }
 
@@ -270,8 +269,7 @@ public class AI_Class : MonoBehaviour, IStatistics
 
         if (_attackTimer >= _weaponsList.WeaponsList[_currentWeaponIndex].weaponCoolDown)
         {
-            _animator.SetTrigger(hash_Attack);
-
+            _customAnimator.Trigger(AnimationsTypes.Attack);
             switch (_unitType)
             {
                 case SoldiersEnum.Larbin_A:
@@ -419,7 +417,7 @@ public class AI_Class : MonoBehaviour, IStatistics
                     else
                     {
                         _material.color = Color.red;
-                        _animator.SetTrigger(hash_GetHit);
+                        _customAnimator.Trigger(AnimationsTypes.GetHit);
                         _hurtFeedBack?.PlayFeedbacks();
                     }
                 }
