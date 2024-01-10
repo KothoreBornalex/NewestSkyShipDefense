@@ -207,6 +207,11 @@ public class playerAttack : MonoBehaviour
         DecreaseMana(_manaCostCastSpell);
 
         GameObject att = Instantiate(_spell3Prefab, attackOrigin, Quaternion.identity);
+
+        Spell3Behavior sp3B = att.GetComponent<Spell3Behavior>();
+        sp3B.SetSpellLevel(_spell3Level);
+        sp3B.SetSpellElement(_elementIndex);
+
         Collider[] hitCollider = Physics.OverlapSphere(att.transform.position, radius, _ennemyLayerMask);
         SlowSpell(hitCollider, slowValue);
     }
