@@ -13475,6 +13475,7 @@ MonoBehaviour:
   _posMidRectTrans: {fileID: 1916524536714069120}
   _posBotRectTrans: {fileID: 2730203275037440358}
   _skipSideButton: {fileID: 1648282301219136190}
+  _skipSpeed: 10
 --- !u!1 &6150414720601418943
 GameObject:
   m_ObjectHideFlags: 0
