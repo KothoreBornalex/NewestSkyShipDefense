@@ -143,13 +143,13 @@ public class AI_Class : MonoBehaviour, IStatistics
         _navMeshAgent.enabled = false;
         _navMeshAgent.enabled = true;
 
-        _customAnimator.Play(AnimationsTypes.Idle);
-
         _capsuleCollider.enabled = true;
 
         _material.color = Color.white;
 
         _deathEffect.gameObject.SetActive(false);
+
+        _customAnimator.ResetAnimator();
     }
 
     public void FreezPhysics()
@@ -269,7 +269,7 @@ public class AI_Class : MonoBehaviour, IStatistics
 
         if (_attackTimer >= _weaponsList.WeaponsList[_currentWeaponIndex].weaponCoolDown)
         {
-            _customAnimator.Trigger(AnimationsTypes.Attack);
+            _customAnimator.StartTrigger(AnimationsTypes.Attack);
             switch (_unitType)
             {
                 case SoldiersEnum.Larbin_A:
@@ -417,7 +417,7 @@ public class AI_Class : MonoBehaviour, IStatistics
                     else
                     {
                         _material.color = Color.red;
-                        _customAnimator.Trigger(AnimationsTypes.GetHit);
+                        _customAnimator.StartTrigger(AnimationsTypes.GetHit);
                         _hurtFeedBack?.PlayFeedbacks();
                     }
                 }

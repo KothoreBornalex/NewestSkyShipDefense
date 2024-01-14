@@ -4,6 +4,9 @@ Shader "Unlit/Test"
 	{
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
 		_MainTex ("Texture", 2D) = "white" {}
+        _CurrentAnimationTime("Current Animation Time", Float) = 0
+        _NextAnimationTime("Next Animation Time", Float) = 0
+
         [Space(50)]
 
         _Blend("Blend", Range(0, 1)) = 0
@@ -52,6 +55,10 @@ Shader "Unlit/Test"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+
+            float _CurrentAnimationTime;
+            float _NextAnimationTime;
+
             sampler2D _CurrentAnimMap;
             float4 _CurrentAnimMap_TexelSize;//x == 1/width
             float _CurrentAnimLen;
@@ -69,16 +76,17 @@ Shader "Unlit/Test"
                UNITY_SETUP_INSTANCE_ID(v);
                
                // Current Anim Map
-               float currentF = _Time.y / _CurrentAnimLen;
-               fmod(currentF, 1.0);
+               //float currentF = _Time.y / _CurrentAnimLen;
+               //float currentF = _CurrentAnimationTime;
+
                float currentAnimMap_x = (vid + 0.5) * _CurrentAnimMap_TexelSize.x;
-               float currentAnimMap_y = currentF;
+               float currentAnimMap_y = _CurrentAnimationTime;
                
                // Next Anim Map
-               float nextF = _Time.y / _NextAnimLen;
-               fmod(nextF, 1.0);
+               //float nextF = _Time.y / _NextAnimLen;
+               //float nextF = _NextAnimationTime;
                float nextAnimMap_x = (vid + 0.5) * _NextAnimMap_TexelSize.x;
-               float nextAnimMap_y = nextF;
+               float nextAnimMap_y = _NextAnimationTime;
 
                //float4 pos = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y, 0, 0));
 

@@ -279,10 +279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationsBank: {fileID: 11400000, guid: 80374ec2dce9cb54895d0702e600eb03, type: 2}
+  _meshRenderer: {fileID: 5779495010338960028}
   _currentAnimation: 0
   _baseAnimation: 0
-  _meshRenderer: {fileID: 5779495010338960028}
-  _maxTransitionTime: 0.5
+  _maxTransitionTime: 0.3
+  debugSlowingAnimation: 1
   _targetedAnimations: 0
 --- !u!54 &310044983318374637
 Rigidbody:

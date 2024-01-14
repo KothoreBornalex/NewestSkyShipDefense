@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CurrentAnimMap:
-        m_Texture: {fileID: 2800000, guid: ce243addee017044bb257729e995a341, type: 2}
+        m_Texture: {fileID: 2800000, guid: b43f5e9dd434e7a418b314008a709d30, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FirstFrameMap:
@@ -48,9 +48,11 @@ Material:
     - _AnimLen: 1.3
     - _Blend: 0
     - _CurrentAnimLen: 1.3
+    - _CurrentAnimationTime: 0
     - _DeltaTime: 0
     - _IsTransitionning: 0
     - _NextAnimLen: 1.3
+    - _NextAnimationTime: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
