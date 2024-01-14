@@ -84,6 +84,8 @@ public class UpgradeUIManager : MonoBehaviour
 
     [Header("Skip button")]
     [SerializeField] private GameObject _skipSideButton;
+    Coroutine _skipPostWaveGameStateCoroutine;
+    [SerializeField] float _skipSpeed;
 
     // Properties
 
@@ -94,9 +96,10 @@ public class UpgradeUIManager : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            if(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            if(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave && _skipPostWaveGameStateCoroutine == null)
             {
-                GameManager.instance.CurrentGameState = GameManager.GameState.PreWave;
+                _skipSideButton.SetActive(false);
+                _skipPostWaveGameStateCoroutine = StartCoroutine(SkipPostWaveGameStateCoroutine());
             }
         }
     }
@@ -104,7 +107,7 @@ public class UpgradeUIManager : MonoBehaviour
     {
         if(GameManager.instance != null)
         {
-            if (GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            if (GameManager.instance.CurrentGameState == GameManager.GameState.PostWave && _skipPostWaveGameStateCoroutine == null)
             {
                 _skipSideButton.SetActive(true);
             }
@@ -541,6 +544,25 @@ public class UpgradeUIManager : MonoBehaviour
         }
 
         _spellIndicatorSlideCoroutine = null;
+
+        yield return null;
+    }
+
+    IEnumerator SkipPostWaveGameStateCoroutine()
+    {
+        float tempTimeScale = Time.timeScale;
+
+        Time.timeScale = _skipSpeed;
+
+        while(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+        {
+            yield return null;
+        }
+
+        Time.timeScale = tempTimeScale;
+
+        _skipPostWaveGameStateCoroutine = null;
+        StopCoroutine( _skipPostWaveGameStateCoroutine );
 
         yield return null;
     }

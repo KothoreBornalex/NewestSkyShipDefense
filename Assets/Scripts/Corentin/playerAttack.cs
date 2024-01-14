@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using static IStatistics;
 
@@ -207,6 +208,11 @@ public class playerAttack : MonoBehaviour
         DecreaseMana(_manaCostCastSpell);
 
         GameObject att = Instantiate(_spell3Prefab, attackOrigin, Quaternion.identity);
+
+        Spell3Behavior sp3B = att.GetComponent<Spell3Behavior>();
+        sp3B.SetSpellLevel(_spell3Level);
+        sp3B.SetSpellElement(_elementIndex);
+
         Collider[] hitCollider = Physics.OverlapSphere(att.transform.position, radius, _ennemyLayerMask);
         SlowSpell(hitCollider, slowValue);
     }
@@ -217,7 +223,6 @@ public class playerAttack : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            // !!!!! Retirer la vie des ennemis
             collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue);
         }
     }
@@ -226,10 +231,7 @@ public class playerAttack : MonoBehaviour
     {
         foreach(Collider collider in colliders)
         {
-            if (collider.CompareTag("Ennemy"))
-            {
-                // !!!!! Slow ennemies
-            }
+            StartCoroutine(FreezeCooldownCoroutine(collider.GetComponent<NavMeshAgent>()));
         }
     }
 
@@ -292,6 +294,22 @@ public class playerAttack : MonoBehaviour
 
 
             yield return null;
+        }
+
+        yield return null;
+    }
+
+    IEnumerator FreezeCooldownCoroutine(NavMeshAgent navMeshAgent)
+    {
+        float tempSpeed = navMeshAgent.speed;
+
+        navMeshAgent.speed = 0f;
+
+        yield return new WaitForSeconds(5.0f);
+
+        if(navMeshAgent != null)
+        {
+            navMeshAgent.speed = tempSpeed;
         }
 
         yield return null;

@@ -8,6 +8,32 @@ public class Spell3Behavior : AttackBehavior
 
     [SerializeField] private float _duration;
 
+    [SerializeField] private GameObject[] _spellPhase1LevelsParticles;
+    [SerializeField] private GameObject[] _spellPhase2LevelsParticles;
+    [SerializeField] private GameObject[] _spellPhase3LevelsParticles;
+
+    private GameObject[] _currentPhaseSpells;
+
+    public void SetSpellLevel(int level)
+    {
+        if (level >= 0 && level < 4)
+        {
+            _currentPhaseSpells = _spellPhase1LevelsParticles;
+        }
+        else if (level >= 4 && level < 8)
+        {
+            _currentPhaseSpells = _spellPhase2LevelsParticles;
+        }
+        else if (level >= 8 && level < 12)
+        {
+            _currentPhaseSpells = _spellPhase3LevelsParticles;
+        }
+    }
+    public void SetSpellElement(int indexE)
+    {
+        _currentPhaseSpells[indexE].SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
