@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEngine;
@@ -96,11 +97,12 @@ public class BakingAnimationsMachine : EditorWindow
 
         // Launch the baking function
         EditorCoroutineUtility.StartCoroutine(BakingTexture(unBakedTexture), this);
-
         yield return new WaitUntil(() => hasFinishedAnimationConvertion == true);
 
 
         _texturedAnimation.Apply();
+        Debug.Log("Save Path: " + unBakedTexture.SavePath);
+
         Debug.Log("File Name: " + unBakedTexture.Name);
 
         
@@ -108,7 +110,13 @@ public class BakingAnimationsMachine : EditorWindow
         // Save the Texture2D as a PNG file
         byte[] bytes = _texturedAnimation.EncodeToPNG();
 
+
+
+
         AssetDatabase.CreateAsset(_texturedAnimation, Path.Combine(unBakedTexture.SavePath, fileName + ".asset"));
+
+
+
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();

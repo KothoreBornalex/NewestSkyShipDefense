@@ -111,7 +111,25 @@ public class TexturedAnimationEditorWindow : EditorWindow
 
     private string OpenExplorer(string basePath)
     {
-        return _basePath = EditorUtility.OpenFolderPanel("Select Folder", basePath, "");
+        string selectedPath = EditorUtility.OpenFolderPanel("Select Folder", basePath, "");
+        string result = "";
+
+        // Find the index of "Assets"
+        int assetsIndex = selectedPath.IndexOf("Assets");
+
+        // Check if "Assets" is found in the string
+        if (assetsIndex != -1)
+        {
+            // Extract the substring starting from "Assets"
+            result = selectedPath.Substring(assetsIndex);
+        }
+        else
+        {
+            // Handle the case where "Assets" is not found
+            Debug.Log("Error: 'Assets' not found in the input string.");
+        }
+
+        return result;
     }
 
 
@@ -129,6 +147,7 @@ public class TexturedAnimationEditorWindow : EditorWindow
             _savePath = OpenExplorer(_basePath);
         }
 
+        /*
         _folderName = EditorGUILayout.TextField("Save Folder Name:", _folderName);
 
         if(string.IsNullOrEmpty(_folderName))
@@ -137,8 +156,11 @@ public class TexturedAnimationEditorWindow : EditorWindow
         }
         else
         {
-            _savePath = EditorGUILayout.TextField("Save Path:", _basePath + "/"+_folderName);
+            _savePath = EditorGUILayout.TextField("Save Path:", _basePath + "/" + _folderName);
         }
+        */
+
+        _savePath = EditorGUILayout.TextField("Save Path:", _savePath);
 
         EditorGUILayout.Space(20);
     }
