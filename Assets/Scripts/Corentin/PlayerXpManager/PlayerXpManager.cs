@@ -56,7 +56,10 @@ public class PlayerXpManager : MonoBehaviour
 
     private void Awake()
     {
-        _totatDeathThisRound = GameManager.instance.UnitsDeadThisRound;
+        if(GameManager.instance != null)
+        {
+            _totatDeathThisRound = GameManager.instance.UnitsDeadThisRound;
+        }
         _checkTotatDeathThisRound += _totatDeathThisRound;
     }
     // Start is called before the first frame update
@@ -68,10 +71,13 @@ public class PlayerXpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_totatDeathThisRound != GameManager.instance.UnitsDeadThisRound)
+        if(GameManager.instance != null)
         {
-            _totatDeathThisRound = GameManager.instance.UnitsDeadThisRound;
-            CheckXpChangeValue();
+            if (_totatDeathThisRound != GameManager.instance.UnitsDeadThisRound)
+            {
+                _totatDeathThisRound = GameManager.instance.UnitsDeadThisRound;
+                CheckXpChangeValue();
+            }
         }
     }
 }

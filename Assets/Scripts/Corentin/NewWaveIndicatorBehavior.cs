@@ -21,6 +21,7 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
     private Vector3 _originalPosition;
     private Vector3 _originalScale;
     [SerializeField] private float _appearSpeed;
+    private bool _hasAlreadyAppeared;
 
     [Header("Disappear")]
     private Coroutine _disappearCoroutine;
@@ -103,6 +104,22 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
             _testButton = false;
 
             StartAnimationNewWave();
+        }
+
+        if(!_hasAlreadyAppeared && GameManager.instance != null)
+        {
+            if(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
+            {
+                StartAnimationNewWave();
+                _hasAlreadyAppeared = true;
+            }
+        }
+        else if(_hasAlreadyAppeared && GameManager.instance != null)
+        {
+            if (GameManager.instance.CurrentGameState == GameManager.GameState.PreWave)
+            {
+                _hasAlreadyAppeared = false;
+            }
         }
     }
 
