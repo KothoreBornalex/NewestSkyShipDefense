@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerXpManager : MonoBehaviour
 {
     // Fields
-
+    [SerializeField] private int _xpPerDeaths;
     [SerializeField] private int _currentXp;
 
+    private int _checkTotatDeathThisRound;
+    private int _totatDeathThisRound;
 
     // Properties
     public int CurrentXp { get => _currentXp; set => _currentXp = value; }
@@ -35,13 +37,28 @@ public class PlayerXpManager : MonoBehaviour
             CurrentXp = 0;
         }
     }
-
     public void IncreaseXp(int value)
     {
         CurrentXp += value;
     }
+    private void CheckXpChangeValue()
+    {
+        if(_checkTotatDeathThisRound < _totatDeathThisRound)
+        {
+            IncreaseXp(_xpPerDeaths * (_totatDeathThisRound - _checkTotatDeathThisRound));
+            _checkTotatDeathThisRound = _totatDeathThisRound;
+        }
+        else if (_checkTotatDeathThisRound > _totatDeathThisRound)
+        {
+            _checkTotatDeathThisRound -= _totatDeathThisRound;
+        }
+    }
 
-
+    private void Awake()
+    {
+        _totatDeathThisRound = GameManager.instance.UnitsDeadThisRound;
+        _checkTotatDeathThisRound += _totatDeathThisRound;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +68,10 @@ public class PlayerXpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(_totatDeathThisRound != GameManager.instance.UnitsDeadThisRound)
+        {
+            _totatDeathThisRound = GameManager.instance.UnitsDeadThisRound;
+            CheckXpChangeValue();
+        }
     }
 }

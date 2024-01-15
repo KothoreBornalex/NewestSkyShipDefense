@@ -626,7 +626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a7123f184cb2a44803b554498ed5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentXp: 10
+  _xpPerDeaths: 1
+  _currentXp: 0
 --- !u!1 &1199943162
 GameObject:
   m_ObjectHideFlags: 0
