@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-
+    //Utilise Player Prefs pour les settings.
+    //Fait un test voir si la fonction play vraiment un son.
     static SoundManager instance;
 
     private void Awake()
