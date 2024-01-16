@@ -552,12 +552,18 @@ public class UpgradeUIManager : MonoBehaviour
     {
         float tempTimeScale = Time.timeScale;
 
+        MapManager.instance.ShipMovingSpeed /= 5;
+        MapManager.instance.ShipRotatingSpeed /= 5;
+
         Time.timeScale = _skipSpeed;
 
         while(GameManager.instance.CurrentGameState == GameManager.GameState.PostWave)
         {
             yield return null;
         }
+
+        MapManager.instance.ShipMovingSpeed *= 5;
+        MapManager.instance.ShipRotatingSpeed *= 5;
 
         Time.timeScale = tempTimeScale;
 

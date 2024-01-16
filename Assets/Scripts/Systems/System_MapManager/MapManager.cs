@@ -57,8 +57,6 @@ public class MapManager : MonoBehaviour
     float minLightIntensity = 0.0f;
     public LightStruct[] Lights { get => _lights; set => _lights = value; }
 
-
-
     [Space(30.0f), Header("Player Ship Canon Fields")]
     [SerializeField] private bool playerShipShooting;
     private float timeSincePlayerShipIsShooting;
@@ -102,6 +100,8 @@ public class MapManager : MonoBehaviour
     [Space(30.0f), Header("Ship Fields")]
     [SerializeField, Range(0, 500)] private float _shipMovingSpeed;
     [SerializeField, Range(0, 20)] private float _shipRotatingSpeed;
+    public float ShipMovingSpeed { get => _shipMovingSpeed; set => _shipMovingSpeed = value; }
+    public float ShipRotatingSpeed { get => _shipRotatingSpeed; set => _shipRotatingSpeed = value; }
 
     [SerializeField] private ShipPatrolStruct[] _shipsArray;
 
