@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AI_Class;
 using static IStatistics;
 
 public interface IStatistics
@@ -84,5 +85,10 @@ public interface IStatistics
     public void IncreaseStat(StatName statName, float increasingValue)
     {
         
+    }
+
+    public FactionsEnum GetFaction()
+    {
+        return FactionsEnum.Human;
     }
 }

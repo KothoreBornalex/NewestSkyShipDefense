@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     private bool _inWaveHasStarted;
     private bool _postWaveHasStarted;
 
+    private bool _isDefeated;
 
     #endregion
 
@@ -210,6 +211,27 @@ public class GameManager : MonoBehaviour
         {
             EndInWave();
         }
+
+        if (!_isDefeated)
+        {
+            bool allObjectifsDestroyed = true;
+            foreach (ObjectifStats objectif in _objectifs)
+            {
+                if (objectif.ObjectifHealth._statCurrentValue > 0) allObjectifsDestroyed = false;
+            }
+
+            if (allObjectifsDestroyed)
+            {
+                StartDefeat();
+                _isDefeated = true;
+            }
+        }
+        
+    }
+
+
+    public void StartDefeat()
+    {
 
     }
 
