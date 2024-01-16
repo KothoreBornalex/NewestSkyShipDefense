@@ -321,8 +321,8 @@ public class MapManager : MonoBehaviour
                     Vector3 shipPosition = _shipsArray[i]._shipTransform.position;
                     Vector3 shipPositionRounded = new Vector3(Mathf.Round(shipPosition.x), Mathf.Round(shipPosition.y), Mathf.Round(shipPosition.z));
 
-
-                    if (targetPositionRounded == shipPositionRounded)
+                    Vector3 result = targetPositionRounded - shipPositionRounded;
+                    if (result.magnitude < 10.0f)
                     {
                         if (_shipsArray[i]._currentPatrolPoint == _shipsArray[i]._startAnimationPoints.Length - 1)
                         {
@@ -336,6 +336,21 @@ public class MapManager : MonoBehaviour
                         }
 
                     }
+
+                    /*if (targetPositionRounded == shipPositionRounded)
+                    {
+                        if (_shipsArray[i]._currentPatrolPoint == _shipsArray[i]._startAnimationPoints.Length - 1)
+                        {
+                            _shipsArray[i]._startPatrol = false;
+                            _shipsArray[i]._currentPatrolPoint = 0;
+                            _shipsArray[i]._shipTransform.SetPositionAndRotation(_shipsArray[i]._endAnimationPoints[0].position, _shipsArray[i]._endAnimationPoints[0].rotation);
+                        }
+                        else
+                        {
+                            _shipsArray[i]._currentPatrolPoint++;
+                        }
+
+                    }*/
 
                     TranslateShipTransform(i, _shipsArray[i]._startAnimationPoints[_shipsArray[i]._currentPatrolPoint].transform);
 

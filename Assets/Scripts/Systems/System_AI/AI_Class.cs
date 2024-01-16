@@ -38,6 +38,7 @@ public class AI_Class : MonoBehaviour, IStatistics
     [Header("Global AI Fields")]
     [SerializeField] private bool _isAlive;
     [SerializeField] private SoldiersEnum _unitType;
+    [SerializeField] private FactionsEnum _faction;
     [SerializeField, Expandable] private AI_Data _ai_Data;
     [SerializeField] private bool _setChase;
     [SerializeField] private ParticleSystem _deathEffect;
@@ -79,6 +80,8 @@ public class AI_Class : MonoBehaviour, IStatistics
     private int hash_GetHit = Animator.StringToHash("GetHit");
     private int hash_isDead = Animator.StringToHash("isDead");
     private int hash_isWalking = Animator.StringToHash("isWalking");
+
+    public FactionsEnum Faction { get => _faction; set => _faction = value; }
 
     private void Awake()
     {
@@ -490,6 +493,11 @@ public class AI_Class : MonoBehaviour, IStatistics
         }
 
         return 0.0f;
+    }
+
+    public FactionsEnum GetFaction()
+    {
+        return _faction;
     }
     #endregion
 }

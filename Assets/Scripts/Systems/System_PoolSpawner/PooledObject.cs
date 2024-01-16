@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AI_Class;
 
 public class PooledObject : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PooledObject : MonoBehaviour
 
     public void InitalizedAction(Action<PooledObject> deathAction, int factionIndex, int soldierIndex)
     {
+        _aiClass.Faction = (FactionsEnum)factionIndex;
         _deathAction = deathAction;
         _factionIndex = factionIndex;
         _soldierIndex = soldierIndex;
