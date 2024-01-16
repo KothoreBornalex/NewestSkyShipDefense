@@ -223,7 +223,54 @@ public class playerAttack : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue);
+            switch (collider.GetComponent<IStatistics>().GetFaction())
+            {
+                case AI_Class.FactionsEnum.Elf:
+                    if (_elementIndex == 0)
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue * 2f);
+                    }
+                    else if (_elementIndex == 1)
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue / 2f);
+                    }
+                    else
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue);
+                    }
+                    break;
+                case AI_Class.FactionsEnum.Orc:
+                    if (_elementIndex == 0)
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue);
+                    }
+                    else if (_elementIndex == 1)
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue / 2f);
+                    }
+                    else
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue * 2f);
+                    }
+                    break;
+                case AI_Class.FactionsEnum.Necromancer:
+                    if (_elementIndex == 0)
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue / 2f);
+                    }
+                    else if (_elementIndex == 1)
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue * 2f);
+                    }
+                    else
+                    {
+                        collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue);
+                    }
+                    break;
+                default:
+                    collider.GetComponent<IStatistics>().DecreaseStat(StatName.Health, damageValue);
+                    break;
+            }
         }
     }
 
