@@ -2402,7 +2402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attacks
+  m_text: Spells
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c30e9fded6497ec44b50fcb9d88f2adf, type: 2}
   m_sharedMaterial: {fileID: -2830857503238718129, guid: c30e9fded6497ec44b50fcb9d88f2adf, type: 2}
@@ -3073,7 +3073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3173788775907985896}
   m_Layer: 5
-  m_Name: AttackTuto
+  m_Name: SpellsTuto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
