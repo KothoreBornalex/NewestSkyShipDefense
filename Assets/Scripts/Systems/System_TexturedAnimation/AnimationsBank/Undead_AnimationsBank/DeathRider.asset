@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
+  m_Name: DeathRider
+  m_EditorClassIdentifier: 
+  animationsList:
+  - key: 2
+    value:
+      _texture: {fileID: 2800000, guid: 5a63512aabe1a07439c266d1898dbc84, type: 2}
+      _animLength: 1.3
+  - key: 0
+    value:
+      _texture: {fileID: 2800000, guid: 33ade1ba3309d7b438ac92e81a033e8b, type: 2}
+      _animLength: 1.3
+  - key: 1
+    value:
+      _texture: {fileID: 2800000, guid: 9e5715421aab89b408e853e1738c74e7, type: 2}
+      _animLength: 1.3
+  - key: 3
+    value:
+      _texture: {fileID: 2800000, guid: b1bdfe1b45f20724a97885c461bf6a24, type: 2}
+      _animLength: 1.3
+  - key: 4
+    value:
+      _texture: {fileID: 2800000, guid: e6f79b2c441841147ac359d3900d8101, type: 2}
+      _animLength: 1.3
+  _selectedAnimation: 4
+  _newAnimation:
+    _texture: {fileID: 0}
+    _animLength: 1.3

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.7
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3235478, g: 0.3994216, b: 0.52535707, a: 0.7}
+  m_IndirectSpecularColor: {r: 0.32331318, g: 0.3991426, b: 0.5252966, a: 0.7}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6078,6 +6078,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1967536883}
+    - target: {fileID: 3540269902641781855, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540269902641781855, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540269902641781855, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3717896038179091797, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -28652,15 +28664,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7506750603629780992, guid: f756cb9d2a9ca1540bb3d9a6f1d6fb60, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7506750603629780992, guid: f756cb9d2a9ca1540bb3d9a6f1d6fb60, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7506750603629780992, guid: f756cb9d2a9ca1540bb3d9a6f1d6fb60, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7506750603629780992, guid: f756cb9d2a9ca1540bb3d9a6f1d6fb60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -75383,6 +75395,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _currentGameState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
       propertyPath: _currentSpawnCount
       value: 33
       objectReference: {fileID: 0}
@@ -75438,6 +75454,46 @@ PrefabInstance:
       propertyPath: _spawnPoints.Array.data[7]
       value: 
       objectReference: {fileID: 2015569896}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _leftBoatSpawnPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _rightBoatSpawnPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _leftBoatSpawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 443498935}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _leftBoatSpawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 497996170}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _leftBoatSpawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1398230488}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _leftBoatSpawnPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 174157090}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _rightBoatSpawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1797022651}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _rightBoatSpawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 377162134}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _rightBoatSpawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 504950517}
+    - target: {fileID: 4008207047531441523, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: _rightBoatSpawnPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 2015569896}
     - target: {fileID: 6526463448279248239, guid: b50db17277b0ab0409320d07255fe525, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -75481,6 +75537,10 @@ PrefabInstance:
     - target: {fileID: 6900443655092891064, guid: b50db17277b0ab0409320d07255fe525, type: 3}
       propertyPath: m_Name
       value: Manager - Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900443655092891064, guid: b50db17277b0ab0409320d07255fe525, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

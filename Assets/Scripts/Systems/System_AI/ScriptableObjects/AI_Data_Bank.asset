@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0d658ceccbb3949ab8ec82a43ea20b, type: 3}
+  m_Name: AI_Data_Bank
+  m_EditorClassIdentifier: 
+  _factionsArray:
+  - faction: 1
+    factionUnits:
+    - {fileID: 11400000, guid: 16b66146305099941988ad6530895f0e, type: 2}
+    - {fileID: 11400000, guid: abb9bc3e692e8754888fae47c8e79094, type: 2}
+    - {fileID: 11400000, guid: 75cd777d562aa96449de8df5c608f30e, type: 2}
+    - {fileID: 11400000, guid: 795321604fd28574dbb181e8a917410e, type: 2}
+  - faction: 0
+    factionUnits:
+    - {fileID: 11400000, guid: 5f2fbb6ee312d984f9a109f14a11ef30, type: 2}
+    - {fileID: 11400000, guid: 24e35c5209eade744b51382277702936, type: 2}
+    - {fileID: 11400000, guid: 8854ba95fb3523347b516a1d2e95e021, type: 2}
+    - {fileID: 11400000, guid: f3e3e6c472e87e7449f2e2a114fc71f9, type: 2}
+  - faction: 2
+    factionUnits:
+    - {fileID: 11400000, guid: a4aea2fa17d689240acb4ef70737434a, type: 2}
+    - {fileID: 11400000, guid: 07406f455f600dc41b600177f60294cd, type: 2}
+    - {fileID: 11400000, guid: b101e046ac8a8884c81760da4fcffc8b, type: 2}
+    - {fileID: 11400000, guid: 49c63190616659348be87648655996f7, type: 2}
+  - faction: 3
+    factionUnits:
+    - {fileID: 11400000, guid: 482d0041628695a4386c9b6cdad0dbdf, type: 2}
+    - {fileID: 11400000, guid: c5dfcab21202c2a42a399c47c6a02d2a, type: 2}
+    - {fileID: 11400000, guid: df5b20d7e64c31b46a4bbca8956613fb, type: 2}
+    - {fileID: 11400000, guid: 04cf9daf19875544880e7f842decba89, type: 2}

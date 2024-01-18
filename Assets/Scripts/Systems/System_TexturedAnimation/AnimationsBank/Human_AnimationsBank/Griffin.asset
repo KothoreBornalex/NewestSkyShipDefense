@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
+  m_Name: Griffin
+  m_EditorClassIdentifier: 
+  animationsList:
+  - key: 2
+    value:
+      _texture: {fileID: 2800000, guid: ac09c0d124b54164abc8366552d13940, type: 2}
+      _animLength: 1.3
+  - key: 0
+    value:
+      _texture: {fileID: 2800000, guid: 4c1fab6197f65f340917f8cab31f5199, type: 2}
+      _animLength: 1.3
+  - key: 1
+    value:
+      _texture: {fileID: 2800000, guid: 028819081ec30f14292392cce91daa79, type: 2}
+      _animLength: 1.3
+  - key: 3
+    value:
+      _texture: {fileID: 2800000, guid: 5bbfbe522daf1d54ebb2aa96249296a7, type: 2}
+      _animLength: 1.3
+  - key: 4
+    value:
+      _texture: {fileID: 2800000, guid: 4bed62348e0b36b4baf441c41395780a, type: 2}
+      _animLength: 1.3
+  _selectedAnimation: 4
+  _newAnimation:
+    _texture: {fileID: 0}
+    _animLength: 1.3

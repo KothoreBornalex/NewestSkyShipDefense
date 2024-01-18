@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
+  m_Name: Grunt
+  m_EditorClassIdentifier: 
+  animationsList:
+  - key: 2
+    value:
+      _texture: {fileID: 2800000, guid: f76d5573487972d41ac7f5b3007d5470, type: 2}
+      _animLength: 1.3
+  - key: 0
+    value:
+      _texture: {fileID: 2800000, guid: 1f6b36d087508f54d95121ebcbbcf9c8, type: 2}
+      _animLength: 1.3
+  - key: 1
+    value:
+      _texture: {fileID: 2800000, guid: 42beb83e2f034a3479607f39c8ac4071, type: 2}
+      _animLength: 1.3
+  - key: 3
+    value:
+      _texture: {fileID: 2800000, guid: 37c94a8bf629c8740a73bd59987b9525, type: 2}
+      _animLength: 1.3
+  - key: 4
+    value:
+      _texture: {fileID: 2800000, guid: b0aaccfc53fb34740bb9ab5362a21a1f, type: 2}
+      _animLength: 1.3
+  _selectedAnimation: 4
+  _newAnimation:
+    _texture: {fileID: 0}
+    _animLength: 1.3

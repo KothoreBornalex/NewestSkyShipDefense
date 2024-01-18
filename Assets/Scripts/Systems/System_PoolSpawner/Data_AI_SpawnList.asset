@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4661d6f79928f454b85aa32f6fbcffb3, type: 3}
   m_Name: Data_AI_SpawnList
   m_EditorClassIdentifier: 
-  _maxSpawnCountPerFaction: 100
-  _baseSpawnCount: 100
+  _maxSpawnCountPerFaction: 20
+  _baseSpawnCount: 4
   _crashTestSpawnCount: 100
   _factionsList:
   - Faction: Orc
     list:
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
@@ -30,20 +28,14 @@ MonoBehaviour:
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-  - Faction: Human
-    list:
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
-    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
   - Faction: Necromancer
     list:
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
+    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
+    - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
+  - Faction: Human
+    list:
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}
     - {fileID: 7121351610798121874, guid: 2835c65571b0f5b4b92ce7e49e7afa60, type: 3}

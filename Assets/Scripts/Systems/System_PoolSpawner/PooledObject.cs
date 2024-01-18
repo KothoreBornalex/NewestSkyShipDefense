@@ -23,7 +23,8 @@ public class PooledObject : MonoBehaviour
 
     public void InitalizedAction(Action<PooledObject> deathAction, int factionIndex, int soldierIndex)
     {
-        _aiClass.Faction = (FactionsEnum)factionIndex;
+        //_aiClass.Faction = (FactionsEnum)factionIndex;
+        _aiClass.SetUpAI(factionIndex, soldierIndex);
         _deathAction = deathAction;
         _factionIndex = factionIndex;
         _soldierIndex = soldierIndex;

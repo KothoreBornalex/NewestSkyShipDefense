@@ -15,7 +15,7 @@ public class CustomAnimator : MonoBehaviour
     [SerializeField] private AnimationsTypes _baseAnimation;
     private Material _animatedMaterialInstance;
     public AnimationsTypes CurrentAnimation { get => _currentAnimation;}
-
+    public ScriptableObject_AnimationsBank AnimationsBank { get => _animationsBank; set => _animationsBank = value; }
 
 
     [Header("Transition Settings")]

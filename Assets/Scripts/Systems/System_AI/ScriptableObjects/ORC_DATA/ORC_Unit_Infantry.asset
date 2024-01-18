@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49bc8d4b80672e4a9b75337cd82e165, type: 3}
+  m_Name: ORC_Unit_Infantry
+  m_EditorClassIdentifier: 
+  _unitType: 0
+  _unitMesh: {fileID: 4300000, guid: 0ee768bfc7c24b5469d019dc7fa28d97, type: 3}
+  _animationsBank: {fileID: 11400000, guid: 372561803a126cb4fab7881a555b9bbe, type: 2}
+  _deathObject: {fileID: 2264145547278940075, guid: 68dc6249797585744ac310830aac1e7e, type: 3}
+  _aiStatistics:
+  - _statName: 0
+    _statCurrentValue: 6
+    _statMaxValue: 6
+  _attackRange: 2.2

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
+  m_Name: SkeletonWarrior
+  m_EditorClassIdentifier: 
+  animationsList:
+  - key: 2
+    value:
+      _texture: {fileID: 2800000, guid: 1a78e31fdd27716459549634f556d46b, type: 2}
+      _animLength: 1.3
+  - key: 0
+    value:
+      _texture: {fileID: 2800000, guid: 0e6f89a309d473f4d90f893c927353ac, type: 2}
+      _animLength: 1.3
+  - key: 1
+    value:
+      _texture: {fileID: 2800000, guid: 9e3e419e035843a4593d50828a5cb2cb, type: 2}
+      _animLength: 1.3
+  - key: 3
+    value:
+      _texture: {fileID: 2800000, guid: f9c39abcf6cc92d4d8ddf6a9239c9ba8, type: 2}
+      _animLength: 1.3
+  - key: 4
+    value:
+      _texture: {fileID: 2800000, guid: 307aba6af6e38e54783fa53251c21a54, type: 2}
+      _animLength: 1.3
+  _selectedAnimation: 4
+  _newAnimation:
+    _texture: {fileID: 0}
+    _animLength: 1.3

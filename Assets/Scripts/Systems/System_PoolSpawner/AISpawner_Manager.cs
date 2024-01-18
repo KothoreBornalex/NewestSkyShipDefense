@@ -62,20 +62,6 @@ public class AISpawner_Manager : MonoBehaviour
 
     private void Update()
     {
-        /*
-        _timer += Time.deltaTime;
-
-        if(_timer >= 5.0f)
-        {
-
-            for (int i = 0; i < spawnCount / 10; i++)
-            {
-                Vector3 spawnPoint = transform.position + new Vector3(UnityEngine.Random.Range(-15, 15), UnityEngine.Random.Range(-15, 15));
-                Spawn(FactionsEnum.Elf, SoldiersEnum.Larbin_A, spawnPoint);
-            }
-            _timer = 0;
-        }
-        */
 
     }
 
@@ -103,7 +89,13 @@ public class AISpawner_Manager : MonoBehaviour
     public void Spawn(FactionsEnum faction, SoldiersEnum soldier, Vector3 spawnPoint)
     {
 
-        PooledObject instance = _factionPoolsList[(int)faction]._poolsList[(int)soldier]._pool.Get();
+        //PooledObject instance = _factionPoolsList[faction.ConvertTo<int>()]._poolsList[soldier.ConvertTo<int>()]._pool.Get();
+
+        int factionIndex = (int)faction;
+        int soldierIndex = (int)soldier;
+
+        PooledObject instance = _factionPoolsList[factionIndex]._poolsList[soldierIndex]._pool.Get();
+
         instance.transform.position = spawnPoint;
         instance.AiClass.InitializedAI();
 

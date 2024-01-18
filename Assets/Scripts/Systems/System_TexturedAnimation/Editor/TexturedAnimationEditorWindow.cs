@@ -180,7 +180,7 @@ public class TexturedAnimationEditorWindow : EditorWindow
         if (newAnimationClip != SingleAnimation && newAnimationClip != null)
         {
             //_animationName = newAnimatedObject.name + "_" + newAnimationClip.name + "_TexturedAnimations";
-            _animationName = newAnimatedObject.name + "_TexAnim";
+            _animationName = newAnimatedObject.name + "_" + newAnimationClip.name + "_TexAnim";
 
         }
 

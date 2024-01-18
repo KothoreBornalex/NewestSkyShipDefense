@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff450c7836db49458c0501051885d4a, type: 3}
+  m_Name: Warlock
+  m_EditorClassIdentifier: 
+  animationsList:
+  - key: 2
+    value:
+      _texture: {fileID: 2800000, guid: 434cac984ebad7e41ab71ff61cd31703, type: 2}
+      _animLength: 1.3
+  - key: 0
+    value:
+      _texture: {fileID: 2800000, guid: a0db39127f2a8074d9a9edd324d1d63d, type: 2}
+      _animLength: 1.3
+  - key: 1
+    value:
+      _texture: {fileID: 2800000, guid: ebdaeec1edbd70b4aaf5c8c6d93f2348, type: 2}
+      _animLength: 1.3
+  - key: 3
+    value:
+      _texture: {fileID: 2800000, guid: dcd4812432db9a04db153770b96fec73, type: 2}
+      _animLength: 1.3
+  - key: 4
+    value:
+      _texture: {fileID: 2800000, guid: de8f3d0205b85944cb1c43ed99913914, type: 2}
+      _animLength: 1.3
+  _selectedAnimation: 4
+  _newAnimation:
+    _texture: {fileID: 0}
+    _animLength: 1.3

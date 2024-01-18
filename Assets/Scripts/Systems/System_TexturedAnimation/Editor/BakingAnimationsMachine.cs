@@ -54,6 +54,8 @@ public class BakingAnimationsMachine : EditorWindow
         }
 
         animator.applyRootMotion = false;
+        animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+
         UnBakedTextureAnimations unBakedTexture = new UnBakedTextureAnimations(bakingType, animationClip, skinnedMeshRenderer, animator, name, savePath);
         EditorCoroutineUtility.StartCoroutine(Generate_SingleTexturedAnimation(unBakedTexture), this);
     }
@@ -62,9 +64,9 @@ public class BakingAnimationsMachine : EditorWindow
 
     private IEnumerator Generate_SingleTexturedAnimation(UnBakedTextureAnimations unBakedTexture)
     {
-        if (unBakedTexture.VertexCount > 2000)
+        if (unBakedTexture.VertexCount > 4096)
         {
-            throw new System.Exception("The model have too much vertex to be used. (More than 2000) ");
+            throw new System.Exception("The model have too much vertex to be used. (More than 4096) ");
         }
 
         // Assuming you have a path where you want to save the texture
@@ -105,14 +107,6 @@ public class BakingAnimationsMachine : EditorWindow
 
         Debug.Log("File Name: " + unBakedTexture.Name);
 
-        
-
-        // Save the Texture2D as a PNG file
-        byte[] bytes = _texturedAnimation.EncodeToPNG();
-
-
-
-
         AssetDatabase.CreateAsset(_texturedAnimation, Path.Combine(unBakedTexture.SavePath, fileName + ".asset"));
 
 
@@ -123,7 +117,7 @@ public class BakingAnimationsMachine : EditorWindow
 
         EditorUtility.ClearProgressBar();
         unBakedTexture.Destroy();
-        //DestroyImmediate(_animatedObjectInstance);
+        DestroyImmediate(_animatedObjectInstance);
 
 
         IEnumerator BakingTexture(UnBakedTextureAnimations unBakedTexture)

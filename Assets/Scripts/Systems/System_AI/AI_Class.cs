@@ -15,16 +15,19 @@ public class AI_Class : MonoBehaviour, IStatistics
         Orc = 0,
         Elf = 1,
         Necromancer = 2,
-        Human = 3
+
+        FactionsCount = 3,
+
+        Human = 4,
     }
     public enum SoldiersEnum
     {
-        Larbin_A = 0,
-        Larbin_B = 1,
-        Larbin_C = 2,
-        LittleChief = 3,
-        Chief = 4,
-        BigChief = 5,
+        Infantry = 0,
+        Scout = 1,
+        Cavalry = 2,
+        MiniBoss = 3,
+
+        UnitsTypesCount = 4
     }
 
 
@@ -39,7 +42,8 @@ public class AI_Class : MonoBehaviour, IStatistics
     [SerializeField] private bool _isAlive;
     [SerializeField] private SoldiersEnum _unitType;
     [SerializeField] private FactionsEnum _faction;
-    [SerializeField, Expandable] private AI_Data _ai_Data;
+    [SerializeField] private Units_Data_Bank _unitsDataBank;
+    [SerializeField, Expandable] private Unit_Data _unitData;
     [SerializeField] private bool _setChase;
     [SerializeField] private ParticleSystem _deathEffect;
 
@@ -47,6 +51,7 @@ public class AI_Class : MonoBehaviour, IStatistics
     private Rigidbody _rigidbody;
     private CapsuleCollider _capsuleCollider;
     private MeshRenderer _meshRenderer;
+    private MeshFilter _meshFilter;
     private Material _material;
     private CustomAnimator _customAnimator;
     private PooledObject _pooledObject;
@@ -90,6 +95,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         _rigidbody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        _meshFilter = GetComponentInChildren<MeshFilter>();
         _material = _meshRenderer.material;
         _customAnimator = GetComponent<CustomAnimator>();
         _pooledObject = GetComponent<PooledObject>();
@@ -135,11 +141,34 @@ public class AI_Class : MonoBehaviour, IStatistics
 
     #region Global AI Functions
 
+    public void SetUpAI(int faction, int unit)
+    {
+        _faction = (FactionsEnum)faction;
+        _unitType = (SoldiersEnum)unit;
+
+        _unitData = _unitsDataBank.GetUnitData((FactionsEnum)faction, (SoldiersEnum)unit);
+
+        if(_unitData != null)
+        {
+            _meshFilter.sharedMesh = _unitData.UnitMesh;
+            _customAnimator.AnimationsBank = _unitData.AnimationsBank;
+            _material.SetTexture("_CurrentAnimMap", _unitData.AnimationsBank.GetAnimation(AnimationsTypes.Idle));
+            _material.SetTexture("_NextAnimMap", _unitData.AnimationsBank.GetAnimation(AnimationsTypes.Idle));
+        }
+        else
+        {
+            Debug.Log("Unit Data is Null !");
+        }
+        
+    }
+
+
+
     public void InitializedAI()
     {
         Debug.Log("Initialized AI Started");
         _isAlive = true;
-
+        
         InitializeStats();
         FreezPhysics();
 
@@ -198,12 +227,12 @@ public class AI_Class : MonoBehaviour, IStatistics
         }
 
 
-        if (Vector3.Distance(transform.position, GameManager.instance.Objectifs[_objectifID].transform.position) > _ai_Data.AttackRange && !_navMeshAgent.hasPath)
+        if (Vector3.Distance(transform.position, GameManager.instance.Objectifs[_objectifID].transform.position) > _unitData.AttackRange && !_navMeshAgent.hasPath)
         {
             _navMeshAgent.SetDestination(GameManager.instance.Objectifs[_objectifID].transform.position);
         }
         
-        if(Vector3.Distance(transform.position, GameManager.instance.Objectifs[_objectifID].transform.position) <= _ai_Data.AttackRange)
+        if(Vector3.Distance(transform.position, GameManager.instance.Objectifs[_objectifID].transform.position) <= _unitData.AttackRange)
         {
             if (_customAnimator.CurrentAnimation == AnimationsTypes.Walk)
             {
@@ -275,17 +304,21 @@ public class AI_Class : MonoBehaviour, IStatistics
             _customAnimator.StartTrigger(AnimationsTypes.Attack);
             switch (_unitType)
             {
-                case SoldiersEnum.Larbin_A:
+                case SoldiersEnum.Infantry:
                         LarbinA_Attack();
                     break;
 
 
-                case SoldiersEnum.Larbin_B:
-                        HandlePistolAttack();
+                case SoldiersEnum.Scout:
+                    LarbinA_Attack();
                     break;
 
-                case SoldiersEnum.Larbin_C:
-                        HandleFusilAttack();
+                case SoldiersEnum.Cavalry:
+                    LarbinA_Attack();
+                    break;
+
+                case SoldiersEnum.MiniBoss:
+                    LarbinA_Attack();
                     break;
 
             }
@@ -368,7 +401,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         {
             foreach(Statistics myStat in _aiStatistics)
             {
-                foreach (Statistics statistics in _ai_Data.AiStatistics)
+                foreach (Statistics statistics in _unitData.AiStatistics)
                 {
                     if (myStat._statName == statistics._statName)
                     {
@@ -380,7 +413,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         }
         else
         {
-            foreach (Statistics statistics in _ai_Data.AiStatistics)
+            foreach (Statistics statistics in _unitData.AiStatistics)
             {
                 _aiStatistics.Add(new Statistics(statistics._statName, statistics._statCurrentValue, statistics._statMaxValue));
             }

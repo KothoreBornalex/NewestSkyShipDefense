@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static AI_Class;
+using static UnityEngine.Rendering.DebugUI;
 public class GameManager : MonoBehaviour
 {
 
@@ -62,7 +63,13 @@ public class GameManager : MonoBehaviour
     private float _postWaveTimer;
 
     [SerializeField] private bool _isCrashTesting;
-    [SerializeField] private Transform[] _spawnPoints;
+
+    [Header("Spawns Fields")]
+    [SerializeField] private FactionsEnum _leftBoatFaction;
+    [SerializeField] private Transform[] _leftBoatSpawnPoints;
+    [SerializeField] private FactionsEnum _rightBoatFaction;
+    [SerializeField] private Transform[] _rightBoatSpawnPoints;
+
     [SerializeField] private float _timeBetweenWave;
     private float _currentSpawnerTimer;
 
@@ -83,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         foreach(ObjectifStats objectif in _objectifs)
         {
-            AISpawner_Manager.instance.Spawn(FactionsEnum.Elf, SoldiersEnum.Larbin_A, objectif.transform.position);
+            AISpawner_Manager.instance.Spawn(FactionsEnum.Elf, SoldiersEnum.Infantry, objectif.transform.position);
         }
     }
 
@@ -192,6 +199,34 @@ public class GameManager : MonoBehaviour
         _unitsSpawnedThisRound = 0;
         _unitsDeadThisRound = 0;
     }
+
+    public void StartRandomFactionsBoat()
+    {
+        FactionsEnum newLeftBoatFaction = (FactionsEnum)Random.Range(0, (int)FactionsEnum.FactionsCount);
+
+        FactionsEnum newRightBoatFaction = (FactionsEnum)Random.Range(0, (int)FactionsEnum.FactionsCount);
+
+        SetNewFactions(newLeftBoatFaction, newRightBoatFaction);
+    }
+
+    public void SetNewFactions(FactionsEnum newLeftBoatFaction, FactionsEnum newRightBoatFaction)
+    {
+        // Check if the new factions are not the same as the current ones
+        if (newLeftBoatFaction != _leftBoatFaction && newRightBoatFaction != _rightBoatFaction && newLeftBoatFaction != newRightBoatFaction)
+        {
+            // Set the new factions
+            _leftBoatFaction = newLeftBoatFaction;
+            _rightBoatFaction = newRightBoatFaction;
+
+            // Optionally, you can perform additional actions here
+            Debug.Log("New factions set successfully.");
+        }
+        else
+        {
+            StartRandomFactionsBoat();
+        }
+    }
+
     public void UpdateInWave()
     {
 
@@ -201,9 +236,12 @@ public class GameManager : MonoBehaviour
 
             if (_currentSpawnerTimer > _timeBetweenWave)
             {
-                AISpawner_Manager.instance.Spawn(FactionsEnum.Elf, SoldiersEnum.Larbin_A, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position);
+                AISpawner_Manager.instance.Spawn(_leftBoatFaction, (SoldiersEnum)Random.Range(0, (int)SoldiersEnum.UnitsTypesCount), _leftBoatSpawnPoints[Random.Range(0, _leftBoatSpawnPoints.Length)].position);
+                AISpawner_Manager.instance.Spawn(_rightBoatFaction, (SoldiersEnum)Random.Range(0, (int)SoldiersEnum.UnitsTypesCount), _rightBoatSpawnPoints[Random.Range(0, _rightBoatSpawnPoints.Length)].position);
 
                 _unitsSpawnedThisRound++;
+                _unitsSpawnedThisRound++;
+
                 _currentSpawnerTimer = 0;
             }
         }
@@ -249,7 +287,8 @@ public class GameManager : MonoBehaviour
         MapManager.instance.StartCanonsVoleys();
         StartCoroutine(MapManager.instance.StartTimeSpeeding());
 
-
+        StartRandomFactionsBoat();
+        //SetUpBoats();
         _postWaveHasStarted = true;
     }
 
