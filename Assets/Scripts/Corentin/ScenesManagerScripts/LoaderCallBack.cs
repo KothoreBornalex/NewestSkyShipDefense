@@ -15,4 +15,9 @@ public class LoaderCallBack : MonoBehaviour
             Loader.LoaderCallBack();
         }
     }
+
+    public void LoadScene(string scene)
+    {
+        Loader.Load(scene);
+    }
 }
