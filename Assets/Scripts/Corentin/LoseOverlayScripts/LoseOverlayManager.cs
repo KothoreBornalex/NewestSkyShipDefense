@@ -12,6 +12,7 @@ public class LoseOverlayManager : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float _blueBackgroundAppearSpeed;
     [SerializeField] private float _blueBackgroundDisappearSpeed;
+    [SerializeField] private float _transitionPauseTime;
 
     [Header("Overlay objects")]
     [SerializeField] private Image _redBackground;
@@ -74,7 +75,7 @@ public class LoseOverlayManager : MonoBehaviour
         Color tempColor = _blackBackground.color;
         Color tempColorText = _loseText.color;
 
-        while (_blackBackground.color.a < 0.95f)
+        while (_blackBackground.color.a < 0.98f)
         {
 
             tempColor.a = Mathf.Lerp(tempColor.a, 1f, Time.deltaTime * _blueBackgroundAppearSpeed);
@@ -93,7 +94,9 @@ public class LoseOverlayManager : MonoBehaviour
 
         _objectToActivate.SetActive(true);
 
-        while (_blackBackground.color.a > 0.05f)
+        yield return new WaitForSeconds(_transitionPauseTime);
+
+        while (_blackBackground.color.a > 0.02f)
         {
             Color tempColor2 = _blackBackground.color;
 

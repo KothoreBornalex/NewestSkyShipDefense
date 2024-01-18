@@ -744,8 +744,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113118a79bd8a854a9ef47e917f9ed0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueBackgroundAppearSpeed: 1
-  _blueBackgroundDisappearSpeed: 0.3
+  _blueBackgroundAppearSpeed: 1.3
+  _blueBackgroundDisappearSpeed: 0.5
+  _transitionPauseTime: 0.5
   _redBackground: {fileID: 3947983245661412358}
   _blackBackground: {fileID: 4965997381148221889}
   _loseText: {fileID: 2389130501428079243}
