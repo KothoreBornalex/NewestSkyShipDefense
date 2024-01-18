@@ -15,7 +15,7 @@ public class LoseOverlayManager : MonoBehaviour
 
     [Header("Overlay objects")]
     [SerializeField] private Image _redBackground;
-    [SerializeField] private Image _blueBackground;
+    [SerializeField] private Image _blackBackground;
     [SerializeField] private TextMeshProUGUI _loseText;
     [SerializeField] private TextMeshProUGUI _waveText;
     [SerializeField] private GameObject _objectToActivate;
@@ -68,19 +68,19 @@ public class LoseOverlayManager : MonoBehaviour
 
     IEnumerator AppearEffectCoroutine()
     {
-        _blueBackground.gameObject.SetActive(true);
+        _blackBackground.gameObject.SetActive(true);
         _loseText.gameObject.SetActive(true);
         
-        Color tempColor = _blueBackground.color;
+        Color tempColor = _blackBackground.color;
         Color tempColorText = _loseText.color;
 
-        while (_blueBackground.color.a < 0.95f)
+        while (_blackBackground.color.a < 0.95f)
         {
 
             tempColor.a = Mathf.Lerp(tempColor.a, 1f, Time.deltaTime * _blueBackgroundAppearSpeed);
             tempColorText.a = Mathf.Lerp(tempColorText.a, 1f, Time.deltaTime * _blueBackgroundAppearSpeed);
 
-            _blueBackground.color = tempColor;
+            _blackBackground.color = tempColor;
             _loseText.color = tempColorText;
 
             yield return null;
@@ -88,14 +88,14 @@ public class LoseOverlayManager : MonoBehaviour
 
         tempColor.a = 1f;
         tempColorText.a = 1f;
-        _blueBackground.color = tempColor;
+        _blackBackground.color = tempColor;
         _loseText.color = tempColorText;
 
         _objectToActivate.SetActive(true);
 
-        while (_blueBackground.color.a > 0.05f)
+        while (_blackBackground.color.a > 0.05f)
         {
-            Color tempColor2 = _blueBackground.color;
+            Color tempColor2 = _blackBackground.color;
 
             tempColor2.a = Mathf.Lerp(tempColor2.a, 0f, Time.deltaTime * _blueBackgroundDisappearSpeed);
             if(tempColor2.a < 0.7f)
@@ -103,12 +103,12 @@ public class LoseOverlayManager : MonoBehaviour
                 tempColor2.a = Mathf.Lerp(tempColor2.a, 0f, Time.deltaTime * _blueBackgroundDisappearSpeed * 3f);
             }
 
-            _blueBackground.color = tempColor2;
+            _blackBackground.color = tempColor2;
 
             yield return null;
         }
 
-        _blueBackground.gameObject.SetActive(false);
+        _blackBackground.gameObject.SetActive(false);
 
         yield return null;
     }

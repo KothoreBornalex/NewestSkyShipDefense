@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 4310779287760497395}
   - component: {fileID: 4965997381148221889}
   m_Layer: 5
-  m_Name: BackgroundBlue
+  m_Name: BackgroundBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.0754717, g: 0.07077252, b: 0.07077252, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -747,7 +747,7 @@ MonoBehaviour:
   _blueBackgroundAppearSpeed: 1
   _blueBackgroundDisappearSpeed: 0.3
   _redBackground: {fileID: 3947983245661412358}
-  _blueBackground: {fileID: 4965997381148221889}
+  _blackBackground: {fileID: 4965997381148221889}
   _loseText: {fileID: 2389130501428079243}
   _waveText: {fileID: 7472118532571549643}
   _objectToActivate: {fileID: 6344110807148558094}
