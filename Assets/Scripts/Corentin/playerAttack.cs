@@ -141,9 +141,9 @@ public class playerAttack : MonoBehaviour
 
     private void Attack()
     {
-        if (!GameManager.instance.IsDefeated)
+        if (GameManager.instance != null)
         {
-            if (_currentMana >= _manaCostCastSpell)
+            if (_currentMana >= _manaCostCastSpell && !GameManager.instance.IsDefeated)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

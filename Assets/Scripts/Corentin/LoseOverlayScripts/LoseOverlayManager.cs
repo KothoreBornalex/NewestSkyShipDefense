@@ -47,7 +47,7 @@ public class LoseOverlayManager : MonoBehaviour
         }
         if (GameManager.instance != null)
         {
-            _waveText.text = _waveText + GameManager.instance.CurrentRound.ToString();
+            _waveText.text = _waveText.text + GameManager.instance.CurrentRound.ToString();
         }
 
         _appearCoroutine = StartCoroutine(AppearEffectCoroutine());
