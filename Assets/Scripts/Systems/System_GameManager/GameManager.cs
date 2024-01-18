@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     private bool _postWaveHasStarted;
 
     private bool _isDefeated;
+    public bool IsDefeated { get => _isDefeated; set => _isDefeated = value; }
 
     #endregion
 
@@ -270,7 +271,38 @@ public class GameManager : MonoBehaviour
 
     public void StartDefeat()
     {
-
+        CheckHighscore();
+    }
+    private void CheckHighscore()
+    {
+        if (PlayerPrefs.HasKey("FirstHighscore"))
+        {
+            if (CurrentRound > PlayerPrefs.GetInt("FirstHighscore"))
+            {
+                PlayerPrefs.SetInt("FirstHighscore", CurrentRound);
+                Debug.Log("New first highscore");
+            }
+            else if (PlayerPrefs.HasKey("SecondHighscore"))
+            {
+                if (CurrentRound > PlayerPrefs.GetInt("SecondHighscore"))
+                {
+                    PlayerPrefs.SetInt("SecondHighscore", CurrentRound);
+                    Debug.Log("New second highscore");
+                }
+                else if (PlayerPrefs.HasKey("ThirdHighscore"))
+                {
+                    if (CurrentRound > PlayerPrefs.GetInt("ThirdHighscore"))
+                    {
+                        PlayerPrefs.SetInt("ThirdHighscore", CurrentRound);
+                        Debug.Log("New third highscore");
+                    }
+                    else
+                    {
+                        Debug.Log("No new highscore");
+                    }
+                }
+            }
+        }
     }
 
     #endregion
