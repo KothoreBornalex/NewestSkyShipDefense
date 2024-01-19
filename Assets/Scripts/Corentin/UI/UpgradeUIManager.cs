@@ -44,6 +44,7 @@ public class UpgradeUIManager : MonoBehaviour
     private float _manaCheckValue;
     private Coroutine _manaSlideCoroutine;
     [SerializeField] private float _manaSlideSpeed;
+    [SerializeField] private ParticleSystem _manaUpgradeParticles;
 
     [Header("Wave")]
     [SerializeField] private int _waveCurrentValue;
@@ -313,6 +314,7 @@ public class UpgradeUIManager : MonoBehaviour
     private void UpdateMaxManaSlider()
     {
         _manaSlider.maxValue = _manaMaxValue;
+        _manaUpgradeParticles.Play();
     }
     private void UpdateManaSlider()  // Update state of stamina slider with coroutine
     {
