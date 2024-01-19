@@ -614,6 +614,7 @@ MonoBehaviour:
   _currentMana: 0
   _manaIncreaseSpeed: 15
   _manaCostCastSpell: 10
+  _manaMaxIncreaseValue: 20
 --- !u!114 &663541631
 MonoBehaviour:
   m_ObjectHideFlags: 0

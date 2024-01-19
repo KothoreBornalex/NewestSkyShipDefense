@@ -302,6 +302,18 @@ public class UpgradeUIManager : MonoBehaviour
             UpdateManaSlider();
         }
     }
+    private void CheckMaxManaValue()
+    {
+        if(_manaMaxValue != _playerAttack.MaxMana)
+        {
+            _manaMaxValue = _playerAttack.MaxMana;
+            UpdateMaxManaSlider();
+        }
+    }
+    private void UpdateMaxManaSlider()
+    {
+        _manaSlider.maxValue = _manaMaxValue;
+    }
     private void UpdateManaSlider()  // Update state of stamina slider with coroutine
     {
         if (_manaSlideCoroutine != null)
@@ -393,6 +405,7 @@ public class UpgradeUIManager : MonoBehaviour
         _manaMaxValue = _playerAttack.MaxMana;
         _manaCurrentValue = _playerAttack.CurrentMana;
         _manaCheckValue = _manaCurrentValue;
+        _manaSlider.maxValue = _manaMaxValue;
         UpdateManaSlider();
         UpdateWaveText();
         UpdateXpText();
@@ -404,6 +417,7 @@ public class UpgradeUIManager : MonoBehaviour
     void Update()
     {
         CheckStateLevels();
+        CheckMaxManaValue();
         CheckManaValue();
         CheckWaveValue();
         CheckXpValue();
@@ -520,7 +534,7 @@ public class UpgradeUIManager : MonoBehaviour
 
     IEnumerator ManaSlideCoroutine() // Coroutine to smooth stamina change visual in slider
     {
-        float targetValue = (float)_manaCurrentValue / (float)_manaMaxValue;
+        float targetValue = (float)_manaCurrentValue;
         while (_manaSlider.value != targetValue)
         {
             _manaSlider.value = Mathf.Lerp(_manaSlider.value, targetValue, Time.deltaTime * _manaSlideSpeed);

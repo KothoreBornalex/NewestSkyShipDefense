@@ -35,6 +35,7 @@ public class playerAttack : MonoBehaviour
     [SerializeField] private float _currentMana;
     [SerializeField] private float _manaIncreaseSpeed;
     [SerializeField] private float _manaCostCastSpell;
+    [SerializeField] private float _manaMaxIncreaseValue;
     private Coroutine _manaIncreaseCoroutine;
 
     
@@ -127,6 +128,7 @@ public class playerAttack : MonoBehaviour
             if (canUpgrade)
             {
                 _spell3Level = index;
+                IncreaseManaMax(_manaMaxIncreaseValue);
             }
         }
     }
@@ -175,6 +177,15 @@ public class playerAttack : MonoBehaviour
         }
     }
 
+    public void IncreaseManaMax(float increaseValue)
+    {
+        _maxMana += increaseValue;
+        _currentMana += increaseValue;
+        if(_currentMana > _maxMana)
+        {
+            _currentMana = _maxMana;
+        }
+    }
     private void DecreaseMana(float decreaseValue)
     {
         _currentMana -= decreaseValue;
