@@ -416,12 +416,24 @@ public class UpgradeUIManager : MonoBehaviour
 
         Vector3 upPositionTemp = _upgradesPack.localPosition;
 
-        while ((_upgradeSkillsPanel.localPosition.y != _openPosition.localPosition.y) && (_upgradesPack.localPosition != _upgradesOpenPosition.localPosition) && _isOpen)
+        while (((_upgradeSkillsPanel.localPosition.y != _openPosition.localPosition.y) || (_upgradesPack.localPosition != _upgradesOpenPosition.localPosition)) && _isOpen)
         {
-
-            positionTemp.y = Mathf.Lerp(_upgradeSkillsPanel.localPosition.y, _openPosition.localPosition.y, Time.deltaTime * _slideSpeed);
-
-            upPositionTemp.y = Mathf.Lerp(_upgradesPack.localPosition.y, _upgradesOpenPosition.localPosition.y, Time.deltaTime * _slideSpeed * 4f);
+            if(_upgradeSkillsPanel.localPosition.y != _openPosition.localPosition.y)
+            {
+                positionTemp.y = Mathf.Lerp(_upgradeSkillsPanel.localPosition.y, _openPosition.localPosition.y, Time.deltaTime * _slideSpeed);
+                if (Mathf.Abs(_openPosition.localPosition.y - _upgradeSkillsPanel.localPosition.y) <= 0.1f)
+                {
+                    positionTemp.y = _openPosition.localPosition.y;
+                }
+            }
+            if (_upgradesPack.localPosition != _upgradesOpenPosition.localPosition)
+            {
+                upPositionTemp.y = Mathf.Lerp(_upgradesPack.localPosition.y, _upgradesOpenPosition.localPosition.y, Time.deltaTime * _slideSpeed * 4f);
+                if (Mathf.Abs(_upgradesOpenPosition.localPosition.y - _upgradesPack.localPosition.y) <= 0.1f)
+                {
+                    upPositionTemp.y = _upgradesOpenPosition.localPosition.y;
+                }
+            }
 
             _upgradeSkillsPanel.localPosition = positionTemp;
 
@@ -440,11 +452,24 @@ public class UpgradeUIManager : MonoBehaviour
 
         Vector3 upPositionTemp = _upgradesPack.localPosition;
 
-        while ((_upgradeSkillsPanel.localPosition.y != _closedPosition.localPosition.y) && (_upgradesPack.localPosition != _upgradesClosePosition.localPosition) && !_isOpen)
+        while (((_upgradeSkillsPanel.localPosition.y != _closedPosition.localPosition.y) || (_upgradesPack.localPosition != _upgradesClosePosition.localPosition)) && !_isOpen)
         {
-            positionTemp.y = Mathf.Lerp(_upgradeSkillsPanel.localPosition.y, _closedPosition.localPosition.y, Time.deltaTime * _slideSpeed);
-
-            upPositionTemp.y = Mathf.Lerp(_upgradesPack.localPosition.y, _upgradesClosePosition.localPosition.y, Time.deltaTime * _slideSpeed * 4f);
+            if (_upgradeSkillsPanel.localPosition.y != _closedPosition.localPosition.y)
+            {
+                positionTemp.y = Mathf.Lerp(_upgradeSkillsPanel.localPosition.y, _closedPosition.localPosition.y, Time.deltaTime * _slideSpeed);
+                if(Mathf.Abs(_closedPosition.localPosition.y - _upgradeSkillsPanel.localPosition.y) <= 0.05f)
+                {
+                    positionTemp.y = _closedPosition.localPosition.y;
+                }
+            }
+            if (_upgradesPack.localPosition != _upgradesClosePosition.localPosition)
+            {
+                upPositionTemp.y = Mathf.Lerp(_upgradesPack.localPosition.y, _upgradesClosePosition.localPosition.y, Time.deltaTime * _slideSpeed * 4f);
+                if (Mathf.Abs(_upgradesClosePosition.localPosition.y - _upgradesPack.localPosition.y) <= 0.05f)
+                {
+                    upPositionTemp.y = _upgradesClosePosition.localPosition.y;
+                }
+            }
 
             _upgradeSkillsPanel.localPosition = positionTemp;
 
