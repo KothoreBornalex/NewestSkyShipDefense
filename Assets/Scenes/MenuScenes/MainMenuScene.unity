@@ -10649,18 +10649,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 39141290132734180, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 39141290132734180, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 39141290132734180, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 924304138802432926, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10741,22 +10729,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1292075692234693231, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1292075692234693231, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3636412417215251637, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3636412417215251637, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4731240008882383384, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
       propertyPath: m_Camera
       value: 
@@ -10765,29 +10737,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1628363881}
-    - target: {fileID: 6772814007463177926, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772814007463177926, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LoaderCallBack, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 9157500789300178467, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
       propertyPath: m_Name
       value: UIMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188112794846918333, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188112794846918333, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188112794846918333, guid: 517c07fcf06b656478e8033fc1ca860c, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
