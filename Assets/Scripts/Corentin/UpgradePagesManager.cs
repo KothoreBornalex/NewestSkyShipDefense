@@ -51,6 +51,11 @@ public class UpgradePagesManager : MonoBehaviour
     }
     private void SlidePages()
     {
+        if(SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayClickSound();
+            SoundManager.instance.PlayOpenUpgradesEffect();
+        }
         _targetIndicatorPos = _pagesIndicators[_indexPages].localPosition;
         if (_slidePageCoroutine == null)
         {

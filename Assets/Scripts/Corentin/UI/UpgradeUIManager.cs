@@ -204,6 +204,7 @@ public class UpgradeUIManager : MonoBehaviour
                 Debug.LogWarning("Forgot to drag the icon ui button close/open so it won't rotate !!!");
             }
         }
+        SoundManager.instance.PlayOpenUpgradesEffect();
     }
     private void CheckStateLevels()     // Check if upgrade buttons must be in color in state acquired or not
     {

@@ -50,14 +50,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d2e4f99938654084c888ec315354ba2b, type: 3}
   - {fileID: 8300000, guid: 606d923395f62a84c8dd7eb17761c78c, type: 3}
   _clickEffect: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}
-  _sliderEffect: {fileID: 0}
+  _sliderEffect: {fileID: 8300000, guid: ab17b511be95f3c4399d02f711e564ea, type: 3}
+  _openUpgradesEffect: {fileID: 8300000, guid: 6e33ddb37488d2d4192b1d657d3ee8e6, type: 3}
   _ennemyHitEffect: {fileID: 0}
   _objectiveHitEffect: {fileID: 0}
   _objectiveDestroyedEffect: {fileID: 0}
   _newWaveEffect: {fileID: 0}
   _loseEffect: {fileID: 0}
-  _upgradeEffect: {fileID: 0}
+  _upgradeEffect: {fileID: 8300000, guid: d9753630d1a36b743ba0b6550e50aff1, type: 3}
   _noManaEffect: {fileID: 0}
+  _changeSpellEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
+  _changeElementEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
   _camera: {fileID: 0}
 --- !u!82 &7485639080366470762
 AudioSource:

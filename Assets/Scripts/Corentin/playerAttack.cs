@@ -55,6 +55,10 @@ public class playerAttack : MonoBehaviour
     public void ChangeAttackIndex(int index)
     {
         _spellIndex = index;
+        if(SoundManager.instance != null)
+        {
+            SoundManager.instance.PlayChangeSpellEffect();
+        }
     }
     public void ChangeSpell1Level(int index)
     {
@@ -78,6 +82,10 @@ public class playerAttack : MonoBehaviour
             if(canUpgrade)
             {
                 _spell1Level = index;
+                if(SoundManager.instance != null)
+                {
+                    SoundManager.instance.PlayUpgradeSound();
+                }
             }
         }
     }
@@ -103,6 +111,10 @@ public class playerAttack : MonoBehaviour
             if (canUpgrade)
             {
                 _spell2Level = index;
+                if (SoundManager.instance != null)
+                {
+                    SoundManager.instance.PlayUpgradeSound();
+                }
             }
         }
     }
@@ -129,6 +141,10 @@ public class playerAttack : MonoBehaviour
             {
                 _spell3Level = index;
                 IncreaseManaMax(_manaMaxIncreaseValue);
+                if (SoundManager.instance != null)
+                {
+                    SoundManager.instance.PlayUpgradeSound();
+                }
             }
         }
     }
@@ -138,6 +154,10 @@ public class playerAttack : MonoBehaviour
         if(index >= 0 && index < 3)
         {
             _elementIndex = index;
+            if(SoundManager.instance != null)
+            {
+                SoundManager.instance.PlayChangeElementEffect();
+            }
         }
     }
 

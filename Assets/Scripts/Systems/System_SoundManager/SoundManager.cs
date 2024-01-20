@@ -46,6 +46,7 @@ public class SoundManager : MonoBehaviour
     [Header("Effects")]
     [SerializeField] private AudioClip _clickEffect;
     [SerializeField] private AudioClip _sliderEffect;
+    [SerializeField] private AudioClip _openUpgradesEffect;
 
     [SerializeField] private AudioClip _ennemyHitEffect;
     [SerializeField] private AudioClip _objectiveHitEffect;
@@ -56,6 +57,8 @@ public class SoundManager : MonoBehaviour
     
     [SerializeField] private AudioClip _upgradeEffect;
     [SerializeField] private AudioClip _noManaEffect;
+    [SerializeField] private AudioClip _changeSpellEffect;
+    [SerializeField] private AudioClip _changeElementEffect;
 
     [Space(20)]
 
@@ -106,6 +109,18 @@ public class SoundManager : MonoBehaviour
     public void PlayNoManaSound()
     {
         AudioSource.PlayClipAtPoint(_noManaEffect, _camera.position, _effectsVolume);
+    }
+    public void PlayChangeSpellEffect()
+    {
+        AudioSource.PlayClipAtPoint(_changeSpellEffect, _camera.position, _effectsVolume);
+    }
+    public void PlayChangeElementEffect()
+    {
+        AudioSource.PlayClipAtPoint(_changeElementEffect, _camera.position, _effectsVolume);
+    }
+    public void PlayOpenUpgradesEffect()
+    {
+        AudioSource.PlayClipAtPoint(_openUpgradesEffect, _camera.position, _effectsVolume);
     }
     #endregion
 
