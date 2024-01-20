@@ -301,7 +301,19 @@ public class GameManager : MonoBehaviour
                         Debug.Log("No new highscore");
                     }
                 }
+                else
+                {
+                    PlayerPrefs.SetInt("ThirdHighscore", CurrentRound);
+                }
             }
+            else
+            {
+                PlayerPrefs.SetInt("SecondHighscore", CurrentRound);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("FirstHighscore", CurrentRound);
         }
     }
 
