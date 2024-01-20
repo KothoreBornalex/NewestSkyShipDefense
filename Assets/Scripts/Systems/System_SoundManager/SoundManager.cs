@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
         }
+
+        _audioSource = GetComponent<AudioSource>();
 
         if (PlayerPrefs.HasKey("MusicVolume") == false)
         {
@@ -54,6 +57,7 @@ public class SoundManager : MonoBehaviour
     [Space(20)]
 
     [SerializeField] private Transform _camera;
+    private AudioSource _audioSource;
     private float _musicVolume = 0.7f;
     private float _effectsVolume = 0.7f;
 
@@ -101,6 +105,14 @@ public class SoundManager : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        if(SceneManager.GetActiveScene().name == "MainMenuScene")
+        {
+            _audioSource.clip = _mainMenuMusic;
+            _audioSource.Play();
+        }
+    }
     private void Update()
     {
         if (PlayerPrefs.HasKey("MusicVolume"))
@@ -108,6 +120,7 @@ public class SoundManager : MonoBehaviour
             if(PlayerPrefs.GetFloat("MusicVolume") != _musicVolume)
             {
                 _musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+                _audioSource.volume = _musicVolume;
             }
         }
         if (PlayerPrefs.HasKey("EffectsVolume"))

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449b329506b425746ac543b86b94d693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuMusic: {fileID: 0}
+  _mainMenuMusic: {fileID: 8300000, guid: ebef752be7e1c554788344df7655210a, type: 3}
   _pauseMusic: {fileID: 0}
   _fightMusic: {fileID: 0}
   _transitionMusic: {fileID: 0}
