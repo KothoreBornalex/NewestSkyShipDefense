@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5014257283363187819}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -30.113005, y: 137.04718, z: 65.77629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -49,6 +49,15 @@ MonoBehaviour:
   _pauseMusic: {fileID: 0}
   _fightMusic: {fileID: 0}
   _transitionMusic: {fileID: 0}
+  _clickEffect: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}
+  _sliderEffect: {fileID: 0}
+  _ennemyHitEffect: {fileID: 0}
+  _objectiveHitEffect: {fileID: 0}
+  _objectiveDestroyedEffect: {fileID: 0}
+  _newWaveEffect: {fileID: 0}
+  _loseEffect: {fileID: 0}
+  _upgradeEffect: {fileID: 0}
+  _noManaEffect: {fileID: 0}
   _camera: {fileID: 0}
 --- !u!82 &7485639080366470762
 AudioSource:
@@ -70,7 +79,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.7036884
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
