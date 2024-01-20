@@ -8,6 +8,8 @@ public class SettingsScript : MonoBehaviour
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _effectsSlider;
 
+    private bool _canSaveValue;
+
     private float _resumeTimeScale;
 
     public void SetNewVolume()
@@ -34,11 +36,12 @@ public class SettingsScript : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
-            _musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+            Debug.Log("Set to : " + PlayerPrefs.GetFloat("MusicVolume"));
+            _musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("MusicVolume"));
         }
         if (PlayerPrefs.HasKey("EffectsVolume"))
         {
-            _musicSlider.value = PlayerPrefs.GetFloat("EffectsVolume");
+            _effectsSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("EffectsVolume"));
         }
     }
 

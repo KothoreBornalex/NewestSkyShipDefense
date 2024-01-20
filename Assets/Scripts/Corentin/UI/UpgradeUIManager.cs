@@ -609,7 +609,7 @@ public class UpgradeUIManager : MonoBehaviour
         Time.timeScale = tempTimeScale;
 
         _skipPostWaveGameStateCoroutine = null;
-        StopCoroutine( _skipPostWaveGameStateCoroutine );
+        //StopCoroutine( _skipPostWaveGameStateCoroutine );
 
         yield return null;
     }

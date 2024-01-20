@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenuMusic: {fileID: 8300000, guid: ebef752be7e1c554788344df7655210a, type: 3}
-  _pauseMusic: {fileID: 0}
-  _fightMusic: {fileID: 0}
-  _transitionMusic: {fileID: 0}
+  _inGameMusics:
+  - {fileID: 8300000, guid: d2e4f99938654084c888ec315354ba2b, type: 3}
+  - {fileID: 8300000, guid: 606d923395f62a84c8dd7eb17761c78c, type: 3}
   _clickEffect: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}
   _sliderEffect: {fileID: 0}
   _ennemyHitEffect: {fileID: 0}
@@ -73,7 +73,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

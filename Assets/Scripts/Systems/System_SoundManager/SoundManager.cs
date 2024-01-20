@@ -35,9 +35,12 @@ public class SoundManager : MonoBehaviour
 
     [Header("Musics")]
     [SerializeField] private AudioClip _mainMenuMusic;
-    [SerializeField] private AudioClip _pauseMusic;
-    [SerializeField] private AudioClip _fightMusic;
-    [SerializeField] private AudioClip _transitionMusic;
+    //[SerializeField] private AudioClip _pauseMusic;
+    //[SerializeField] private AudioClip _fightMusic;
+    //[SerializeField] private AudioClip _transitionMusic;
+    [SerializeField] private AudioClip[] _inGameMusics;
+    private int _inGameMusicIndex = 0;
+
     [Space(20)]
 
     [Header("Effects")]
@@ -58,6 +61,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private Transform _camera;
     private AudioSource _audioSource;
+    private Coroutine _cooldownNextMusicCoroutine;
     private float _musicVolume = 0.7f;
     private float _effectsVolume = 0.7f;
 
@@ -105,11 +109,43 @@ public class SoundManager : MonoBehaviour
     }
     #endregion
 
+
+    private void CheckMusicStillPlaying()
+    {
+        if (!_audioSource.isPlaying)
+        {
+            if (SceneManager.GetActiveScene().name == "MainMenuScene")
+            {
+                _audioSource.clip = _mainMenuMusic;
+                _cooldownNextMusicCoroutine = StartCoroutine(CooldownBeforeNextMusicCoroutine());
+            }
+            if (SceneManager.GetActiveScene().name == "Final GameScene")
+            {
+                if(Time.timeScale == 0f)
+                {
+                    Debug.Log("NextMusic will not play in pause mode");
+                }
+                _inGameMusicIndex++;
+                if(_inGameMusicIndex >= _inGameMusics.Length)
+                {
+                    _inGameMusicIndex = 0;
+                }
+                _audioSource.clip = _inGameMusics[_inGameMusicIndex];
+                _cooldownNextMusicCoroutine = StartCoroutine(CooldownBeforeNextMusicCoroutine());
+            }
+        }
+    }
+
     private void Start()
     {
         if(SceneManager.GetActiveScene().name == "MainMenuScene")
         {
             _audioSource.clip = _mainMenuMusic;
+            _audioSource.Play();
+        }
+        if (SceneManager.GetActiveScene().name == "Final GameScene")
+        {
+            _audioSource.clip = _inGameMusics[_inGameMusicIndex];
             _audioSource.Play();
         }
     }
@@ -130,5 +166,23 @@ public class SoundManager : MonoBehaviour
                 _effectsVolume = PlayerPrefs.GetFloat("EffectsVolume");
             }
         }
+
+        if(_cooldownNextMusicCoroutine == null)
+        {
+            CheckMusicStillPlaying();
+        }
+    }
+
+    IEnumerator CooldownBeforeNextMusicCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+
+        _audioSource.Play();
+
+        Debug.Log("RestartMusic");
+
+        _cooldownNextMusicCoroutine = null;
+
+        yield return null;
     }
 }

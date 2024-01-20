@@ -134,8 +134,6 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
         {
             colorTemp.a = Mathf.Lerp(colorTemp.a, 1f, Time.deltaTime * _appearSpeed);
 
-            Debug.Log(colorTemp.a);
-
             _indicatorSkullImage.color = colorTemp;
             _newWaveSlider.SetNewWaveSliderAlpha(colorTemp.a);
 
@@ -159,8 +157,6 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
     {
         while ((_indicatorSkullImage.GetComponent<RectTransform>().localScale - new Vector3(2f, 2f, 2f)).magnitude > 0.2f || (_indicatorSkullImage.GetComponent<RectTransform>().localPosition - _disappearTarget.localPosition).magnitude > 0.2f)
         {
-            Debug.Log("In disappear");
-
             if ((_indicatorSkullImage.GetComponent<RectTransform>().localScale - new Vector3(2f, 2f, 2f)).magnitude > 0.2f)
             {
                 float tempFloat = _indicatorSkullImage.GetComponent<RectTransform>().localScale.x;
@@ -222,8 +218,6 @@ public class NewWaveIndicatorBehavior : MonoBehaviour
             fillPercent = Mathf.Lerp(fillPercent, 1f, Time.deltaTime);
 
             _slider.value = fillPercent;
-
-            Debug.Log("in slider ! ");
 
             yield return null;
         }
