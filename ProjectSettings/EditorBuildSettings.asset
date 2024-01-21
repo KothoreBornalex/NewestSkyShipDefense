@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/GameScene Perspective.unity
-    guid: ff5630f146a36e541962ec015165b790
   - enabled: 1
     path: Assets/Scenes/MenuScenes/MainMenuScene.unity
     guid: 743e91b574f35174faf636c01196aac8
@@ -17,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScenes/LoadingScreen.unity
     guid: fb99f32cc3fec4b4c9dcc02cdbbcfc81
-  - enabled: 0
-    path: Assets/Scenes/DevScenes/IbrahimScene.unity
-    guid: 104fd1eb2de13f94cbe2c4ff7f78ad5f
   m_configObjects: {}
