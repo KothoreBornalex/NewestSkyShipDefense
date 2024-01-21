@@ -61,6 +61,18 @@ MonoBehaviour:
   _noManaEffect: {fileID: 0}
   _changeSpellEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
   _changeElementEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
+  _preciseAttackEffects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _zoneAttackEffects:
+  - {fileID: 8300000, guid: 7743889c22ea9472a895ecd63b2bb221, type: 3}
+  - {fileID: 8300000, guid: 7743889c22ea9472a895ecd63b2bb221, type: 3}
+  - {fileID: 8300000, guid: 4253ea676060e49dd9488f73d692ea2a, type: 3}
+  _slowEffects:
+  - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
+  - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
+  - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
   _camera: {fileID: 0}
 --- !u!82 &7485639080366470762
 AudioSource:

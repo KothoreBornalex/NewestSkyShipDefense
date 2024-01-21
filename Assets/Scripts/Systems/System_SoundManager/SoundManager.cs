@@ -60,6 +60,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _changeSpellEffect;
     [SerializeField] private AudioClip _changeElementEffect;
 
+    [SerializeField] private AudioClip[] _preciseAttackEffects;
+    [SerializeField] private AudioClip[] _zoneAttackEffects;
+    [SerializeField] private AudioClip[] _slowEffects;
+
     [Space(20)]
 
     [SerializeField] private Transform _camera;
@@ -121,6 +125,18 @@ public class SoundManager : MonoBehaviour
     public void PlayOpenUpgradesEffect()
     {
         AudioSource.PlayClipAtPoint(_openUpgradesEffect, _camera.position, _effectsVolume);
+    }
+    public void PlayPreciseAttackEffect(int index)
+    {
+        AudioSource.PlayClipAtPoint(_preciseAttackEffects[index], _camera.position, _effectsVolume);
+    }
+    public void PlayZoneAttackEffect(int index)
+    {
+        AudioSource.PlayClipAtPoint(_zoneAttackEffects[index], _camera.position, _effectsVolume);
+    }
+    public void PlaySlowEffect(int index)
+    {
+        AudioSource.PlayClipAtPoint(_slowEffects[index], _camera.position, _effectsVolume);
     }
     #endregion
 
