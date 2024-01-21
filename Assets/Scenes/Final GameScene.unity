@@ -6080,15 +6080,15 @@ PrefabInstance:
       objectReference: {fileID: 1967536883}
     - target: {fileID: 3540269902641781855, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3540269902641781855, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3540269902641781855, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3717896038179091797, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -81451,6 +81451,7 @@ MonoBehaviour:
   _spell1Level: 0
   _spell2Level: 0
   _spell3Level: 0
+  _timeBetweenSpellSoundEffect: 0
   _playerAttacksData: {fileID: 11400000, guid: 5d36cdc651221154aa85040529535deb, type: 2}
   _elementIndex: 0
   _maxMana: 100
@@ -101372,10 +101373,6 @@ PrefabInstance:
     - target: {fileID: 5014257283363187819, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
       propertyPath: m_Name
       value: Manager - Sound
-      objectReference: {fileID: 0}
-    - target: {fileID: 7485639080366470762, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
-      propertyPath: MinDistance
-      value: 2.7036884
       objectReference: {fileID: 0}
     - target: {fileID: 7803751800395216849, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
       propertyPath: m_LocalPosition.x

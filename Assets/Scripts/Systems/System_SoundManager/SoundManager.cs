@@ -64,6 +64,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] _zoneAttackEffects;
     [SerializeField] private AudioClip[] _slowEffects;
 
+    [Header("Adjustment effects")]
+    [SerializeField] private float _preciseAttackEffectAdjustment;
+    [SerializeField] private float _zoneAttackEffectAdjustment;
+    [SerializeField] private float _slowEffectAdjustment;
+
     [Space(20)]
 
     [SerializeField] private Transform _camera;
@@ -128,15 +133,15 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayPreciseAttackEffect(int index)
     {
-        AudioSource.PlayClipAtPoint(_preciseAttackEffects[index], _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_preciseAttackEffects[index], _camera.position, _effectsVolume * _preciseAttackEffectAdjustment);
     }
     public void PlayZoneAttackEffect(int index)
     {
-        AudioSource.PlayClipAtPoint(_zoneAttackEffects[index], _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_zoneAttackEffects[index], _camera.position, _effectsVolume * _zoneAttackEffectAdjustment);
     }
     public void PlaySlowEffect(int index)
     {
-        AudioSource.PlayClipAtPoint(_slowEffects[index], _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_slowEffects[index], _camera.position, _effectsVolume * _slowEffectAdjustment);
     }
     #endregion
 

@@ -73,6 +73,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
   - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
   - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
+  _preciseAttackEffectAdjustment: 0.3
+  _zoneAttackEffectAdjustment: 0.7
+  _slowEffectAdjustment: 0.6
   _camera: {fileID: 0}
 --- !u!82 &7485639080366470762
 AudioSource:
