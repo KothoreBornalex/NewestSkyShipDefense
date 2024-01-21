@@ -20,6 +20,8 @@ public class ObjectifStats : MonoBehaviour, IStatistics
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Slider _lifeSlider;
     [SerializeField] private Image _sliderBackGround;
+    [SerializeField] private ParticleSystem[] _reparedEffects;
+    [SerializeField] private ParticleSystem[] _alreadyReparedEffects;
 
     [Header("Objectif Stats")]
     private IObjects objectScript;
@@ -110,7 +112,7 @@ public class ObjectifStats : MonoBehaviour, IStatistics
     {
         //Since I only have one stat in this script, I don't need to do a for each to find the right stat.
 
-        if (statName == _objectifHealth._statName)
+        if (statName == _objectifHealth._statName && _objectifHealth._statCurrentValue < _objectifHealth._statMaxValue)
         {
             _objectifHealth._statCurrentValue += increasingValue;
             _objectifHealth._statCurrentValue = Mathf.Clamp(_objectifHealth._statCurrentValue, 0, _objectifHealth._statMaxValue);
@@ -130,8 +132,14 @@ public class ObjectifStats : MonoBehaviour, IStatistics
             {
                 objectScript.SwitchState(ObjectStates.HighDamaged);
             }
+
+            _reparedEffects[Random.Range(0, _reparedEffects.Length)].Play();
         }
-        
+        else
+        {
+            _alreadyReparedEffects[Random.Range(0, _alreadyReparedEffects.Length)].Play();
+        }
+
     }
 
 }

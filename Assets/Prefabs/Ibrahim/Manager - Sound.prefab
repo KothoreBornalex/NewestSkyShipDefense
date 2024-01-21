@@ -73,6 +73,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
   - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
   - {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
+  _reparationEffects:
+  - {fileID: 8300000, guid: 16c8780a0af86c348aa8ea55bea7db5f, type: 3}
+  - {fileID: 8300000, guid: b0d8a9e82c2db6045b157420b7a29ff7, type: 3}
+  - {fileID: 8300000, guid: 80da32c9e3d652e4b8ffd447866f0a53, type: 3}
+  - {fileID: 8300000, guid: 94d647c1a2739a54fb3ec50f748441d2, type: 3}
+  - {fileID: 8300000, guid: 239076f50c6e9e74a933f92a40f5f0f9, type: 3}
   _preciseAttackEffectAdjustment: 0.3
   _zoneAttackEffectAdjustment: 0.7
   _slowEffectAdjustment: 0.6

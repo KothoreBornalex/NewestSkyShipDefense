@@ -165,6 +165,32 @@ public class playerAttack : MonoBehaviour
         }
     }
 
+
+    private void Repare()
+    {
+        if (GameManager.instance != null)
+        {
+            if (_currentMana >= _manaCostCastSpell && !GameManager.instance.IsDefeated)
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, 500.0f))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
+
+                    Vector3 go = hit.point;
+
+                    if(hit.collider.gameObject.TryGetComponent<ObjectifStats>(out ObjectifStats objectifStats))
+                    {
+                        objectifStats.IncreaseStat(StatName.Health, Random.Range(5, 10));
+                        SoundManager.instance.PlayReparationEffect();
+                    }
+
+                }
+            }
+        }
+    }
+
     private void Attack()
     {
         if (GameManager.instance != null)
@@ -386,14 +412,44 @@ public class playerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+
+
+#if UNITY_EDITOR
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            Attack();
+            if (GameManager.instance.CurrentGameState == GameManager.GameState.InWave)
+            {
+                Attack();
+            }
+            else
+            {
+                Repare();
+            }
+
+            currentPressedTime = 0;
         }
+
+#endif
+
 
         if (Input.touchCount > 0)
         {
+
             Touch touch = Input.GetTouch(0);
+            if(touch.phase == TouchPhase.Ended)
+            {
+                if (GameManager.instance.CurrentGameState == GameManager.GameState.InWave)
+                {
+                    Attack();
+                }
+                else
+                {
+                    Repare();
+                }
+
+                currentPressedTime = 0;
+            }
 
             if (touch.phase == TouchPhase.Stationary)
             {
@@ -408,17 +464,6 @@ public class playerAttack : MonoBehaviour
         }
 
 
-        if (currentPressedTime >= minPressedTime)
-        {
-            Attack();
-            currentPressedTime = 0;
-        }
-
-
-        /*if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Attack();
-        }*/
     }
 
     IEnumerator ManaIncreaseCoroutine()

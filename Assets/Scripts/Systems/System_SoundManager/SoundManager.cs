@@ -64,6 +64,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip[] _zoneAttackEffects;
     [SerializeField] private AudioClip[] _slowEffects;
 
+    [SerializeField] private AudioClip[] _reparationEffects;
+
     [Header("Adjustment effects")]
     [SerializeField] private float _preciseAttackEffectAdjustment;
     [SerializeField] private float _zoneAttackEffectAdjustment;
@@ -130,6 +132,10 @@ public class SoundManager : MonoBehaviour
     public void PlayOpenUpgradesEffect()
     {
         AudioSource.PlayClipAtPoint(_openUpgradesEffect, _camera.position, _effectsVolume);
+    }
+    public void PlayReparationEffect()
+    {
+        AudioSource.PlayClipAtPoint(_reparationEffects[Random.Range(0, _reparationEffects.Length)], _camera.position, _effectsVolume);
     }
     public void PlayPreciseAttackEffect(int index)
     {
