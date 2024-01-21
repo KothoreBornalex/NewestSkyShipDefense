@@ -23,6 +23,10 @@ public class playerAttack : MonoBehaviour
     [SerializeField] private int _spell2Level = 0;
     [SerializeField] private int _spell3Level = 0;
 
+    [SerializeField] private float _timeBetweenSpellSoundEffect;
+    private Coroutine _spellSoundEffectCooldown;
+    private bool _canPlaySoundEffect = true;
+
     private PlayerXpManager _playerXpManager;
 
     [SerializeField] private PlayerAttacksData _playerAttacksData;
@@ -213,6 +217,24 @@ public class playerAttack : MonoBehaviour
     }
     private void UseSpell1(Vector3 attackOrigin, int damageValue, float radius)     // Faible dégats de zone
     {
+        if (SoundManager.instance != null)
+        {
+            int index = 0;
+            if (_spell1Level <= 3)
+            {
+                 index = 0;
+            }
+            else if (_spell1Level <= 7)
+            {
+                 index = 1;
+            }
+            else if (_spell1Level <= 11)
+            {
+                index = 2;
+            }
+            SoundManager.instance.PlayPreciseAttackEffect(index);
+        }
+
         DecreaseMana(_manaCostCastSpell);
 
         GameObject att = Instantiate(_spell1Prefab, attackOrigin, Quaternion.identity);
@@ -226,6 +248,24 @@ public class playerAttack : MonoBehaviour
     }
     private void UseSpell2(Vector3 attackOrigin, int damageValue, float radius)     // Fort dégats précis
     {
+        if (SoundManager.instance != null)
+        {
+            int index = 0;
+            if (_spell2Level <= 3)
+            {
+                index = 0;
+            }
+            else if (_spell2Level <= 7)
+            {
+                index = 1;
+            }
+            else if (_spell2Level <= 11)
+            {
+                index = 2;
+            }
+            SoundManager.instance.PlayZoneAttackEffect(index);
+        }
+
         DecreaseMana(_manaCostCastSpell);
 
         GameObject att = Instantiate(_spell2Prefab, attackOrigin, Quaternion.identity);
@@ -239,6 +279,24 @@ public class playerAttack : MonoBehaviour
     }
     private void UseSpell3(Vector3 attackOrigin, int slowValue, float radius)       // Freeze
     {
+        if (SoundManager.instance != null)
+        {
+            int index = 0;
+            if (_spell3Level <= 3)
+            {
+                index = 0;
+            }
+            else if (_spell3Level <= 7)
+            {
+                index = 1;
+            }
+            else if (_spell3Level <= 11)
+            {
+                index = 2;
+            }
+            SoundManager.instance.PlaySlowEffect(index);
+        }
+
         DecreaseMana(_manaCostCastSpell);
 
         GameObject att = Instantiate(_spell3Prefab, attackOrigin, Quaternion.identity);
@@ -392,6 +450,15 @@ public class playerAttack : MonoBehaviour
         {
             navMeshAgent.speed = tempSpeed;
         }
+
+        yield return null;
+    }
+
+    IEnumerator SpellSoundEffectCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(_timeBetweenSpellSoundEffect);
+
+        _canPlaySoundEffect = true;
 
         yield return null;
     }

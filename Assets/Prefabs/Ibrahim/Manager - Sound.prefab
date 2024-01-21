@@ -62,9 +62,9 @@ MonoBehaviour:
   _changeSpellEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
   _changeElementEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
   _preciseAttackEffects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 6cdf2b6afcdf03c4fb959f056819ba48, type: 3}
+  - {fileID: 8300000, guid: 64052350e1c642c46ae3f682ec7fabc5, type: 3}
+  - {fileID: 8300000, guid: 9496feb530c6bc647a5d5a9208e8eaa3, type: 3}
   _zoneAttackEffects:
   - {fileID: 8300000, guid: 7743889c22ea9472a895ecd63b2bb221, type: 3}
   - {fileID: 8300000, guid: 7743889c22ea9472a895ecd63b2bb221, type: 3}

@@ -4313,18 +4313,6 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1017675188}
-    - target: {fileID: 7925835944422831212, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
-      propertyPath: _zoneAttackEffects.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 7743889c22ea9472a895ecd63b2bb221, type: 3}
-    - target: {fileID: 7925835944422831212, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
-      propertyPath: _zoneAttackEffects.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 7743889c22ea9472a895ecd63b2bb221, type: 3}
-    - target: {fileID: 7925835944422831212, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
-      propertyPath: _zoneAttackEffects.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4253ea676060e49dd9488f73d692ea2a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
