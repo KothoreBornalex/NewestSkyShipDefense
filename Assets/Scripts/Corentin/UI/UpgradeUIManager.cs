@@ -124,21 +124,21 @@ public class UpgradeUIManager : MonoBehaviour
         switch (index)
         {
             case 1: // spell 1
-                _spell1BackgroundImage.color = _selectedColor;
-                _spell2BackgroundImage.color = _unselectedColor;
-                _spell3BackgroundImage.color = _unselectedColor;
+                _spell1BackgroundImage.material.color = _selectedColor;
+                _spell2BackgroundImage.material.color = _unselectedColor;
+                _spell3BackgroundImage.material.color = _unselectedColor;
                 _targetSpellIndPos = _spell1BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 2: // spell 2
-                _spell1BackgroundImage.color = _unselectedColor;
-                _spell2BackgroundImage.color = _selectedColor;
-                _spell3BackgroundImage.color = _unselectedColor;
+                _spell1BackgroundImage.material.color = _unselectedColor;
+                _spell2BackgroundImage.material.color = _selectedColor;
+                _spell3BackgroundImage.material.color = _unselectedColor;
                 _targetSpellIndPos = _spell2BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 3: // spell 3
-                _spell1BackgroundImage.color = _unselectedColor;
-                _spell2BackgroundImage.color = _unselectedColor;
-                _spell3BackgroundImage.color = _selectedColor;
+                _spell1BackgroundImage.material.color = _unselectedColor;
+                _spell2BackgroundImage.material.color = _unselectedColor;
+                _spell3BackgroundImage.material.color = _selectedColor;
                 _targetSpellIndPos = _spell3BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
         }
