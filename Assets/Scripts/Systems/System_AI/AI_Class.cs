@@ -66,6 +66,8 @@ public class AI_Class : MonoBehaviour, IStatistics
     [SerializeField] private Transform[] patrolWayPoints;
     private int currentPatrolPoint;
 
+    [SerializeField] float _speed;
+
 
     [Header("Attack Fields")]
     private int _currentWeaponIndex;
@@ -104,6 +106,11 @@ public class AI_Class : MonoBehaviour, IStatistics
     private void Start()
     {
         _objectifID = Random.Range(0, GameManager.instance.Objectifs.Length);
+    }
+    private void OnEnable()
+    {
+        _navMeshAgent.speed = _speed;
+        
     }
 
 
