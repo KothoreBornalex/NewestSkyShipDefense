@@ -265,6 +265,7 @@ MonoBehaviour:
   _deathEffect: {fileID: 7617876294688315030}
   _weaponsList: {fileID: 11400000, guid: 9fdf729682765484cb94de0d3e8dece8, type: 2}
   patrolWayPoints: []
+  _speed: 3.5
   _attackFrequency: 0
   _bulletSpawnPoint: {fileID: 0}
   _hurtFeedBack: {fileID: 5812597502645697923}
