@@ -48,12 +48,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _sliderEffect;
     [SerializeField] private AudioClip _openUpgradesEffect;
 
-    [SerializeField] private AudioClip _ennemyHitEffect;
-    [SerializeField] private AudioClip _objectiveHitEffect;
+    [SerializeField] private AudioClip[] _ennemyHitEffect;
+    [SerializeField] private AudioClip[] _objectiveHitEffects;
     [SerializeField] private AudioClip _objectiveDestroyedEffect;
     
     [SerializeField] private AudioClip _newWaveEffect;
     [SerializeField] private AudioClip _loseEffect;
+    [SerializeField] private AudioClip _secondLoseEffect;
     
     [SerializeField] private AudioClip _upgradeEffect;
     [SerializeField] private AudioClip _noManaEffect;
@@ -71,6 +72,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float _zoneAttackEffectAdjustment;
     [SerializeField] private float _slowEffectAdjustment;
 
+    [SerializeField] private float _newWaveEffectAdjustment;
+
+    [SerializeField] private float _objectiveHitEffectAdjustment;
+
     [Space(20)]
 
     [SerializeField] private Transform _camera;
@@ -78,6 +83,7 @@ public class SoundManager : MonoBehaviour
     private Coroutine _cooldownNextMusicCoroutine;
     private float _musicVolume = 0.7f;
     private float _effectsVolume = 0.7f;
+    private bool _hasLostModifier;
 
     public void PlaySound(AudioClip audioClip)
     {
@@ -95,11 +101,11 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayEnnemyHitSound()
     {
-        AudioSource.PlayClipAtPoint(_ennemyHitEffect, _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_ennemyHitEffect[Random.Range(0, _ennemyHitEffect.Length)], _camera.position, _effectsVolume);
     }
     public void PlayObjectiveHitSound()
     {
-        AudioSource.PlayClipAtPoint(_objectiveHitEffect, _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_objectiveHitEffects[Random.Range(0, _objectiveHitEffects.Length)], _camera.position, _effectsVolume * _objectiveHitEffectAdjustment);
     }
     public void PlayDestroyedSound()
     {
@@ -107,11 +113,13 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayNewWaveSound()
     {
-        AudioSource.PlayClipAtPoint(_newWaveEffect, _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_newWaveEffect, _camera.position, _effectsVolume * _newWaveEffectAdjustment);
     }
     public void PlayLoseSound()
     {
+        _hasLostModifier = true;
         AudioSource.PlayClipAtPoint(_loseEffect, _camera.position, _effectsVolume);
+        AudioSource.PlayClipAtPoint(_secondLoseEffect, _camera.position, _effectsVolume);
     }
     public void PlayUpgradeSound()
     {
@@ -212,6 +220,11 @@ public class SoundManager : MonoBehaviour
         if(_cooldownNextMusicCoroutine == null)
         {
             CheckMusicStillPlaying();
+        }
+
+        if (_hasLostModifier)
+        {
+            _audioSource.volume = _musicVolume / 4f;
         }
     }
 

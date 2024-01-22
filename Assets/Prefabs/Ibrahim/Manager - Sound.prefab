@@ -52,13 +52,22 @@ MonoBehaviour:
   _clickEffect: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}
   _sliderEffect: {fileID: 8300000, guid: ab17b511be95f3c4399d02f711e564ea, type: 3}
   _openUpgradesEffect: {fileID: 8300000, guid: 6e33ddb37488d2d4192b1d657d3ee8e6, type: 3}
-  _ennemyHitEffect: {fileID: 0}
-  _objectiveHitEffect: {fileID: 0}
-  _objectiveDestroyedEffect: {fileID: 0}
-  _newWaveEffect: {fileID: 0}
-  _loseEffect: {fileID: 0}
+  _ennemyHitEffect:
+  - {fileID: 8300000, guid: 26e9b0607a7504b8ca6ae8b0b885ab08, type: 3}
+  - {fileID: 8300000, guid: 26e9b0607a7504b8ca6ae8b0b885ab08, type: 3}
+  _objectiveHitEffects:
+  - {fileID: 8300000, guid: d3b11b80263d8a145ad7641f5e978ff4, type: 3}
+  - {fileID: 8300000, guid: 6e125c7f6c3574341bb7b01fe6b9dfee, type: 3}
+  - {fileID: 8300000, guid: 3af8a9d07bc438e458fa25f5e334a22b, type: 3}
+  - {fileID: 8300000, guid: f72a112b8aedd154887e21eb1e70c0f8, type: 3}
+  - {fileID: 8300000, guid: 918f83b22a83106499b56f98ef8934cc, type: 3}
+  - {fileID: 8300000, guid: b084521af24466e4b8bbf8743d5c2493, type: 3}
+  _objectiveDestroyedEffect: {fileID: 8300000, guid: bddb101356013684fa9ea01dc79fcb1f, type: 3}
+  _newWaveEffect: {fileID: 8300000, guid: a60f7efb6caba8b44b7149f20bc032f0, type: 3}
+  _loseEffect: {fileID: 8300000, guid: a04f60d3f149942419a38b937907c0a6, type: 3}
+  _secondLoseEffect: {fileID: 8300000, guid: 75d3f676574782b4888ef8dd0590db3a, type: 3}
   _upgradeEffect: {fileID: 8300000, guid: d9753630d1a36b743ba0b6550e50aff1, type: 3}
-  _noManaEffect: {fileID: 0}
+  _noManaEffect: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
   _changeSpellEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
   _changeElementEffect: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
   _preciseAttackEffects:
@@ -80,8 +89,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 94d647c1a2739a54fb3ec50f748441d2, type: 3}
   - {fileID: 8300000, guid: 239076f50c6e9e74a933f92a40f5f0f9, type: 3}
   _preciseAttackEffectAdjustment: 0.3
-  _zoneAttackEffectAdjustment: 0.7
+  _zoneAttackEffectAdjustment: 0.3
   _slowEffectAdjustment: 0.6
+  _newWaveEffectAdjustment: 0.5
+  _objectiveHitEffectAdjustment: 0.25
   _camera: {fileID: 0}
 --- !u!82 &7485639080366470762
 AudioSource:

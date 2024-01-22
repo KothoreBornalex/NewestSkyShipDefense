@@ -195,34 +195,41 @@ public class playerAttack : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            if (_currentMana >= _manaCostCastSpell && !GameManager.instance.IsDefeated)
+            if (_currentMana >= _manaCostCastSpell)
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if(Physics.Raycast(ray.origin, ray.direction, out hit, 300.0f))
+                if (!GameManager.instance.IsDefeated)
                 {
-                    Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow);
-
-                    Vector3 go = hit.point;
-
-                    switch (_spellIndex)
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray.origin, ray.direction, out hit, 300.0f))
                     {
-                        case 1:
-                            UseSpell1(go, _playerAttacksData.Spell1DamageStats[_spell1Level], _playerAttacksData.Spell1RadiusStats[_spell1Level]);
-                    
-                            break;
-                        case 2:
-                            UseSpell2(go, _playerAttacksData.Spell2DamageStats[_spell2Level], _playerAttacksData.Spell2RadiusStats[_spell2Level]);
-                            break;
-                        case 3:
-                            UseSpell3(go, _playerAttacksData.Spell3SlowStats[_spell3Level], _playerAttacksData.Spell3RadiusStats[_spell3Level]);
-                            break;
-                        default:
-                            Debug.LogWarning("Erreur ! Aucune attaque reconnue !");
-                            break;
-                    }
+                        Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow);
 
+                        Vector3 go = hit.point;
+
+                        switch (_spellIndex)
+                        {
+                            case 1:
+                                UseSpell1(go, _playerAttacksData.Spell1DamageStats[_spell1Level], _playerAttacksData.Spell1RadiusStats[_spell1Level]);
+
+                                break;
+                            case 2:
+                                UseSpell2(go, _playerAttacksData.Spell2DamageStats[_spell2Level], _playerAttacksData.Spell2RadiusStats[_spell2Level]);
+                                break;
+                            case 3:
+                                UseSpell3(go, _playerAttacksData.Spell3SlowStats[_spell3Level], _playerAttacksData.Spell3RadiusStats[_spell3Level]);
+                                break;
+                            default:
+                                Debug.LogWarning("Erreur ! Aucune attaque reconnue !");
+                                break;
+                        }
+
+                    }
                 }
+            }
+            else
+            {
+                SoundManager.instance.PlayNoManaSound();
             }
         }
     }
@@ -337,7 +344,11 @@ public class playerAttack : MonoBehaviour
 
     private void DamageSpell(Collider[] colliders, int damageValue)
     {
-        if (colliders.Length != 0) Debug.Log("Enemy Detected");
+        if (colliders.Length != 0)
+        {
+            Debug.Log("Enemy Detected");
+            SoundManager.instance.PlayEnnemyHitSound();
+        }
 
         foreach (Collider collider in colliders)
         {

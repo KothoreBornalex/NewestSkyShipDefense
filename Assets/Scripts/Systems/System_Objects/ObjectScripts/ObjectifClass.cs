@@ -53,6 +53,8 @@ public class ObjectifClass : MonoBehaviour, IObjects
                 MapManager.instance.Lights[i].onFlame = true;
             }
         }
+
+        SoundManager.instance.PlayDestroyedSound();
     }
 
 

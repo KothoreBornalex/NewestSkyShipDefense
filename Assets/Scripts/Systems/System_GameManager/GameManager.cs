@@ -271,6 +271,7 @@ public class GameManager : MonoBehaviour
 
     public void StartDefeat()
     {
+        SoundManager.instance.PlayLoseSound();
         CheckHighscore();
     }
     private void CheckHighscore()

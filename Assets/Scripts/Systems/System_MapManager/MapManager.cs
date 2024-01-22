@@ -495,11 +495,13 @@ public class MapManager : MonoBehaviour
             {
                 case 0:
                     leftCanonRange[canonIndex].feedBack?.PlayFeedbacks();
+                    SoundManager.instance.PlayNewWaveSound();
                     leftCanonRange[canonIndex].hasShooted = true;
                     break;
 
                 case 1:
                     rightCanonRange[canonIndex].feedBack?.PlayFeedbacks();
+                    SoundManager.instance.PlayNewWaveSound();
                     rightCanonRange[canonIndex].hasShooted = true;
                     break;
             }
@@ -523,11 +525,13 @@ public class MapManager : MonoBehaviour
             {
                 case 0:
                     leftCanonRange[canonIndex].feedBack?.PlayFeedbacks();
+                    SoundManager.instance.PlayNewWaveSound();
                     leftCanonRange[canonIndex].hasShooted = true;
                     break;
 
                 case 1:
                     rightCanonRange[canonIndex].feedBack?.PlayFeedbacks();
+                    SoundManager.instance.PlayNewWaveSound();
                     rightCanonRange[canonIndex].hasShooted = true;
                     break;
             }
