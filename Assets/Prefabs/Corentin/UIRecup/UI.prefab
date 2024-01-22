@@ -1280,7 +1280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -452.19955, y: 964.0976}
+  m_AnchoredPosition: {x: -520, y: 964.0976}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &502937821973286985
@@ -13693,11 +13693,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6324214040957308598}
-  - {fileID: 7353771836618185845}
-  - {fileID: 1441241023067885727}
   - {fileID: 2185985952827798713}
   - {fileID: 1480834339134309737}
   - {fileID: 467550752644033695}
+  - {fileID: 7353771836618185845}
+  - {fileID: 1441241023067885727}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13846,6 +13846,9 @@ MonoBehaviour:
   _spell1BackgroundImage: {fileID: 1537517007245689583}
   _spell2BackgroundImage: {fileID: 9030335483615289112}
   _spell3BackgroundImage: {fileID: 874598390597363947}
+  _spell1BackgroundButton: {fileID: 0}
+  _spell2BackgroundButton: {fileID: 0}
+  _spell3BackgroundButton: {fileID: 0}
   _spellIndicatorRectTrans: {fileID: 9121922870805109577}
   _spellIndicatorSpeed: 5
   _elementTopBackgroundImage: {fileID: 3110432339040298766}
@@ -21760,6 +21763,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7043104786060215443}
     m_Modifications:
+    - target: {fileID: 372461177, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 372461178, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
       propertyPath: lengthInSec
       value: 3.4
@@ -21768,12 +21775,20 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 905760539, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 905760540, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
       propertyPath: lengthInSec
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 905760540, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015227165777888680, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2015227165777888681, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
@@ -21840,6 +21855,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2015227166078130034, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2015227166078130035, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
       propertyPath: lengthInSec
       value: 4
@@ -21860,6 +21879,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2015227166301553431, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015227166723438918, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2015227166723438919, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
       propertyPath: lengthInSec
       value: 2
@@ -21874,6 +21901,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2015227167154464708, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015227167154464711, guid: 8612b29c6b4e23c4a9a6f4053f9a155b, type: 3}
+      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -22220,7 +22251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22240,7 +22271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -452.2
+      value: -520.0004
       objectReference: {fileID: 0}
     - target: {fileID: 5215427257285879697, guid: 248ce40ed51482c4cb141c91800c42c0, type: 3}
       propertyPath: m_AnchoredPosition.y
