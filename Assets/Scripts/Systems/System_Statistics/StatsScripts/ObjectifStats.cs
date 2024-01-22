@@ -27,6 +27,8 @@ public class ObjectifStats : MonoBehaviour, IStatistics
     private IObjects objectScript;
     [SerializeField] private Statistics _objectifHealth;
 
+    private bool _canPlaySound = true;
+
     public Statistics ObjectifHealth { get => _objectifHealth;}
     public IObjects ObjectScript { get => objectScript;}
 
@@ -79,6 +81,13 @@ public class ObjectifStats : MonoBehaviour, IStatistics
 
         if (statName == _objectifHealth._statName)
         {
+            if (_canPlaySound)
+            {
+                SoundManager.instance.PlayObjectiveHitSound();
+                _canPlaySound = false;
+                StartCoroutine(PlaySoundCooldownCoroutine());
+            }
+
             _objectifHealth._statCurrentValue -= decreasingValue;
             _objectifHealth._statCurrentValue = Mathf.Clamp(_objectifHealth._statCurrentValue, 0, _objectifHealth._statMaxValue);
 
@@ -142,4 +151,12 @@ public class ObjectifStats : MonoBehaviour, IStatistics
 
     }
 
+    IEnumerator PlaySoundCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        _canPlaySound = true;
+
+        yield return null;
+    }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.7
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.32331318, g: 0.3991426, b: 0.5252966, a: 0.7}
+  m_IndirectSpecularColor: {r: 0.3235478, g: 0.3994216, b: 0.52535707, a: 0.7}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -103286,10 +103286,6 @@ PrefabInstance:
     - target: {fileID: 5014257283363187819, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
       propertyPath: m_Name
       value: Manager - Sound
-      objectReference: {fileID: 0}
-    - target: {fileID: 7485639080366470762, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
-      propertyPath: MinDistance
-      value: 2.7036884
       objectReference: {fileID: 0}
     - target: {fileID: 7803751800395216849, guid: 8d644c2fdde198a48af8658592c41d81, type: 3}
       propertyPath: m_LocalPosition.x
