@@ -66,6 +66,11 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private Image _spell1BackgroundImage;
     [SerializeField] private Image _spell2BackgroundImage;
     [SerializeField] private Image _spell3BackgroundImage;
+
+    [SerializeField] private CustomButton _spell1BackgroundButton;
+    [SerializeField] private CustomButton _spell2BackgroundButton;
+    [SerializeField] private CustomButton _spell3BackgroundButton;
+
     [SerializeField] private RectTransform _spellIndicatorRectTrans;
     [SerializeField] private float _spellIndicatorSpeed;
     private Vector3 _targetSpellIndPos;
@@ -124,21 +129,31 @@ public class UpgradeUIManager : MonoBehaviour
         switch (index)
         {
             case 1: // spell 1
-                _spell1BackgroundImage.material.color = _selectedColor;
-                _spell2BackgroundImage.material.color = _unselectedColor;
-                _spell3BackgroundImage.material.color = _unselectedColor;
+                _spell1BackgroundButton.State = CustomButton.ButtonState.Lighted;
+                _spell2BackgroundButton.State = CustomButton.ButtonState.Unlighted;
+                _spell3BackgroundButton.State = CustomButton.ButtonState.Unlighted;
+
+                //_spell1BackgroundImage.material.color = _selectedColor;
+                //_spell2BackgroundImage.material.color = _unselectedColor;
+                //_spell3BackgroundImage.material.color = _unselectedColor;
                 _targetSpellIndPos = _spell1BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 2: // spell 2
-                _spell1BackgroundImage.material.color = _unselectedColor;
-                _spell2BackgroundImage.material.color = _selectedColor;
-                _spell3BackgroundImage.material.color = _unselectedColor;
+                _spell1BackgroundButton.State = CustomButton.ButtonState.Unlighted;
+                _spell2BackgroundButton.State = CustomButton.ButtonState.Lighted;
+                _spell3BackgroundButton.State = CustomButton.ButtonState.Unlighted;
+                //_spell1BackgroundImage.material.color = _unselectedColor;
+                //_spell2BackgroundImage.material.color = _selectedColor;
+                //_spell3BackgroundImage.material.color = _unselectedColor;
                 _targetSpellIndPos = _spell2BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
             case 3: // spell 3
-                _spell1BackgroundImage.material.color = _unselectedColor;
-                _spell2BackgroundImage.material.color = _unselectedColor;
-                _spell3BackgroundImage.material.color = _selectedColor;
+                _spell1BackgroundButton.State = CustomButton.ButtonState.Unlighted;
+                _spell2BackgroundButton.State = CustomButton.ButtonState.Unlighted;
+                _spell3BackgroundButton.State = CustomButton.ButtonState.Lighted;
+                //_spell1BackgroundImage.material.color = _unselectedColor;
+                //_spell2BackgroundImage.material.color = _unselectedColor;
+                //_spell3BackgroundImage.material.color = _selectedColor;
                 _targetSpellIndPos = _spell3BackgroundImage.GetComponent<RectTransform>().localPosition;
                 break;
         }

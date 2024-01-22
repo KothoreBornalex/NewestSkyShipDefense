@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.7
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3235478, g: 0.3994216, b: 0.52535707, a: 0.7}
+  m_IndirectSpecularColor: {r: 0.32331318, g: 0.3991426, b: 0.5252966, a: 0.7}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6208,6 +6208,18 @@ PrefabInstance:
       propertyPath: _playerXpManager
       value: 
       objectReference: {fileID: 1967536885}
+    - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: _spell1BackgroundButton
+      value: 
+      objectReference: {fileID: 1194799625}
+    - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: _spell2BackgroundButton
+      value: 
+      objectReference: {fileID: 1166938357}
+    - target: {fileID: 2129601659817862778, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: _spell3BackgroundButton
+      value: 
+      objectReference: {fileID: 1542995535}
     - target: {fileID: 2255349349217506477, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6444,10 +6456,23 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1967536883}
+    - target: {fileID: 9030335483615289112, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3155090874629571607, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1194799625}
+    - targetCorrespondingSourceObject: {fileID: 6150414720601418943, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1166938357}
+    - targetCorrespondingSourceObject: {fileID: 5778368887690174406, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1542995535}
   m_SourcePrefab: {fileID: 100100000, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
 --- !u!224 &197708594 stripped
 RectTransform:
@@ -45892,6 +45917,27 @@ Transform:
   - {fileID: 247773238}
   m_Father: {fileID: 2103237854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1166938352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6150414720601418943, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+  m_PrefabInstance: {fileID: 197708593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1166938357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166938352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9eea6f7639099a4a8c1ad6c1264a586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  _blendSpeed: 1.75
+  _lightedButtonIntensity: 1.7
+  _unLightedButtonIntensity: 0.7
 --- !u!1 &1193380526
 GameObject:
   m_ObjectHideFlags: 0
@@ -50729,6 +50775,27 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: Chromatic Aberration
+--- !u!1 &1194799620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3155090874629571607, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+  m_PrefabInstance: {fileID: 197708593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1194799625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194799620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9eea6f7639099a4a8c1ad6c1264a586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 1
+  _blendSpeed: 1.75
+  _lightedButtonIntensity: 2.1
+  _unLightedButtonIntensity: 1
 --- !u!1001 &1196324073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76746,6 +76813,27 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: Chromatic Aberration
+--- !u!1 &1542995530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5778368887690174406, guid: eb3f7196a52e4c94886c4b5821bb29fb, type: 3}
+  m_PrefabInstance: {fileID: 197708593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542995535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542995530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9eea6f7639099a4a8c1ad6c1264a586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 1
+  _blendSpeed: 1.75
+  _lightedButtonIntensity: 1.75
+  _unLightedButtonIntensity: 0.7
 --- !u!1 &1547444139
 GameObject:
   m_ObjectHideFlags: 0
