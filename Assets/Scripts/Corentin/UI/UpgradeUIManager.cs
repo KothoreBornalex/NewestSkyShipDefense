@@ -549,7 +549,7 @@ public class UpgradeUIManager : MonoBehaviour
     }
     IEnumerator IndicatorSlideCoroutine()   // element indicator slide
     {
-        while ((_indicatorRectTrans.localPosition - _targetIndPos).magnitude > 0.2f || _openCoroutine != null || _closeCoroutine != null)
+        while (/*(_indicatorRectTrans.localPosition - _targetIndPos).magnitude > 0.2f || _openCoroutine != null || _closeCoroutine != null*/ true)
         {
             Vector3 tempVector = _indicatorRectTrans.localPosition;
 
