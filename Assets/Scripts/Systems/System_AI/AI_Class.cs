@@ -61,6 +61,7 @@ public class AI_Class : MonoBehaviour, IStatistics
 
     [Header("Pathfinding Fields")]
     private NavMeshAgent _navMeshAgent;
+    private float _agentRadius;
 
     [Header("Patrols Fields")]
     [SerializeField] private Transform[] patrolWayPoints;
@@ -89,6 +90,9 @@ public class AI_Class : MonoBehaviour, IStatistics
     private int hash_isWalking = Animator.StringToHash("isWalking");
 
     public FactionsEnum Faction { get => _faction; set => _faction = value; }
+    public CapsuleCollider CapsuleCollider { get => _capsuleCollider; set => _capsuleCollider = value; }
+    public NavMeshAgent NavMeshAgent { get => _navMeshAgent; set => _navMeshAgent = value; }
+    public float AgentRadius { get => _agentRadius; set => _agentRadius = value; }
 
     private void Awake()
     {
@@ -101,6 +105,8 @@ public class AI_Class : MonoBehaviour, IStatistics
         _material = _meshRenderer.material;
         _customAnimator = GetComponent<CustomAnimator>();
         _pooledObject = GetComponent<PooledObject>();
+
+        _agentRadius = _navMeshAgent.radius;
     }
 
     private void Start()
@@ -166,7 +172,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         {
             Debug.Log("Unit Data is Null !");
         }
-        
+
     }
 
 
@@ -179,10 +185,11 @@ public class AI_Class : MonoBehaviour, IStatistics
         InitializeStats();
         FreezPhysics();
 
+        _capsuleCollider.enabled = false;
+        _navMeshAgent.radius = 0.35f;
+
         _navMeshAgent.enabled = false;
         _navMeshAgent.enabled = true;
-
-        _capsuleCollider.enabled = true;
 
         _material.color = Color.white;
 
