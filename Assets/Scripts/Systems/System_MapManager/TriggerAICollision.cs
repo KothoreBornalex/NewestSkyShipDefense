@@ -10,18 +10,12 @@ public class TriggerAICollision : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<AI_Class>(out AI_Class ai))
+        if (other.TryGetComponent<AI_Class>(out AI_Class ai))
         {
-            ai.CapsuleCollider.enabled = true;
-            ai.NavMeshAgent.radius = ai.AgentRadius;
+            ai.SetBackAgentRadius();
         }
     }
+
 }

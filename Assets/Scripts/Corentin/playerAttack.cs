@@ -11,6 +11,7 @@ public class playerAttack : MonoBehaviour
 
 
     [SerializeField] private LayerMask _ennemyLayerMask;
+    [SerializeField] private LayerMask _globalLayerMask;
 
     [Header("Spells")]
     [SerializeField] private GameObject _spell1Prefab;
@@ -174,7 +175,7 @@ public class playerAttack : MonoBehaviour
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, 500.0f))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, 500.0f, _globalLayerMask, QueryTriggerInteraction.Ignore))
                 {
                     Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
 
@@ -201,7 +202,7 @@ public class playerAttack : MonoBehaviour
                 {
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray.origin, ray.direction, out hit, 300.0f))
+                    if (Physics.Raycast(ray.origin, ray.direction, out hit, 300.0f, _globalLayerMask, QueryTriggerInteraction.Ignore))
                     {
                         Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow);
 

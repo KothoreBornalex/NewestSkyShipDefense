@@ -62,6 +62,7 @@ public class AI_Class : MonoBehaviour, IStatistics
     [Header("Pathfinding Fields")]
     private NavMeshAgent _navMeshAgent;
     private float _agentRadius;
+    private float _capsuleRadius;
 
     [Header("Patrols Fields")]
     [SerializeField] private Transform[] patrolWayPoints;
@@ -107,6 +108,8 @@ public class AI_Class : MonoBehaviour, IStatistics
         _pooledObject = GetComponent<PooledObject>();
 
         _agentRadius = _navMeshAgent.radius;
+        _capsuleRadius = _capsuleCollider.radius;
+
     }
 
     private void Start()
@@ -185,17 +188,24 @@ public class AI_Class : MonoBehaviour, IStatistics
         InitializeStats();
         FreezPhysics();
 
-        _capsuleCollider.enabled = false;
-        _navMeshAgent.radius = 0.35f;
+        _navMeshAgent.radius = _navMeshAgent.radius * 0.7f;
+        _capsuleCollider.radius = _capsuleCollider.radius * 0.7f;
 
         _navMeshAgent.enabled = false;
         _navMeshAgent.enabled = true;
 
         _material.color = Color.white;
+        _capsuleCollider.enabled = true;
 
         _deathEffect.gameObject.SetActive(false);
 
         _customAnimator.ResetAnimator();
+    }
+
+    public void SetBackAgentRadius()
+    {
+        _navMeshAgent.radius = _agentRadius;
+        _capsuleCollider.radius = _capsuleRadius;
     }
 
     public void FreezPhysics()
