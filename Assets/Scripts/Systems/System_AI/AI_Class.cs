@@ -429,7 +429,7 @@ public class AI_Class : MonoBehaviour, IStatistics
                 {
                     if (myStat._statName == statistics._statName)
                     {
-                        myStat._statCurrentValue = statistics._statCurrentValue;
+                        myStat._statCurrentValue = statistics._statCurrentValue + (GameManager.instance.CurrentRound * 8);
                     }
                 }
             }
@@ -439,7 +439,7 @@ public class AI_Class : MonoBehaviour, IStatistics
         {
             foreach (Statistics statistics in _unitData.AiStatistics)
             {
-                _aiStatistics.Add(new Statistics(statistics._statName, statistics._statCurrentValue, statistics._statMaxValue));
+                _aiStatistics.Add(new Statistics(statistics._statName, statistics._statCurrentValue + (GameManager.instance.CurrentRound * 8), statistics._statMaxValue + (GameManager.instance.CurrentRound * 8)));
             }
         }
         

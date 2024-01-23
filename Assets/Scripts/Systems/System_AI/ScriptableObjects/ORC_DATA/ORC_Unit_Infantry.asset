@@ -18,6 +18,6 @@ MonoBehaviour:
   _deathObject: {fileID: 2264145547278940075, guid: 68dc6249797585744ac310830aac1e7e, type: 3}
   _aiStatistics:
   - _statName: 0
-    _statCurrentValue: 6
-    _statMaxValue: 6
+    _statCurrentValue: 10
+    _statMaxValue: 10
   _attackRange: 2.2
