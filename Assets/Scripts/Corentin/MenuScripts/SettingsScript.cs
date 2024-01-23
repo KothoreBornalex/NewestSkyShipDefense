@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
+    [SerializeField] UniversalRenderPipelineAsset _pipeline;
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _effectsSlider;
+    [SerializeField] private Slider _resolutionSlider;
+
 
     private bool _canSaveValue;
 
@@ -16,6 +21,8 @@ public class SettingsScript : MonoBehaviour
     {
         PlayerPrefs.SetFloat("MusicVolume", _musicSlider.value);
         PlayerPrefs.SetFloat("EffectsVolume", _effectsSlider.value);
+        PlayerPrefs.SetFloat("ResolutionURP", _resolutionSlider.value);
+        _pipeline.renderScale = _resolutionSlider.value;
     }
     public void PauseGame()
     {
@@ -42,6 +49,10 @@ public class SettingsScript : MonoBehaviour
         if (PlayerPrefs.HasKey("EffectsVolume"))
         {
             _effectsSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("EffectsVolume"));
+        }
+        if (PlayerPrefs.HasKey("ResolutionURP"))
+        {
+            _effectsSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("ResolutionURP"));
         }
     }
 
