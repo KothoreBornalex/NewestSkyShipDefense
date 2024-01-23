@@ -251,6 +251,7 @@ public class playerAttack : MonoBehaviour
     }
     private void UseSpell1(Vector3 attackOrigin, int damageValue, float radius)     // Faible dégats de zone
     {
+        //Debug.Log("damage : " + damageValue);
         if (SoundManager.instance != null)
         {
             int index = 0;

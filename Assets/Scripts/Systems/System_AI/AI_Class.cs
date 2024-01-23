@@ -466,6 +466,9 @@ public class AI_Class : MonoBehaviour, IStatistics
         {
             if (stats._statName == statName)
             {
+                stats._statCurrentValue -= decreasingValue;
+                stats._statCurrentValue = Mathf.Clamp(stats._statCurrentValue, 0, stats._statMaxValue);
+
                 if (stats._statName == StatName.Health)
                 {
                     //AudioManager.instance.PlayOneShot_GlobalSound(FMODEvents.instance.Player_Hurt);
@@ -482,8 +485,6 @@ public class AI_Class : MonoBehaviour, IStatistics
                     }
                 }
 
-                stats._statCurrentValue -= decreasingValue;
-                stats._statCurrentValue = Mathf.Clamp(stats._statCurrentValue, 0, stats._statMaxValue);
                 return;
             }
         }
